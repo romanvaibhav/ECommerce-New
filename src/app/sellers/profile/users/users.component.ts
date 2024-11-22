@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component, viewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthenticationServiceService } from '../../../authentication-service/authentication-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Tuser } from '../../../models/user.type';
 import { PopupComponent } from '../popup/popup.component';
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-users',
@@ -24,7 +25,20 @@ export class UsersComponent {
   constructor(private route: ActivatedRoute, private router: Router, private authService: AuthenticationServiceService, httpClient: HttpClient) {
 
   }
-  opmode: boolean = false;
+  // @ViewChild('exampleModal') exampleModal!: ElementRef;
+
+
+  @ViewChild('exampleModal') exampleModal!: ElementRef;
+  // ngAfterViewInit(){
+  // // Show modal programmatically
+  // }
+  openmodel(){
+    const modal = new bootstrap.Modal(this.exampleModal.nativeElement, {
+      backdrop: 'static', // Prevent closing on backdrop click
+      keyboard: false // Prevent closing with keyboard (optional)
+    });
+    modal.show();
+  }
 
   currentPage:number=0;
   userList: any = {
@@ -230,6 +244,8 @@ export class UsersComponent {
     this.listUser();
 
   }
+
+
 
 
 
