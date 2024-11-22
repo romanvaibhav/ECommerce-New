@@ -9,3 +9,10 @@ th,td{
     text-align: left;
 
 }
+.sidemodel button{
+    border: none;
+    /* background-color: hsl(154, 54%, 76%); */
+}
+.sidemodel button:hover{
+    background-color: hsl(290, 14%, 33%);
+}

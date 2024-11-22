@@ -25,6 +25,9 @@ export class ProfileComponent {
 
 
 
+
+
+
   ngOnInit():void{
     const profileObservable$=this.authService.getUserProfile();
     profileObservable$.subscribe({next :(value:any)=>{
