@@ -67,30 +67,31 @@ export class AuthenticationServiceService {
   }
 
 
-  // getUserList(Obj:any):Observable<any>{
-  //   let logintoken=localStorage.getItem("token");
-  //   let params = new HttpParams().set('name', Obj.name);
-  //   if (Obj.role) {
-  //     params = params.set('role', Obj.role);
-  //   }
-  //   if (Obj.sortBy) {
-  //     params = params.set('sortBy', Obj.sortBy);
-  //   }
-  //   if (Obj.limit) {
-  //     params = params.set('limit', Obj.limit.toString());
-  //   }
-  //   if (Obj.page) {
-  //     params = params.set('page', Obj.page.toString());
-  //   }
-
-
-  //   if(logintoken != null){
-  //     logintoken=JSON.parse(logintoken);
-  //   }
-  //   const headers = new HttpHeaders()
-  //   .set('Authorization', `Bearer ${logintoken}`);
-  //   return this.httpClient.get(AuthenticationServiceService.baseUrl+'/users',{params,headers});
-  // }
+  getUserList(Obj:any):Observable<any>{
+    let logintoken=localStorage.getItem("token");
+    let params = new HttpParams();
+    if(Obj.name){
+      params=params.set('name', Obj.name);
+    }
+    if (Obj.role) {
+      params = params.set('role', Obj.role);
+    }
+    if (Obj.sortBy) {
+      params = params.set('sortBy', Obj.sortBy);
+    }
+    if (Obj.limit) {
+      params = params.set('limit', Obj.limit.toString());
+    }
+    if (Obj.page) {
+      params = params.set('page', Obj.page.toString());
+    }
+    if(logintoken != null){
+      logintoken=JSON.parse(logintoken);
+    }
+    const headers = new HttpHeaders()
+    .set('Authorization', `Bearer ${logintoken}`);
+    return this.httpClient.get(AuthenticationServiceService.baseUrl+'/users',{params,headers});
+  }
 
   //Creating User
   postCreateUser(payload:{

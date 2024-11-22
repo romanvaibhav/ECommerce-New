@@ -16,13 +16,18 @@
 .sidebar{
     display: flex;
     flex-direction: row;
-    margin-top: 15px;
+    /* margin-top: 15px; */
+    align-items: center;
+    /* background-color: red; */
+    /* justify-content: space-between; */
 }
-.sidebar p{
-    padding-left: 60px;
+.sidebar a{
+    /* padding-left: 60px; */
+    margin-left: 30px;
+    margin-right: 20px;
 }
 .profile{
-    margin-right: -250px;
+    margin-right: -300px;
     border: 1px solid black;
     padding: 0px 2px;
     cursor: pointer;

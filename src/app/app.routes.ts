@@ -18,7 +18,7 @@ export const routes: Routes = [
     {
         path:"profile",
         component:ProfileComponent,
-        // canActivate:[authGaurdGuard],
+        canActivate:[authGaurdGuard],
         // children: [ // Define child routes here
         //     {
         //         path:"users",

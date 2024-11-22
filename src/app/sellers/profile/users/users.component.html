@@ -1,5 +1,37 @@
 <div class="userlist">
-    <h2>List of Users</h2>
+    <div class="sort d-flex" style="width: 100%; height: 10vh; border: 1px solid black;">
+        <div style="margin-left: 40px;">
+            <label for="name">Name</label>
+            <input style="width: 100px; height: 25px; margin-top: 10px;" (change)="onChange($event)" [(ngModel)]="userList.name" type="text">
+        </div>
+        <div style="margin-left: 40px; margin-top: 10px;">
+            <label for="SortBy">SortBy</label>
+            <select name="SortBy" (change)="onChange($event)" [(ngModel)]="userList.SortBy">
+                <option *ngFor="let ele of SortByList" [value]="ele.value">{{ele.label}}</option>
+            </select>
+        </div>
+        <div style="margin-left: 40px; margin-top: 10px;">
+            <label for="SortByRole">Role</label>
+            <select name="Role" (change)="onChange($event)" [(ngModel)]="userList.role">
+                <option *ngFor="let rol of SortByRole" [value]="rol.value">{{rol.label}}</option>
+            </select>
+        </div>
+        <div style="margin-left: 40px; margin-top: 10px;">
+            <label for="SortByLimit">Page Limit</label>
+            <select name="pagelimit" (change)="onChange($event)" [(ngModel)]="userList.limit">
+                <option *ngFor="let ind of SortBylimit" [value]="ind">{{ind}}</option>
+            </select>
+        </div>
+        <div style="margin-left: 40px; margin-top: 10px;">
+            <label for="TotalPage">TotalPage</label>
+            <select name="TotalPage" (change)="onChange($event)" [(ngModel)]="userList.page">
+                <option *ngFor="let num of TotalPage" [value]="num">{{num}}</option>
+            </select>
+        </div>
+        <div>
+            <button style="margin-left: 40px; margin-top: 10px; width: 80px; height: 30px;" class="btn btn-primary" (click)="clearAll()">Clear All</button>
+        </div>
+    </div>
     <div class="users">
         <table>
             <thead class="heading">
@@ -43,13 +75,15 @@
                                 </div></li>
                                 <li><button (click)="deleteUser(user._id)">Delete User</button></li>
                             </ul>
-                        </div></li>
+                        </div>
+                    </li>
                     </ul></td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
+<!-- <app-popup></app-popup> -->
 <div class="createUser">
     <label for="name">Name</label>
     <input type="text" [(ngModel)]="addUser.name" placeholder="Enter Your Name">
@@ -61,3 +95,15 @@
     <input type="text" [(ngModel)]="addUser.role" placeholder="Enter Your role">
 </div>
 <button (click)="createUser()">Add User</button>
+<!-- Button trigger modal -->
+
+
+
+
+
+<!-- modal-title -->
+ <!-- Button trigger modal -->
+
+  
+
+

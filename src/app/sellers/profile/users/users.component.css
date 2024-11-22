@@ -1,0 +1,11 @@
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,td{
+    border: 1px solid black;  /* Adds a 1px solid black border to each table cell */
+    padding: 8px;  /* Adds padding inside each cell for spacing */
+    text-align: left;
+
+}
