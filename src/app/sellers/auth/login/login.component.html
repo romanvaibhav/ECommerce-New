@@ -1,5 +1,5 @@
 
-<form class="formTag" validate #form="ngForm"  autocomplete="on">
+<form class="formTag" validate [formGroup]="loginPage"  autocomplete="on">
     <div class="main">
         <div class="container">
 
@@ -8,23 +8,23 @@
         </div>
         <div class="email">
             <label for="email" placeholer="Enter your email">Email</label><br>
-            <input #fName="ngModel" autocomplete="email" name="email" [(ngModel)]="loginPage.email" type="email" required>
+            <input autocomplete="email" name="email" formControlName="email" type="email" required>
         </div>
         <div class="Dcolor">
-            @if(fName.touched && fName.errors?.['required']){
+            @if(loginPage.controls['email'].touched && loginPage.controls['email'].errors?.['required']){
                 <span>This is required</span>
             }
         </div>
         <div class="password">
             <label for="password">Password</label><br>
-            <input #pName="ngModel" autocomplete="current-password" name="password" [(ngModel)]="loginPage.password" type="password" required minlength="3">
+            <input autocomplete="current-password" name="password" formControlName="password" type="password" required minlength="3">
         </div>
         <div class="Dcolor">
-            @if(pName.touched && pName.errors?.['required']){
+            @if(loginPage.controls['password'].touched && loginPage.controls['password'].errors?.['required']){
                 <span>This is required</span>
             }
-            @else if(pName.touched && pName.errors?.['minlength']){
-                <span>length should be more than 3</span>
+            @else if(loginPage.controls['password'].errors?.['minlength']){
+                <span>Min 6 chared required</span>
             }
         </div>
         <div class="btn">

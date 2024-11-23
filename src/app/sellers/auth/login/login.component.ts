@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, NgModel, ReactiveFormsModule, Validators } from '@angular/forms';
 import {Router, RouterLink, RouterOutlet } from '@angular/router';
 import { json } from 'stream/consumers';
 import {Suser} from '../../../models/user.type';
@@ -13,7 +13,7 @@ import { Token } from '@angular/compiler';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule,CommonModule],
+  imports: [FormsModule,CommonModule,ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -22,10 +22,16 @@ export class LoginComponent {
   http = inject(HttpClient)
   constructor(private localAuth: LocalAuthService, private router : Router,private authService:AuthenticationServiceService ) {}
   users:Suser[]=[];
-  loginPage: any={
-    email:'',
-    password:''
-  }
+  // loginPage: any={
+  //   email:'',
+  //   password:''
+  // }
+
+  loginPage : FormGroup= new FormGroup({
+    email: new FormControl("",[Validators.required]),
+    password:new FormControl("",[Validators.required, Validators.minLength(6)]),
+  });
+
 
   login(){
     // console.log(this.users);
@@ -35,7 +41,7 @@ export class LoginComponent {
     // let userInfo=localStorage.getItem("student")
 
     //Login Post request
-    const user=this.loginPage;
+    const user=this.loginPage.value;
     console.log(user);
     const loginObservable$ = this.authService.loginReq({
       email:user.email,
