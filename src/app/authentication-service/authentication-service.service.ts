@@ -4,6 +4,7 @@ import {LocalAuthService} from '../sellers/services/local-auth/local-auth.servic
 import {environment} from '../../environment/environment'
 import { Suser } from '../models/user.type';
 import { Observable } from 'rxjs';
+import { ReCaptchaV3Service } from 'ngx-captcha';
 import { Token } from '@angular/compiler';
 import { strict } from 'assert';
 @Injectable({
@@ -11,7 +12,7 @@ import { strict } from 'assert';
 })
 export class AuthenticationServiceService {
 
-  constructor(private httpClient:HttpClient,  private localStorageService:LocalAuthService) { }
+  constructor(private reCaptchaV3Service: ReCaptchaV3Service, private httpClient:HttpClient,  private localStorageService:LocalAuthService) { }
   static baseUrl=environment.API_HOST_URL;
 
 

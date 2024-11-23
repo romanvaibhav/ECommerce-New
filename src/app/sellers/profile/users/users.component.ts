@@ -27,12 +27,13 @@ export class UsersComponent {
   }
   // @ViewChild('exampleModal') exampleModal!: ElementRef;
 
-
+  selectedUserId: string='';
   @ViewChild('exampleModal') exampleModal!: ElementRef;
   // ngAfterViewInit(){
   // // Show modal programmatically
   // }
-  openmodel(){
+  openmodel(userId:string){
+    this.selectedUserId=userId;
     const modal = new bootstrap.Modal(this.exampleModal.nativeElement, {
       backdrop: 'static', // Prevent closing on backdrop click
       keyboard: false // Prevent closing with keyboard (optional)
@@ -100,9 +101,8 @@ export class UsersComponent {
     observeUser$.subscribe({next: (value)=>{
       console.log("users LIST fetched Succesfully");
       console.log(value);
+      this.currentPage=value.totalPages;
       this.Duser = value["results"] as [];
-
-      // this.currentPage=value;
       this.SortByPage();
 
       // this.currentPage=value.totalPages;
@@ -115,9 +115,15 @@ export class UsersComponent {
 
 
   //Creating User
+  isOpen:boolean=false;
+  AddUserClick(){
+    this.isOpen=!this.isOpen;
 
+  }
   createUser() {
     let User = this.addUser
+
+
     console.log(User);
     this.authService.postCreateUser({
       email: User?.email,
@@ -160,9 +166,7 @@ export class UsersComponent {
   }
 
 
-  modifyUserInfo(userId: string) {
-    console.log(userId);
-  }
+
 
   modifyUser(userId: string) {
     console.log(userId);
@@ -214,7 +218,9 @@ export class UsersComponent {
     })
   }
 
-  // Sorting 
+
+
+  // Sorting the USers
   SortByList = [
     { value: '', label: '' },
     { value: 'name', label: 'name' },
@@ -245,8 +251,17 @@ export class UsersComponent {
 
   }
 
+  isUpdateInfo:boolean=true;
+  //Styling Model
+  modifyUserInfo(userId: string) {
+    this.isUpdateInfo = !this.isUpdateInfo;
+    this.isUpdateRole=false;
+    }
 
-
-
+  isUpdateRole:boolean=false;
+  Ismodifyupdate(userId:string){
+    this.isUpdateRole = !this.isUpdateRole;
+    this.isUpdateInfo=false;
+  }
 
 }

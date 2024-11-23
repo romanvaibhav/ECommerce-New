@@ -1,37 +1,68 @@
 <div class="userlist">
-    <div class="sort d-flex" style="width: 100%; height: 10vh; border: 1px solid black;">
-        <div style="margin-left: 40px;">
-            <label for="name">Name</label>
-            <input style="width: 100px; height: 25px; margin-top: 10px;" (change)="onChange($event)" [(ngModel)]="userList.name" type="text">
+    <div class="d-flex ">
+        <div class="sort d-flex justify-content-between"
+            style="width: 65%; height: 6vh; border: 1px solid black; padding: 6px;">
+            <div>
+                <form autocomplete="off">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" style="width: 100px; height: 25px;" (change)="onChange($event)"
+                        [(ngModel)]="userList.name">
+                </form>
+            </div>
+            <div>
+                <label for="SortBy">SortBy</label>
+                <select name="SortBy" (change)="onChange($event)" [(ngModel)]="userList.SortBy">
+                    <option *ngFor="let ele of SortByList" [value]="ele.value">{{ele.label}}</option>
+                </select>
+            </div>
+            <div>
+                <label for="SortByRole">Role</label>
+                <select name="Role" (change)="onChange($event)" [(ngModel)]="userList.role">
+                    <option *ngFor="let rol of SortByRole" [value]="rol.value">{{rol.label}}</option>
+                </select>
+            </div>
+            <div>
+                <label for="SortByLimit">Page Limit</label>
+                <select name="pagelimit" (change)="onChange($event)" [(ngModel)]="userList.limit">
+                    <option *ngFor="let ind of SortBylimit" [value]="ind">{{ind}}</option>
+                </select>
+            </div>
+            <div>
+                <label for="TotalPage">TotalPage</label>
+                <select name="TotalPage" (change)="onChange($event)" [(ngModel)]="userList.page">
+                    <option *ngFor="let num of TotalPage" [value]="num">{{num}}</option>
+                </select>
+            </div>
+            <button style="font-size: 13px; width: 80px; height: 25px; padding: 2px;" class="btn btn-primary"
+                (click)="clearAll()">Clear All</button>
         </div>
-        <div style="margin-left: 40px; margin-top: 10px;">
-            <label for="SortBy">SortBy</label>
-            <select name="SortBy" (change)="onChange($event)" [(ngModel)]="userList.SortBy">
-                <option *ngFor="let ele of SortByList" [value]="ele.value">{{ele.label}}</option>
-            </select>
-        </div>
-        <div style="margin-left: 40px; margin-top: 10px;">
-            <label for="SortByRole">Role</label>
-            <select name="Role" (change)="onChange($event)" [(ngModel)]="userList.role">
-                <option *ngFor="let rol of SortByRole" [value]="rol.value">{{rol.label}}</option>
-            </select>
-        </div>
-        <div style="margin-left: 40px; margin-top: 10px;">
-            <label for="SortByLimit">Page Limit</label>
-            <select name="pagelimit" (change)="onChange($event)" [(ngModel)]="userList.limit">
-                <option *ngFor="let ind of SortBylimit" [value]="ind">{{ind}}</option>
-            </select>
-        </div>
-        <div style="margin-left: 40px; margin-top: 10px;">
-            <label for="TotalPage">TotalPage</label>
-            <select name="TotalPage" (change)="onChange($event)" [(ngModel)]="userList.page">
-                <option *ngFor="let num of TotalPage" [value]="num">{{num}}</option>
-            </select>
-        </div>
-        <div>
-            <button style="margin-left: 40px; margin-top: 10px; width: 80px; height: 30px;" class="btn btn-primary" (click)="clearAll()">Clear All</button>
+        <div style="margin-left: 20%; display: flex; align-items: center;">
+            <button class="btn btn-primary" style=" font-size:13px; width: 80px; height: 27px; padding: 2px;" (click)="AddUserClick()">Add User</button>
+
+            <form>
+                <div *ngIf="isOpen" style="margin-left: 40px;">
+                    <div class="createUser">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" [(ngModel)]="addUser.name" placeholder="Enter Your Name">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" autocomplete="email" [(ngModel)]="addUser.email"
+                            placeholder="Enter Your email">
+                        <label for="name">Password</label>
+                        <input type="password" name="password" autocomplete="current-password"
+                            [(ngModel)]="addUser.password" placeholder="Enter Your password">
+                        <label for="name">Role</label>
+                        <input type="text" [(ngModel)]="addUser.role" placeholder="Enter Your role">
+                    </div>
+                    <button (click)="createUser()">Add User</button>
+                </div>
+            </form>
         </div>
     </div>
+
+
+
+
+
     <div class="users">
         <table>
             <thead class="heading">
@@ -43,7 +74,7 @@
                     <th>Modify Info</th>
                 </tr>
             </thead>
-            <tbody >
+            <tbody>
                 <!-- <tr>{{user.name}}</tr> 
                 <tr>{{user.email}}</tr>
                 <tr>{{user.role}}</tr>
@@ -53,95 +84,100 @@
                     <td>{{user.email}}</td>
                     <td>{{user.role}}</td>
                     <td>{{user.isEmailVerified}}</td>
-                    <td><ul style="list-style: none;">
-                        <li>
-                            <!-- <button >Modify Data {{user._id}}</button> -->
+                    <td>
+                        <ul style="list-style: none;">
+                            <li>
+                                <!-- <button >Modify Data {{user._id}}</button> -->
 
-                            <!--Bootstrap Model is here -->
-                            <button type="button" class="btn btn-primary" (click)="openmodel()"  data-toggle="modal" data-target="#exampleModal">
-                                Modify Data
-                                 <!-- {{user._id}} -->
-                              </button>
-                              <!-- Modal -->
-                              <div class="modal fade" #exampleModal tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document" style="background: linear-gradient(45deg, hsl(289, 66%, 74%), rgb(221, 131, 95));">
-                                  <div class="modal-content" style="background: linear-gradient(45deg, hsl(289, 66%, 74%), rgb(221, 131, 95));">
-                                    <div class="modal-header" style="background: linear-gradient(45deg, hsl(289, 66%, 74%), rgb(221, 131, 95));">
-                                      <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal">
-                                      </button>
-                                    </div>
-                                    <div class="modal-body " style="background: linear-gradient(45deg,hsl(289, 66%, 74%), rgb(221, 131, 95));">
-                                      <div class="sidemodel" style="max-width: 150px; height: 150px; margin-top: -15px; margin-bottom: -17px; margin-left: -15px;">
-                                        <div >
-                                            <button style="width: 100%; height: 40px; background-color: hsl(289, 66%, 74%);" (click)="modifyUserInfo(user._id)">Modify User Info</button>
+                                <!--Bootstrap Model is here -->
+                                <button type="button" class="btn btn-primary" (click)="openmodel(user._id)"
+                                    data-toggle="modal" data-target="#exampleModal">
+                                    Modify Data
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" #exampleModal tabindex="-1" role="dialog"
+                                    [attr.data-bs-target]="'#exampleModal-' + user._id" aria-hidden="true">
+                                    <div class="modal-dialog" role="document"
+                                        style="width: 36%; background: linear-gradient(45deg, hsl(289, 66%, 74%), rgb(221, 131, 95));">
+                                        <div class="modal-content"
+                                            style="background: linear-gradient(45deg, hsl(289, 66%, 74%), rgb(221, 131, 95));">
+                                            <div class="modal-header"
+                                                style="background: linear-gradient(45deg, hsl(289, 66%, 74%), rgb(221, 131, 95));">
+                                                <h5 class="modal-title" id="exampleModalLabel">Update User Information
+
+                                                </h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal">
+                                                </button>
+                                            </div>
+                                            <div class="modal-body d-flex"
+                                                style="background: linear-gradient(45deg,hsl(289, 66%, 74%), rgb(221, 131, 95));">
+                                                <div class="sidemodel">
+                                                    <button (click)="modifyUserInfo(selectedUserId)">Update Info
+                                                    </button>
+                                                    <button (click)="Ismodifyupdate(selectedUserId)">Update
+                                                        Role</button>
+                                                    <button (click)="deleteUser(selectedUserId)">Delete User </button>
+                                                </div>
+                                                <div class="content ">
+                                                    <div style="margin-left: 10px;" class="d-flex flex-column"
+                                                        *ngIf="isUpdateInfo">
+                                                        <div style="margin-bottom: 2%; margin-top: 2%;">
+                                                            <label for="name">Name:</label>
+                                                            <input
+                                                                style="height: 4%; margin-left: 12%; width: 60%; border-radius: 5px; border: none;"
+                                                                type="text" [(ngModel)]="updateUser.name">
+                                                        </div>
+                                                        <div style="margin-bottom: 2%;">
+                                                            <label for="email">Email:</label>
+                                                            <input
+                                                                style="height: 4%;  margin-left: 13%; width: 60%; border-radius: 5px; border: none;"
+                                                                type="text" [(ngModel)]="updateUser.email">
+                                                        </div>
+                                                        <div style="margin-bottom: 2%;">
+                                                            <label for="Password">Password:</label>
+                                                            <input
+                                                                style="height: 4%;  margin-left: 3%; width: 60%; border-radius: 5px; border: none;"
+                                                                type="password" [(ngModel)]="updateUser.password">
+                                                        </div>
+                                                        <button
+                                                            style="width: 70px; height:25px; margin-left: auto; border: none; border-radius: 5px; "
+                                                            (click)="modifyUser(selectedUserId)">Submit</button>
+                                                    </div>
+                                                    <div style="margin-left: 10px; display: flex; flex-direction: column; margin-top: 10px; "
+                                                        *ngIf="isUpdateRole">
+                                                        <div>
+                                                            <label for="selectRole">Select Role:</label>
+                                                            <select name="role" [(ngModel)]="selectedValue.role"
+                                                                style="border: none; border-radius: 5px; margin-left: 10px;">
+                                                                <option *ngFor="let option of options"
+                                                                    [value]="option.value">{{option.label}}</option>
+                                                            </select>
+                                                        </div>
+                                                        <button
+                                                            style="width:70px; height:25px; margin-left: auto; margin-top: 20%; border: none; border-radius: 5px; "
+                                                            (click)="modifyUserRole(selectedUserId)">submit</button>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                                    aria-label="Close">Close</button>
+                                            </div>
                                         </div>
-                                        <div>
-                                            <button style="width: 100%; height: 40px; background-color: hsl(289, 66%, 74%);">Update User Role</button>
-                                        </div>
-                                        <div>
-                                            <button style="width: 100%; height: 40px; background-color: hsl(289, 66%, 74%);" (click)="deleteUser(user._id)">Delete User</button>
-                                        </div>
-                                      </div>
                                     </div>
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">Close</button>
-                                    </div>
-                                  </div>
                                 </div>
-                              </div>
-
-
-
-
-
-
-                            <!--Old code is here  -->
-
-                        <!-- <div>
-                            <ul>
-                                <li><button (click)="modifyUserInfo(user._id)">Modify User Info</button>
-                                <div>
-                                    <label for="name">Name</label>
-                                    <input type="text" [(ngModel)]="updateUser.name">
-                                    <label for="email">Email</label>
-                                    <input type="text" [(ngModel)]="updateUser.email">
-                                    <label for="Password">Password</label>
-                                    <input type="password" [(ngModel)]="updateUser.password">
-                                    <button (click)="modifyUser(user._id)">Submit</button>
-                                </div></li>
-                                <li><button>Update User Role</button>
-                                <div>
-                                    <select name="role" [(ngModel)]="selectedValue.role">Select Role
-                                        <option *ngFor="let option of options" [value]="option.value">{{option.label}}</option>                                    </select>
-                                    <button (click)="modifyUserRole(user._id)">submit</button>
-                                </div></li>
-                                <li><button (click)="deleteUser(user._id)">Delete User</button></li>
-                            </ul>
-                        </div> -->
-                    </li>
-                    </ul></td>
+                                <!--Old code is here  -->
+                            </li>
+                        </ul>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
-<!-- <app-popup></app-popup> -->
-<div class="createUser">
-    <label for="name">Name</label>
-    <input type="text" [(ngModel)]="addUser.name" placeholder="Enter Your Name">
-    <label for="email">Email</label>
-    <input type="email" [(ngModel)]="addUser.email" placeholder="Enter Your email">
-    <label for="name">Password</label>
-    <input type="password" [(ngModel)]="addUser.password" placeholder="Enter Your password">
-    <label for="name">Role</label>
-    <input type="text" [(ngModel)]="addUser.role" placeholder="Enter Your role">
-</div>
-<button (click)="createUser()">Add User</button>
+
+
+
 <!-- Button trigger modal -->
-
-  
-
-  
-
-
