@@ -1,0 +1,50 @@
+
+<div class="d-flex ">
+    <div class="sort d-flex justify-content-between"
+        style="width: 100%; height: 6vh; border: 1px solid black; padding: 6px;">
+        <div>
+            <form autocomplete="off">
+                <label for="name">Name</label>
+                <input type="text" name="name" style="width: 100px; height: 25px;" (change)="onChange($event)"
+                    [(ngModel)]="productList.name">
+            </form>
+        </div>
+        <div>
+            <label for="SortBy">SortBy</label>
+            <select name="SortBy" (change)="onChange($event)" [(ngModel)]="productList.sortBy">
+                <option *ngFor="let ele of SortByList" [value]="ele.value">{{ele.label}}</option>
+            </select>
+        </div>
+        <div>
+            <label for="SortByLimit">Page Limit</label>
+            <select name="pagelimit" (change)="onChange($event)" [(ngModel)]="productList.limit">
+                <option *ngFor="let ind of SortBylimit" [value]="ind">{{ind}}</option>
+            </select>
+        </div>
+        <div>
+            <label for="TotalPage">TotalPage</label>
+            <select name="TotalPage" (change)="onChange($event)" [(ngModel)]="productList.page">
+                <option *ngFor="let num of TotalPage" [value]="num">{{num}}</option>
+            </select>
+        </div>
+        <button style="font-size: 13px; width: 80px; height: 25px; padding: 2px;" class="btn btn-primary"
+            (click)="clearAll()">Clear All</button>
+    </div>
+</div>
+<div>
+    <button (click)="openCreateProduct()">Create Product</button>
+</div>
+<div>
+    <label for="productname">Name:</label>
+    <input type="text" [(ngModel)]="prodName"><br>
+    <label for="productdescription">Description</label>
+    <input type="text" [(ngModel)]="prodDescription"><br>
+    <label for="productFile">Upload Image</label>
+    <input type="file" (click)="onFileUpload($event)"  multiple><br>
+    <label for="price">Price</label>
+    <input type="number" [(ngModel)]="prodPrice"><br>
+    <button (click)="handleCreateProduct()">Submit</button>
+</div>
+<div>
+    <img *ngFor="let imageUrl of imageUrls" [src]="imageUrl" alt="Uploaded Image" class="uploaded-image"/>
+</div>

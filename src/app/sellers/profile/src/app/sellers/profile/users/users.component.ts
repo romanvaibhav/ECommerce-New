@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AuthenticationServiceService } from '../../../authentication-service/authentication-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Tuser } from '../../../models/user.type';
+import { PopupComponent } from '../popup/popup.component';
 declare var bootstrap: any;
 
 @Component({

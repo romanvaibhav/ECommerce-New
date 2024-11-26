@@ -22,17 +22,28 @@ export class ProfileComponent {
     name:'',
     email:'',
   }
+
+
+
+
+
+
   ngOnInit():void{
     const profileObservable$=this.authService.getUserProfile();
     profileObservable$.subscribe({next :(value:any)=>{
       console.log("Here is value")
       console.log(value);
       console.log("All user is calling")
+      // this.getAllUsers();
       this.user=value;        
+      // console.log(this.user);
+      // console.log(this.Duser);
         },
   error:(err)=>{
     console.log(err);
   }});
+  //Calling listUser
+  // this.listUser();
   }
 
 
@@ -52,10 +63,12 @@ export class ProfileComponent {
     this.router.navigateByUrl("login");
   }
 
+    // Submiting the updated value
     submit(){
       console.log(this.updateInfo.name);
       console.log(this.updateInfo.email);
     }
+  
   
   // Updating Company Info
     updateCompanyInfo(){
@@ -63,6 +76,7 @@ export class ProfileComponent {
       this.authService.updateCompanyData(this.updateInfo).subscribe({next:(response)=>{
         console.log("Data Updated succesfully",response);
         this.reupdate();
+        // this.item=response;
       },
       error: (err) => {
         console.log('Error in Loging Button \n' + err);
@@ -72,18 +86,6 @@ export class ProfileComponent {
         }
       }
     });
-    }
-
-    isEmailVerify=false;
-    verifyEmail(){
-      const profileObservable$=this.authService.postVerifyEmail();
-      profileObservable$.subscribe({next :(value:any)=>{
-        console.log("Email Sent Succesfully");
-        console.log(value);
-      },
-    error:(err)=>{
-      console.log(err);
-    }})
     }
 
 }

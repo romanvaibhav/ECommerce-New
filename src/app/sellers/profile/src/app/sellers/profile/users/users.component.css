@@ -1,0 +1,45 @@
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,td{
+    border: 1px solid black;  /* Adds a 1px solid black border to each table cell */
+    padding: 8px;  /* Adds padding inside each cell for spacing */
+    text-align: left;
+
+}
+.sidemodel{
+    max-width: 150px; 
+    height: 150px; 
+    margin-top: -15px; 
+    margin-bottom: -17px; 
+    margin-left: -15px;
+}
+.sidemodel button{
+    border: none;
+    width: 100%; 
+    height: 40px; 
+    background-color: hsl(289, 66%, 74%);
+    /* background-color: hsl(154, 54%, 76%); */
+}
+.sidemodel button:hover{
+    background-color: hsl(289, 66%, 68%);
+}
+.content{
+    width: 70%;
+    /* border: 1px solid black; */
+    margin-left: 40px;
+    height: 25vh;
+    margin-left: 0%;
+    margin-top: -3%;
+    margin-right: 0%;
+    margin-bottom: -4%;
+}
+.createUser{
+    display: flex;
+    flex-direction: column;
+}
+.createUser input{
+    width: 20%;
+}

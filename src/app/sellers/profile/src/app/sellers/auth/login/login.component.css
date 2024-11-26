@@ -66,6 +66,3 @@ input{
     margin-left: -140px;
     font-size: 13px;
 }
-.grecaptcha-badge {
-    visibility: hidden !important;  /* Hides the reCAPTCHA badge */
-  }
