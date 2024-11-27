@@ -1,0 +1,87 @@
+.main{
+    width: 100%;
+    min-height: 97vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container{
+    color: white;
+    background-color: rgb(0, 0, 0);
+    height: 75vh;
+    width: 28%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+    /* padding-left: 10px; */
+}
+input{
+    width: 290px;
+    height: 30px;
+    border-radius: 3px;
+    border: none;
+}
+.login-btn{
+    background-color: hsl(202, 70%, 51%) ;
+    width: 295px;
+    height: 35px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    border: none;
+    border-radius: 3px;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+.login-bt{
+    background-color: hsla(9, 92%, 49%, 0.856) ;
+    width: 295px;
+    height: 35px;
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    border: none;
+    border-radius: 3px;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /* margin-bottom: px; */
+
+}
+.password{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: hsl(202, 70%, 51%);
+
+
+}
+.Name{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: hsl(202, 70%, 51%);
+
+
+}
+.Company{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: hsl(202, 70%, 51%);
+
+
+}
+.email{
+    /* padding-top: 10px; */
+    padding-bottom: 10px;
+    color: hsl(202, 70%, 51%);
+}
+.display{
+    color: red;
+    font-size: 12px;
+    position: relative;
+    margin-left: -220px;
+}
+
