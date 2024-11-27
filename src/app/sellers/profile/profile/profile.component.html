@@ -9,7 +9,7 @@
                 <h3 style="font-size: 25px; margin-bottom: 20px;">{{this.user?.name}}</h3>
                 <p style="font-size: 17px; font-weight: 400; margin-top: -15px;">software Developer
                 <p>
-                <p>User Email: {{user?.email}}</p>
+                <p>User Email: {{user?.email}}<span class="mark" [ngStyle]="{ color: user.isEmailVerified ? 'green' : 'red' }">{{user.isEmailVerified ? "&#10003;" : "&#10005;"}}</span></p>
                 <p>Role: {{user?.role}}</p>
                 <p>Company Name:{{user?._org.name}}</p>
                 <p>Company Email:{{user?._org.email}}</p>
@@ -17,6 +17,7 @@
             <div class="btn">
                 <button class="updateInfo" style="margin-left: -68px;" (click)="updateCompanyInfo()">Update
                     Profile</button>
+                <button class="btn btn-primary" (click)="verifyEmail()">Verify Email</button>
                 <button class="logout" (click)="logOut()" style="margin-left: 20px;">LogOut</button>
             </div>
         </div>

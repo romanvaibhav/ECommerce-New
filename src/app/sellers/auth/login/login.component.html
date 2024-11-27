@@ -27,6 +27,10 @@
                 <span>Min 6 chared required</span>
             }
         </div>
+        <div>
+            <a (click)="OpenForgetPass()">Forget Password</a>
+        </div>
+
         <div class="btn">
             <button class="login-btn" (click)="login()">Login</button>
         </div>
@@ -34,7 +38,14 @@
             <a class="regi"  (click)="regi()">Register</a>
         </div>
         </div>
+        <div id="google-signin-button"></div>
     </div>
 </form>
-{{loginPage | json}}
+
+<div *ngIf="isOpenForgtePass">
+    <label for="email">Enter Email:</label>
+    <input [(ngModel)]="ForgetEmail" type="text" >
+    <button (click)="handleForgetPassword()">Submit</button>
+</div>
+<!-- {{loginPage | json}} -->
 
