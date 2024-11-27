@@ -1,10 +1,19 @@
 <nav class="navbar">
     <div class="heading"><h1>Nex<span id="headingName">Mart</span></h1></div>
     <div class="sidebar">
-        <a>Home</a>
+        <a routerLink="/profile/products">Home</a>
         <!-- <a>Users</a> -->
-        <a routerLink="/users">Users</a>
+        <a routerLink="/profile/users">Users</a>
         <a>Extra</a>
+    </div>
+    <div>
+        <a routerLink="/profile/changePass">Settings</a>
+    </div>
+    <div>
+        <a routerLink="/profile/auth/reset-password?">Reset Password</a>
+    </div>
+    <div>
+        <a routerLink="/verifyaccount">Verify Account</a>
     </div>
     <div class="navBtn" >
         <button class="profile" (click)="myprofile()">Profile</button>

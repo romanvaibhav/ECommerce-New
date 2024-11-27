@@ -20,7 +20,7 @@ export class HeaderComponent {
   }
 
   myprofile(){
-    this.router.navigateByUrl("profile");
+    this.router.navigateByUrl("/profile/myprofile");
   }  
 
   // myusers(){

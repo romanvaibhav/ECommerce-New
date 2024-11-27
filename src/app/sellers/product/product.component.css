@@ -2,3 +2,63 @@
     height: 400px;
     width: 300px;
 }
+.left{
+    width: 40%;
+    height: 70%;
+    border: 1px solid black;
+    background-color: lightgreen;
+}
+.right{
+    /* margin-left: 20px; */
+    width: 60%;
+    height: 70%;
+    border: 1px solid black;
+}
+.mainCreateProd{
+    border: 2px solid black;
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+.displayImg{
+    height: 40px;
+    width: 50px;
+}
+.ImageArray{
+    width: 100%;
+    background-color: blueviolet;
+    height: 40px;
+    border: 1px solid black;
+    display: flex ;
+    flex-direction: row;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+    height: 40vh;
+    /* overflow: scroll; */
+}
+
+th,td{
+    border: 1px solid black;  /* Adds a 1px solid black border to each table cell */
+    padding: 8px;  /* Adds padding inside each cell for spacing */
+    text-align: left;
+
+}
+
+.displayOneProduct{
+    width: 100%;
+    height: 80vh;
+    border: 2px solid black;
+    display: flex;
+}
+.displayOneProductImage{
+    width: 200px;
+    height: 30vh;
+}
+.displayOneProductInfo{
+    margin-left: 30px;
+    width: 30%;
+    height: 30vh;
+
+}
