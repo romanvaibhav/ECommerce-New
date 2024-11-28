@@ -1,31 +1,99 @@
-.main{
-    width: 100%;
-    height: 85vh;
-    border: 1px solid black;
+
+ .mark{ 
+    color: rgb(7, 247, 47); 
+    background-color: white;
+} 
+.profileHeading{
+    font-weight: 400;
+    font-size: 20px;
+    margin-left: 40px;
+    margin-top: -80px;
 }
-.center{
+
+/* Blackbox code */
+.main {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .center {
+    width: 60%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
     display: flex;
-    flex-direction: row;
-    /* justify-content: center; */
+    height: 54vh;
+    margin: 60px auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  .heading{
+    /* margin-top: ; */
+    width:30%;
+    /* height: 50vh; */
+    /* border: 2px solid black; */
+    align-content: center;
+
     /* align-items: center; */
-    border: 1px solid black;
-    width: 100%; 
-    height: 50vh;
-}
-.heading{
-    width: 30%;
-    height: 50vh;
-    border: 2px solid black;
 }
 .secondhalf{
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
     margin-left: 20px;
+    width: 70%;
+    align-content: center;
+    /* border: 2px solid black; */
+}
+  h2 {
+    color: #333;
+    margin-bottom: 10px;
+  }
+  .Info p{
+    color: #666;
+    font-weight: bold;
+    width: 700px;
+    margin-right: 10px;
+  }
+  .Info span {
+    color: #333;
+    text-align: left;
+    font-weight: bold;
+  }
+  .edit-but {
+    margin-left: 40px;
+    height: 20px;
+    width: 43px;
+    background-color: #4CAF50;
+    border: none;
+    color: rgb(0, 0, 0);
+    font-weight:10px;
+    padding: 1px 3px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .cloud{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
-}
-.mark{
-    /* color: rgb(7, 247, 47); */
+    width: 80%;
+    height: 80%;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #4CAF50;
+    position: relative;
+    top: 5px;
+    left: 5px;
+  }
+  .updateInfo{
+    margin-top: 10px;
+    margin-left: 70px;
+    border: none;
     background-color: white;
-}
+  }

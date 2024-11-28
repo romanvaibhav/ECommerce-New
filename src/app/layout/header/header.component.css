@@ -1,19 +1,31 @@
-.navbar{
+
+.navbar {
     width: 100%;
-    height:15vh;
+    /* height: 15vh; */
     border-bottom: 2px solid black;
     display: flex;
-    align-items:center;
-    position:sticky;
-
+    align-items: center;
+    /* position: relative; */
+    /* z-index: 500; */
 }
-.heading{
+.mainNav{
+    width: 100%;
+    border: 2px solid black;
+}
+.parent{
+    width: 100%;
+    height: 100%;
+}
+
+.heading {
     margin-left: 100px;
 }
-#headingName{
+
+#headingName {
     color: hsl(224, 82%, 57%);
 }
-.sidebar{
+
+.Horbar {
     display: flex;
     flex-direction: row;
     /* margin-top: 15px; */
@@ -21,20 +33,22 @@
     /* background-color: red; */
     /* justify-content: space-between; */
 }
-.sidebar a{
+
+.Horbar a {
     /* padding-left: 60px; */
     margin-left: 30px;
     margin-right: 20px;
 }
-.profile{
-    margin-left: auto;
+
+.profile {
+    /* margin-left: auto; */
     /* margin-left: 100; */
     /* margin-right: -600%; */
-    border: 1px solid black;
-    padding: 0px 2px;
+    /* border: 1px solid black; */
+    /* padding: 0px 2px; */
     cursor: pointer;
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 20px;
     border-radius: 50%;
     background-color: hsl(224, 82%, 60%);
     display: flex;
@@ -42,21 +56,105 @@
     align-items: center;
 
 }
+
 /* .profile p{
     margin: 0 auto 0 auto;
     padding: 2px 2px;
     font-size: 15px;
     color: white;
 } */
-.profile:hover{
+.profile:hover {
     background-color: hsl(224, 82%, 50%);
 }
-#btn{
+
+#btn {
     /* margin-left: 80px; */
     margin-left: 40%;
 }
-.navBtn{
+
+.navBtn {
     display: flex;
     align-items: center;
     margin-right: 3%;
+}
+
+
+
+
+
+
+
+
+
+
+/* SideBAr */
+.leftside{
+    display: flex;
+    width: 250px;
+    height: 100%;
+}
+.sidebar {
+    background-color: #000;
+    width: 250px;
+    height: 100vh;
+    align-content: flex-end;
+    position: fixed;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    /* align-content: center; */
+    top: 0;
+    right: 0;
+    padding: 20px;
+}
+.sideimg{
+    display: flex;
+    justify-content: center;
+    margin-top: -160px;
+}
+.sidebar a {
+    display: block;
+    padding: 10px;
+    color: #f3eded;
+    text-decoration: none;
+    /* border-bottom: 1px solid #fff; */
+}
+.sidebar a:hover {
+    background-color: #fff;
+    color: #000;
+}
+.sidebar .copyright {
+
+    text-align: center;
+    font-size: 12px;
+    margin-top: 20px;
+    color: whitesmoke;
+}
+.sidebar .copyright a {
+    color: #fff;
+    text-decoration: none;
+}
+.leftside{
+    display: flex;
+    justify-content: flex-end;
+}
+.cloud{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+    width: 50%;
+    height: 80%;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #4CAF50;
+    position: relative;
+    top: 5px;
+    left: 5px;
+}
+.openprofile{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
 }

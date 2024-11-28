@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AuthenticationServiceService } from '../../../authentication-service/authentication-service.service';
+import { AuthenticationServiceService } from '../src/app/authentication-service/authentication-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Tuser } from '../../../models/user.type';
+import { Tuser } from '../src/app/models/user.type';
 declare var bootstrap: any;
 
 @Component({
@@ -80,7 +80,7 @@ export class UsersComponent {
         // console.log(this.user);
         // console.log(this.Duser);
       },
-      error: (err) => {
+      error: (err:any) => {
         console.log(err);
       }
     });
@@ -97,7 +97,7 @@ export class UsersComponent {
   }
   listUser(){
     const observeUser$=this.authService.getUserList(this.userList);
-    observeUser$.subscribe({next: (value)=>{
+    observeUser$.subscribe({next: (value:any)=>{
       console.log("users LIST fetched Succesfully");
       console.log(value);
       this.currentPage=value.totalPages;
@@ -106,7 +106,7 @@ export class UsersComponent {
 
       // this.currentPage=value.totalPages;
     },
-    error:(err)=>{
+    error:(err:any)=>{
       console.log(err);
     }
   })

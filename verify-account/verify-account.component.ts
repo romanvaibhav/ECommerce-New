@@ -1,6 +1,6 @@
 import { Component,  OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'; 
-import { AuthenticationServiceService } from '../../../authentication-service/authentication-service.service';
+import { AuthenticationServiceService } from '../src/app/authentication-service/authentication-service.service';
 import {Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
@@ -29,7 +29,7 @@ export class VerifyAccountComponent implements OnInit {
       alert("Account Verified Succesfully");
       this.router.navigateByUrl("/auth/verify-email");
     },
-  error: (err)=>{
+  error: (err:any)=>{
     console.log("It think error is in the Verify Account",err);
   }})
 

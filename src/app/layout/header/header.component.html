@@ -1,24 +1,63 @@
-<nav class="navbar">
-    <div class="heading"><h1>Nex<span id="headingName">Mart</span></h1></div>
-    <div class="sidebar">
-        <a routerLink="/profile/products">Home</a>
-        <!-- <a>Users</a> -->
-        <a routerLink="/profile/users">Users</a>
-        <a>Extra</a>
+<nav class="mainNav">
+    <div class="navbar">
+        <div class="heading">
+            <h1>Nex<span id="headingName">Mart</span></h1>
+        </div>
+        <div class="Horbar">
+            <a routerLink="/profile/products">Home</a>
+            <a routerLink="/profile/users">Users</a>
+            <a>Extra</a>
+        </div>
+        <div>
+            <a routerLink="/profile/changePass">Settings</a>
+        </div>
+        <div>
+            <a routerLink="/profile/auth/reset-password?">Reset Password</a>
+        </div>
+        <div>
+            <a routerLink="/verifyaccount">Verify Account</a>
+        </div>
+        <div class="navBtn">
+            <button class="profile" (click)="openProfile()"><img class="openprofile" src="img/download.jpeg" alt=""></button>
+            <!-- <button class=" btn btn-primary">Profile</button> -->
+        </div>
+
     </div>
-    <div>
-        <a routerLink="/profile/changePass">Settings</a>
+
+    <div *ngIf="issideclose" class="leftside" (click)="closeDiv()">
+        <div class="sidebar">
+            <div class="sideimg">
+                <img class="cloud" src="img/download.jpeg" alt="">
+
+            </div>
+            <div>
+                <p style="width: 100%; height: 1px; background-color: #d4d4d4; margin: 10px 0;"></p>
+
+                <div>
+                    <a (click)="myprofile()">My Profile</a>
+                </div>
+                <div>
+                    <a href="">Settings</a>
+                </div>
+                <div>
+                    <a href="">Contact</a>
+                </div>
+                <div>
+                    <a (click)="Logoutbtn()">Log Out</a>
+                </div>
+
+
+            </div>
+            <div>
+                <div class="copyright">
+                    Copyright ©2019 All rights reserved | This template is made with by 
+           
+                </div>
+            </div>
+
+        </div>
+
     </div>
-    <div>
-        <a routerLink="/profile/auth/reset-password?">Reset Password</a>
-    </div>
-    <div>
-        <a routerLink="/verifyaccount">Verify Account</a>
-    </div>
-    <div class="navBtn" >
-        <button class="profile" (click)="myprofile()">Profile</button>
-        <!-- <button class=" btn btn-primary">Profile</button> -->
-        <button class="btn btn-danger btn-sm" style="margin-left: 20px;" id="btn" (click)="Logoutbtn()">Logout</button>
-    </div>
+
 </nav>
 <!-- <router-outlet></router-outlet> -->
