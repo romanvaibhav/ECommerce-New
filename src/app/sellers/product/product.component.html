@@ -170,17 +170,27 @@
 </div>
 <div class="displayOneProduct" *ngIf="isOpenupdating">
     <div >
-        <div *ngFor="let img of onePuser.images">
-            <!-- (click)="onImageClick(img.public_id)" -->
-            <img class="displayOneProductImage"  *ngIf="onePuser.images.length>0" [src]="img.url" alt="">
-        </div>
+        <!-- (click)="onImageClick(img.public_id)"  -->
+         <div>
+            <div *ngFor="let img of onePuser.images">
+                <!-- (click)="onImageClick(img.public_id)" -->
+                <img class="displayOneProductImage" *ngIf="onePuser.images.length>0  " (click)="onImageClick(img.public_id)"   [src]="img.url" alt="">
+            </div>
+            <div *ngFor="let img of updateimageUrls">
+                <!-- (click)="onImageClick(img.public_id)" -->
+                <img class="displayOneProductImage" (click)="onImageClick(img)" *ngIf="onePuser.images.length>0" [src]="img" alt="">
+            </div>
+            <input type="file" (change)="onFileUpdate($event)" multiple>
+         </div>
+         <button (click)="updateOneProductImage(onePuser._id)">Update Image</button>
          <!-- <div>
             <button (click)="openUpdateImage()"></button>
-            <div *ngIf="isopenUpdateImage">
-                <input type="file" (change)="onFileUpload($event)" multiple>
-                <button (change)="updateOneProductImage($event, onePuser.images[0].public_id)">Update Image</button>
+            *ngIf="isopenUpdateImage"
+            <div >
+                <input type="file" (change)="onFileUpdate($event)" multiple>
+                <button (change)="updateOneProductImage(onePuser.images[0].public_id)">Update Image</button>
             </div>
-         </div>-->
+         </div> -->
     </div> 
 
     <div class="displayOneProductInfo">

@@ -271,10 +271,16 @@ price: number
 
 
 //upldating Product Images
-patchUpdateProductImage(  images: File[],public_id:string):Observable<object>{
+patchUpdateProductImage(payload:{
+  new_images: File[],
+  delete:string[]
+},public_id:string  ):Observable<object>{
   const formData = new FormData();
-  images.forEach(image=>{
-    formData.append('images', image, image.name);
+  payload.new_images.forEach(image=>{
+    formData.append('image', image.name);
+  });
+  payload.delete.forEach(del=>{
+    formData.append('delete',del);
   });
   let logintoken=localStorage.getItem("token");
   if(logintoken != null){

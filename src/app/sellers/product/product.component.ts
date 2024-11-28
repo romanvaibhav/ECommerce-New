@@ -185,22 +185,48 @@ export class ProductComponent implements OnInit {
 
   //Updating Product Image
 
-  //   onImageClick(){
+  updateprodImages: File[] = [];
+  updateimageUrls: string[] = [];
+  deletedImageId:string []=[];
+  onFileUpdate(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files) {
+      this.updateprodImages = Array.from(input.files);
+      this.createupdateImageUrl(this.updateprodImages)
+    }
+  }
+
+  private createupdateImageUrl(file: any): void {
+    this.updateimageUrls = this.updateprodImages.map(file => URL.createObjectURL(file));
+  }
+
+  onImageClick(parameter: any) {
+    if (typeof parameter === 'string' && parameter.startsWith('training')) {
+      console.log("Main image")
+      this.deletedImageId.push(parameter);
+      //Here we also have to store the deleted ids
+      this.onePuser.images = this.onePuser.images.filter(image => image.public_id !== parameter);
+
+    } else {
+      console.log("Local Image")
+      this.updateimageUrls=this.updateimageUrls.filter(URL=>URL !==parameter);
+    }
+  }
+  //Here we have to pass the deleted Images Public ID to delete the image from server 
+  //The function is not working
+  updateOneProductImage(public_id:string){
+    this.authService.patchUpdateProductImage({new_images:this.updateprodImages,delete:this.deletedImageId},public_id).subscribe({next: (value)=>{
+      console.log("Succesfully updated The image",value);
+      this.updateprodImages= [];
+      this.updateimageUrls= [];
+      this.deletedImageId=[]
+    },
+  error:(err)=>{
+    console.log(err);
+  }})
     
-  // }
-  // updateOneProductImage(event: Event, public_id: string):void{
-  //   const input = event.target as HTMLInputElement;
-  //   let updateProductImage:File[]=[];
-  //   if (input.files) {
-  //     updateProductImage = Array.from(input.files);
-  //     this.authService.patchUpdateProductImage(updateProductImage,public_id).subscribe({next:(value:any)=>{
-  //       console.log("Succesfully Changed the Image",value);
-  //     },
-  //   error:(err:any)=>{
-  //     console.log("Getting error in updateOneProductImage",err);
-  //   }})
-  //   }
-  // }
+    
+  }
 
 
 

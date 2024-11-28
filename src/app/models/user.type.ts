@@ -52,6 +52,23 @@ export type ProdList = {
   _id:string
   _org:string
 }
+
+
+
+
+interface BaseProductImage {
+  url: string; // Required property
+}
+
+// Define an interface for product images with an optional public_id
+interface ProductImageWithId extends BaseProductImage {
+  public_id: string; // Required property if present
+}
+
+// Create a union type that includes both possibilities
+export type ProductImage = BaseProductImage | ProductImageWithId;
+
+
 // export type profileUser=
 //   {
 //     "_id": "673b36ba2fcde436eaa4ec71",
