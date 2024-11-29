@@ -9,18 +9,17 @@ import { ChangePasswordComponent } from './sellers/Settings/change-password/chan
 import { ResetPasswordComponent } from './sellers/Settings/reset-password/reset-password.component';
 import { VerifyAccountComponent } from './sellers/profile/verify-account/verify-account.component';
 import { ProductComponent } from './sellers/product/product.component';
+import { CustomerproductComponent } from './shopper/customerproduct/customerproduct.component';
 export const routes: Routes = [
+
+
+    //All are the Seller Routes Below
     {
-        path:'',
-        redirectTo:"login",
-        pathMatch:"full"
-    },
-    {
-        path:"login",
+        path:"seller/login",
         component:LoginComponent,
     },
     {
-        path:"profile",
+        path:"seller/profile",
         // component:ProfileComponent,
         canActivate:[authGaurdGuard],
         children: [ // Define child routes here
@@ -48,7 +47,7 @@ export const routes: Routes = [
     //     component:UsersComponent,
     // },
     {
-        path:"auth",
+        path:"seller/auth",
         component:RegistrationComponent,
     },
     {
@@ -59,4 +58,13 @@ export const routes: Routes = [
         path:"auth/reset-password",
         component:ResetPasswordComponent,
     },
+
+
+    //Here all the Customer Routes Below
+
+
+    {
+        path:'',
+        component:CustomerproductComponent,
+    }
 ];

@@ -5,14 +5,65 @@
         <div class="heading">
             <p class="profileHeading">My Profile</p>
             <div class="circle"> <img class="cloud" src="img/download.jpeg" alt="not displaying"></div>
-            <button class="updateInfo" (click)="updateCompanyInfo()" ><i class='fas fa-edit'></i></button>
+
+            <!-- <button class="updateInfo" (click)="updateCompanyInfo()"><i class='fas fa-edit'></i></button> -->
+            <button class="updateInfo" type="button"  data-toggle="modal" data-target="#exampleModal"
+                (click)="openmodel()">
+                <i class='fas fa-edit'></i>
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" #exampleModal tabindex="-1" role="dialog"
+                [attr.data-bs-target]="'#exampleModal-' + user._id" aria-hidden="true">
+                <div class="modal-dialog" role="document"
+                    style="width: 36%; background: linear-gradient(45deg, hsl(300, 3%, 72%), rgb(245, 236, 232));">
+                    <div class="modal-content"
+                        style="background: linear-gradient(45deg, hsl(300, 3%, 72%), rgb(245, 236, 232));">
+                        <div class="modal-header"
+                            style="background:  linear-gradient(45deg, hsl(300, 3%, 72%), rgb(245, 236, 232));">
+                            <h5 class="modal-title" id="exampleModalLabel">Update Company Information
+
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal">
+                            </button>
+                        </div>
+                        <div class="modal-body d-flex"
+                            style="background:  linear-gradient(45deg, hsl(300, 1%, 72%), rgb(245, 236, 232));">
+                            <div class="content ">
+                                <div style="margin-left: 10px;" class="d-flex flex-column">
+                                    <div style="margin-bottom: 2%;">
+                                        <label for="email">Company Email:</label>
+                                        <input style="margin-left: 8px;" type="email" [(ngModel)]="updateInfo.email"
+                                            placeholder="Enter Email here...">
+                                    </div>
+                                    <div style="margin-bottom: 2%;">
+                                        <label for="name">Company Name:</label>
+                                        <input style="margin-left: 5px;" type="email" placeholder="Enter Name here..."
+                                            [(ngModel)]="updateInfo.name">
+                                    </div>
+                                </div>
+                                <button
+                                    style="width:70px; height:25px; margin-left: 80%; margin-top: 20%; border: none; border-radius: 5px; "
+                                    (click)="updateCompanyInfo()" data-bs-dismiss="modal"
+                                    onmouseover="this.style.backgroundColor='hsl(300, 1%, 60%)'">submit</button>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                aria-label="Close">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="secondhalf">
             <div class="Info">
                 <h2>{{this.user?.name}}</h2>
                 <!-- <p style="font-size: 17px; font-weight: 400; margin-top: -15px;">software Developer -->
                 <!-- <p> -->
-                <p>Email: <span>{{user?.email}}</span> <span class="mark" [ngStyle]="{ color: user.isEmailVerified ? 'green' : 'red' }">{{user.isEmailVerified ? "&#10003;" : "&#10005;"}}</span> <button class="edit-but" (click)="verifyEmail()">Verify</button></p> 
+                <p>Email: <span>{{user?.email}}</span> <span class="mark"
+                        [ngStyle]="{ color: user.isEmailVerified ? 'green' : 'red' }">{{user.isEmailVerified ?
+                        "&#10003;" : "&#10005;"}}</span> <button class="edit-but"
+                        (click)="verifyEmail()">Verify</button></p>
                 <p>Role: <span>{{user?.role}}</span></p>
                 <p style="width: 100%; height: 1px; background-color: #0a0a0a; margin: 10px 0;"></p>
                 <p>Company Name: <span>{{user?._org.name}}</span></p>
@@ -27,12 +78,12 @@
         </div>
 
     </div>
-    <div>
+    <!-- <div>
         <label for="email">Email</label>
         <input type="email" [(ngModel)]="updateInfo.email" placeholder="Enter your Name"><br>
         <label for="name">Company Name</label>
         <input type="email" placeholder="Enter Your Email" [(ngModel)]="updateInfo.name"><br>
         <button (click)="submit()">Submit</button>
-    </div>
+    </div> -->
     <!-- {{user | json}} -->
 </div>

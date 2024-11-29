@@ -1,43 +1,46 @@
 <div class="userlist">
-    <div class="d-flex ">
-        <div class="sort d-flex justify-content-between"
-            style="width: 65%; height: 6vh; border: 1px solid black; padding: 6px;">
+    <button (click)="openFilter()" style="margin-top: 3px; margin-left: 5px; border-radius: 5px; border: 1px solid black;">Filter</button>
+    <button class="btn btn-primary" type="button"  data-toggle="modal" data-target="#filterexample"
+     style=" margin-left: 5px; font-size:13px; width: 80px; height: 29px; padding: 2px;" (click)="openFiltermodel()">Add User</button>
+
+    <div class="d-flex " style="margin-top: 3px; margin-bottom: 3px; ">
+        <div *ngIf="isOpenFilter" class="sort d-flex flex-column justify-content-between"
+            style="border-radius: 5px; position: fixed; width: 13%; height: 28vh; border: 1px solid black; padding: 6px; background-color: hsl(61, 69%, 93%);">
             <div>
                 <form autocomplete="off">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" style="width: 100px; height: 25px;" (change)="onChange($event)"
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" style="width: 70px; height: 25px;margin-left: 35px;" (change)="onChange($event)"
                         [(ngModel)]="userList.name">
                 </form>
             </div>
             <div>
-                <label for="SortBy">SortBy</label>
-                <select name="SortBy" (change)="onChange($event)" [(ngModel)]="userList.SortBy">
+                <label for="SortBy">SortBy:</label>
+                <select style="margin-left: 29px;" name="SortBy" (change)="onChange($event)" [(ngModel)]="userList.SortBy">
                     <option *ngFor="let ele of SortByList" [value]="ele.value">{{ele.label}}</option>
                 </select>
             </div>
             <div>
-                <label for="SortByRole">Role</label>
-                <select name="Role" (change)="onChange($event)" [(ngModel)]="userList.role">
+                <label for="SortByRole">Role:</label>
+                <select style="margin-left: 45px;" name="Role" (change)="onChange($event)" [(ngModel)]="userList.role">
                     <option *ngFor="let rol of SortByRole" [value]="rol.value">{{rol.label}}</option>
                 </select>
             </div>
             <div>
-                <label for="SortByLimit">Page Limit</label>
-                <select name="pagelimit" (change)="onChange($event)" [(ngModel)]="userList.limit">
+                <label for="SortByLimit">Page Limit:</label>
+                <select style="margin-left: 3px; width: 45px;" name="pagelimit" (change)="onChange($event)" [(ngModel)]="userList.limit">
                     <option *ngFor="let ind of SortBylimit" [value]="ind">{{ind}}</option>
                 </select>
             </div>
             <div>
-                <label for="TotalPage">TotalPage</label>
-                <select name="TotalPage" (change)="onChange($event)" [(ngModel)]="userList.page">
+                <label for="TotalPage">TotalPage:</label>
+                <select style="margin-left: 5px; width: 45px;" name="TotalPage" (change)="onChange($event)" [(ngModel)]="userList.page">
                     <option *ngFor="let num of TotalPage" [value]="num">{{num}}</option>
                 </select>
             </div>
             <button style="font-size: 13px; width: 80px; height: 25px; padding: 2px;" class="btn btn-primary"
                 (click)="clearAll()">Clear All</button>
         </div>
-        <div style="margin-left: 20%; display: flex; align-items: center;">
-            <button class="btn btn-primary" style=" font-size:13px; width: 80px; height: 27px; padding: 2px;" (click)="AddUserClick()">Add User</button>
+        <div style="margin-left: 2%; display: flex; align-items: center;">
 
             <form>
                 <div *ngIf="isOpen" style="margin-left: 40px;">
@@ -63,7 +66,7 @@
 
 
 
-    <div class="users">
+    <div class="users" >
         <table>
             <thead class="heading">
                 <tr>
@@ -141,7 +144,7 @@
                                                         </div>
                                                         <button
                                                             style="width: 70px; height:25px; margin-left: auto; border: none; border-radius: 5px; "
-                                                            (click)="modifyUser(selectedUserId)">Submit</button>
+                                                            data-bs-dismiss="modal" (click)="modifyUser(selectedUserId)">Submit</button>
                                                     </div>
                                                     <div style="margin-left: 10px; display: flex; flex-direction: column; margin-top: 10px; "
                                                         *ngIf="isUpdateRole">
@@ -155,7 +158,7 @@
                                                         </div>
                                                         <button
                                                             style="width:70px; height:25px; margin-left: auto; margin-top: 20%; border: none; border-radius: 5px; "
-                                                            (click)="modifyUserRole(selectedUserId)">submit</button>
+                                                            data-bs-dismiss="modal" (click)="modifyUserRole(selectedUserId)">submit</button>
 
                                                     </div>
                                                 </div>
@@ -178,6 +181,56 @@
     </div>
 </div>
 
+            <!-- Modal -->
+            <div class="modal fade" #filterexample tabindex="-1" role="dialog"
+                attr.data-bs-target="#filterexample" aria-hidden="true">
+                <div class="modal-dialog" role="document"
+                    style="width: 36%; background: linear-gradient(45deg, hsl(300, 3%, 72%), rgb(245, 236, 232));">
+                    <div class="modal-content"
+                        style="background: linear-gradient(45deg, hsl(300, 3%, 72%), rgb(245, 236, 232));">
+                        <div class="modal-header"
+                            style="background:  linear-gradient(45deg, hsl(300, 3%, 72%), rgb(245, 236, 232));">
+                            <h5 class="modal-title" id="filterexampleLabel">Add User
+
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal">
+                            </button>
+                        </div>
+                        <div class="modal-body d-flex"
+                            style="background:  linear-gradient(45deg, hsl(300, 1%, 72%), rgb(245, 236, 232));">
+                            <div class="content ">
+                                <div style="margin-left: 10px;" class="d-flex flex-column">
+                                    <div style="margin-bottom: 2%; ">
+                                        <label for="name">Name:</label>
+                                        <input style="margin-left: 30px; border-radius: 5px; border: 1px solid black;" type="text" name="name" [(ngModel)]="addUser.name" placeholder="Enter Your Name">
+                                    </div>
+                                    <div style="margin-bottom: 2%;">
+                                        <label for="email">Email:</label>
+                                        <input style="margin-left: 32px; border-radius: 5px; border: 1px solid black;" type="email" name="email" autocomplete="email" [(ngModel)]="addUser.email"
+                                            placeholder="Enter Your email">
+                                    </div>
+                                    <div style="margin-bottom: 2%;">
+                                        <label for="name">Password:</label>
+                                        <input style="margin-left: 3px; border-radius: 5px; border: 1px solid black;" type="password" name="password" autocomplete="current-password"
+                                        [(ngModel)]="addUser.password" placeholder="Enter Your password">
+                                    </div>
+                                    <div style="margin-bottom: 2%;">
+                                        <label for="name">Role:</label>
+                                        <input style="margin-left: 39px; border-radius: 5px; border: 1px solid black;" type="text" [(ngModel)]="addUser.role" placeholder="Enter Your role">
+                                    </div>
+                                </div>
+                                <button
+                                    style="width:70px; height:25px; margin-left: 92%; margin-top: 13%; border: none; border-radius: 5px; "
+                                     data-bs-dismiss="modal" (click)="createUser()">submit</button>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                aria-label="Close">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
 <!-- Button trigger modal -->

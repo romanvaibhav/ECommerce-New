@@ -17,11 +17,11 @@ export class HeaderComponent {
 
   Logoutbtn(){
     localStorage.removeItem("token");
-    this.router.navigateByUrl("login");
+    this.router.navigateByUrl("/seller/login");
   }
 
   myprofile(){
-    this.router.navigateByUrl("/profile/myprofile");
+    this.router.navigateByUrl("/seller/profile/myprofile");
   }  
 
   issideclose:boolean=false;

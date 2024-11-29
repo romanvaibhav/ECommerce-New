@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthenticationServiceService } from '../../../authentication-service/authentication-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
+declare var bootstrap: any;
+
 
 @Component({
   selector: 'app-profile',
@@ -15,6 +17,21 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ProfileComponent {
 
   constructor(private route: ActivatedRoute,private router:Router, private authService:AuthenticationServiceService, httpClient:HttpClient){}
+
+  selectedUserId: string='';
+  @ViewChild('exampleModal') exampleModal!: ElementRef;
+  // ngAfterViewInit(){
+  // // Show modal programmatically
+  // }
+  openmodel(){
+    // this.selectedUserId=userId;
+    const modal = new bootstrap.Modal(this.exampleModal.nativeElement, {
+      backdrop: 'static', // Prevent closing on backdrop click
+      keyboard: false // Prevent closing with keyboard (optional)
+    });
+    modal.show();
+  }
+
 
   user: any | undefined;
   errorMessage: string = '';
@@ -62,6 +79,10 @@ export class ProfileComponent {
       this.errorMessage = '';
       this.authService.updateCompanyData(this.updateInfo).subscribe({next:(response)=>{
         console.log("Data Updated succesfully",response);
+        this.updateInfo={
+          name:'',
+          email:'',
+        }
         this.reupdate();
       },
       error: (err) => {
@@ -85,5 +106,8 @@ export class ProfileComponent {
       console.log(err);
     }})
     }
+
+
+
 
 }
