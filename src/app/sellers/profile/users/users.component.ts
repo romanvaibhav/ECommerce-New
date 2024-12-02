@@ -40,6 +40,17 @@ export class UsersComponent {
     modal.show();
   }
 
+  @ViewChild('filterexample') filterexample!: ElementRef;
+
+  openFiltermodel(){
+    // this.selectedUserId=userId;
+    const modal = new bootstrap.Modal(this.filterexample.nativeElement, {
+      backdrop: 'static', // Prevent closing on backdrop click
+      keyboard: false // Prevent closing with keyboard (optional)
+    });
+    modal.show();
+  }
+
   currentPage:number=0;
   userList: any = {
     name: '',
@@ -121,8 +132,6 @@ export class UsersComponent {
   }
   createUser() {
     let User = this.addUser
-
-
     console.log(User);
     this.authService.postCreateUser({
       email: User?.email,
@@ -132,6 +141,12 @@ export class UsersComponent {
     }).subscribe({
       next: (value) => {
         console.log("Created Succesfully");
+        this.addUser= {
+          name: '',
+          email: '',
+          password: '',
+          role: '',
+        }
         this.getAllUsers();
       },
       error: (err) => {
@@ -263,4 +278,9 @@ export class UsersComponent {
     this.isUpdateInfo=false;
   }
 
+
+  isOpenFilter:boolean=false;
+  openFilter(){
+    this.isOpenFilter=!this.isOpenFilter;
+  }
 }

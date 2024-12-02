@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
       if(value){
         console.log("Saving the value")
         localStorage.setItem("token",JSON.stringify(value["token"]));
-        this.router.navigateByUrl("/profile/products");
+        this.router.navigateByUrl("/seller/profile/products");
       }
       else{
         console.log("Invalid User");
@@ -112,7 +112,7 @@ export class LoginComponent implements OnInit {
       if(value){
         console.log("Saving the value")
         localStorage.setItem("token",JSON.stringify(value["token"]));
-        this.router.navigateByUrl("/profile/products");
+        this.router.navigateByUrl("/seller/profile/products");
       }
       else{
         console.log("Invalid User");
@@ -157,7 +157,7 @@ export class LoginComponent implements OnInit {
   }
   // router= inject(Router);
   regi(){
-    this.router.navigateByUrl("auth")
+    this.router.navigateByUrl("/seller/auth")
   }
 
 
