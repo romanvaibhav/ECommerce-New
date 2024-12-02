@@ -1,0 +1,35 @@
+
+<div><img class="cprofileimg" [src]="cuser.picture" alt=""></div>
+<p>Name:{{cuser.name}}</p>
+<p>Email:{{cuser.email}}</p>
+
+
+<label for="name">Name:</label>
+<input type="text" [(ngModel)]="cupdateInfo.name"><br>
+<label for="email" >Email:</label>
+<input type="text" [(ngModel)]="cupdateInfo.email">
+<button (click)="updateCustProfile()">update Profile</button>  
+<br>
+<br>
+<label for="UpdateImage">Update Image</label><br>
+<input type="file" (change)="onFileSelected($event)" >
+<!-- <button (click)="handleUpdateCustImage()">Update Image</button> -->
+
+<button (click)="DeleteCustImage()">Delete Image</button><br>
+
+
+<label for="street">street:</label>
+<input type="text" [(ngModel)]="cnewAdd.street"><br>
+<label for="addressLine2">addressLine2:</label>
+<input type="text" [(ngModel)]="cnewAdd.addressLine2"><br>
+<label for="city">city:</label>
+<input type="text" [(ngModel)]="cnewAdd.city"><br>
+<label for="state">state:</label>
+<input type="text" [(ngModel)]="cnewAdd.state"><br>
+<label for="pin">pin:</label>
+<input type="text" [(ngModel)]="cnewAdd.pin"><br>
+<button (click)="addNewAddress()">Add Address</button>
+
+
+
+

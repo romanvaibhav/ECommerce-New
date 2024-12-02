@@ -10,6 +10,9 @@ import { ResetPasswordComponent } from './sellers/Settings/reset-password/reset-
 import { VerifyAccountComponent } from './sellers/profile/verify-account/verify-account.component';
 import { ProductComponent } from './sellers/product/product.component';
 import { CustomerproductComponent } from './shopper/customerproduct/customerproduct.component';
+import { CauthComponent } from './shopper/cauth/cauth.component';
+import { CloginComponent } from './shopper/clogin/clogin.component';
+import { CprofileComponent } from './shopper/cprofile/cprofile.component';
 export const routes: Routes = [
 
 
@@ -60,11 +63,22 @@ export const routes: Routes = [
     },
 
 
+
     //Here all the Customer Routes Below
-
-
     {
         path:'',
         component:CustomerproductComponent,
+    },
+    {
+        path:'auth/registration',
+        component:CauthComponent,
+    },
+    {
+        path:'auth/login',
+        component:CloginComponent
+    },
+    {
+        path:'auth/profile',
+        component:CprofileComponent,
     }
 ];

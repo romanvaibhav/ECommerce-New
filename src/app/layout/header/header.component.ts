@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { NavigationEnd, RouterLink, RouterOutlet } from '@angular/router';
 import { Router } from '@angular/router';
 
 
@@ -14,15 +14,31 @@ import { Router } from '@angular/router';
 export class HeaderComponent {
 
   constructor(private router:Router,){}
-
+  isCurrentRouteCustomer?: boolean;
+  ngOnInit(): void {
+    this.router.events.subscribe(
+      {
+        next: (event:any) => {
+          if (event instanceof NavigationEnd) {
+            const url = event.url;
+            if (url.startsWith("/seller")) {
+              this.isCurrentRouteCustomer = true;
+            }
+            else {
+              this.isCurrentRouteCustomer = false;
+            }
+          }
+        }
+      });
+  }
   Logoutbtn(){
     localStorage.removeItem("token");
     this.router.navigateByUrl("/seller/login");
   }
 
-  myprofile(){
-    this.router.navigateByUrl("/seller/profile/myprofile");
-  }  
+  // myprofile(){
+  //   this.router.navigateByUrl("/seller/profile/myprofile");
+  // }  
 
   issideclose:boolean=false;
   closeDiv(){

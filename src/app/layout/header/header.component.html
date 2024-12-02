@@ -4,8 +4,14 @@
             <h1>Nex<span id="headingName">Mart</span> <span><img class="headingimg" src="img/shopping-cart-309592_1280.webp" alt=""></span></h1>
         </div>
         <div class="Horbar">
-            <a routerLink="/seller/profile/products">Home</a>
-            <a routerLink="/seller/profile/users">Users</a>
+            @if(isCurrentRouteCustomer){
+                <a routerLink="/seller/profile/products">Home</a>
+
+                <a routerLink="/seller/profile/users">Users</a>
+            }
+            @else {
+                <a routerLink="/">Home</a>
+            }
             <a>Extra</a>
         </div>
         <div>
@@ -31,7 +37,12 @@
             <div>
                 <p style="width: 100%; height: 1px; background-color: #d4d4d4; margin: 10px 0;"></p>
                 <div>
-                    <a (click)="myprofile()">My Profile</a>
+                    @if(isCurrentRouteCustomer){
+                        <a routerLink="/seller/profile/myprofile">My Profile</a>
+                    }
+                    @else{
+                        <a routerLink="auth/profile" >My Profile</a>
+                    }
                 </div>
                 <div>
                     <a href="">Settings</a>
