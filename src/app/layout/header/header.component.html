@@ -51,7 +51,12 @@
                     <a href="">Contact</a>
                 </div>
                 <div>
-                    <a (click)="Logoutbtn()">Log Out</a>
+                    @if(isCurrentRouteCustomer){
+                        <a (click)="Logoutbtn()">Log Out</a>
+                    }
+                    @else{
+                        <a (click)="LogoutCbtn()">Log Out</a>
+                    }
                 </div>
 
 

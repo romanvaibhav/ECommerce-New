@@ -123,7 +123,7 @@ export class CutomerService {
     }
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${logintoken}`);
-    return this.httpClient.get(`${CutomerService.baseUrl}/customers/addresses`, { headers });
+    return this.httpClient.get(`${CutomerService.baseUrl}/customers/address`, { headers });
 
   }
 
@@ -143,7 +143,67 @@ export class CutomerService {
     const headers = new HttpHeaders()
       .set('Authorization', `Bearer ${logintoken}`);
       return this.httpClient.post(`${CutomerService.baseUrl}/customers/address`,payload,{headers});
+  }
 
+//Updating Customer Adddress
+  putUpdateAdd(payload: {
+    street: string,
+    addressLine2: string,
+    city: string,
+    state: string,
+    pin: string,
+  },addId:string):Observable<object>{
+    let logintoken = localStorage.getItem("custToken");
+    if (logintoken != null) {
+      logintoken = JSON.parse(logintoken);
+    }
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${logintoken}`);
+      return this.httpClient.put(`${CutomerService.baseUrl}/customers/address/${addId}`,payload,{headers});
+
+  }
+
+
+
+  //Deleting Customer Adddress
+  deleteAdd(addId:string):Observable<object>{
+    let logintoken = localStorage.getItem("custToken");
+    if (logintoken != null) {
+      logintoken = JSON.parse(logintoken);
+    }
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${logintoken}`);
+      return this.httpClient.delete(`${CutomerService.baseUrl}/customers/address/${addId}`,{headers});
+
+  }
+
+
+  //Change Customer Password
+  postChangeCustPassword(payload:{
+    old_password: string,
+    new_password: string
+  }):Observable<object>{
+    let logintoken = localStorage.getItem("custToken");
+    if (logintoken != null) {
+      logintoken = JSON.parse(logintoken);
+    }
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${logintoken}`);
+      return this.httpClient.post(`${CutomerService.baseUrl}/customers/auth/change-password`,payload,{headers});
+
+  }
+
+
+
+  //Deleting Customer account
+  deleteCustomerAcc():Observable<object>{
+    let logintoken = localStorage.getItem("custToken");
+    if (logintoken != null) {
+      logintoken = JSON.parse(logintoken);
+    }
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${logintoken}`);
+      return this.httpClient.delete(`${CutomerService.baseUrl}/customers/account`,{headers});
 
   }
 }

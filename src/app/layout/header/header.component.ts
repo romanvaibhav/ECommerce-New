@@ -35,6 +35,10 @@ export class HeaderComponent {
     localStorage.removeItem("token");
     this.router.navigateByUrl("/seller/login");
   }
+  LogoutCbtn(){
+    localStorage.removeItem("custToken");
+    this.router.navigateByUrl("/auth/login");
+  }
 
   // myprofile(){
   //   this.router.navigateByUrl("/seller/profile/myprofile");

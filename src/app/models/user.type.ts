@@ -85,3 +85,12 @@ export type customerProductList = {
     _id: string
   }
 }
+
+export type custAdd={
+  street: string,
+  addressLine2: string,
+  city: string,
+  state: string,
+  pin: string,
+  _id: string
+}

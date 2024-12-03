@@ -40,6 +40,9 @@ export class CloginComponent {
   })
   }
   cregi(){
+    
+    this.router.navigateByUrl("/auth/registration");
+
 
   }
 }

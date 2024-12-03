@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CutomerService } from '../../authentication-service/customer/cutomer.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { custAdd } from '../../models/user.type';
 
 @Component({
   selector: 'app-cprofile',
@@ -109,12 +110,16 @@ export class CprofileComponent {
 
   }
 
+
+  cAdd:custAdd[]=[];
 //Getting Cust add
   customerAddredd() {
     this.custAuth.getCustAddress().subscribe({
       next: (value) => {
         console.log("Succesfully Got Cust Addredd", value);
-      },
+        this.cAdd=value as [];
+        console.log(this.cAdd);
+            },
       error: (err) => {
         console.log(err);
       }
@@ -134,6 +139,71 @@ export class CprofileComponent {
   addNewAddress(){
     this.custAuth.postCustAdd(this.cnewAdd).subscribe({next:(value)=>{
       console.log("Succesfully Posted New Addredd",value);
+      this.customerAddredd()
+    },
+    error:(err)=>{
+      console.log(err);
+    }
+  })
+  }
+
+
+  //Updating the address which is diplayed
+  cupdateAdd={
+    street: '',
+    addressLine2: '',
+    city: '',
+    state: '',
+    pin: ''
+  }
+  updateAddress(addId:string){
+    this.custAuth.putUpdateAdd(this.cupdateAdd,addId).subscribe({next:(value)=>{
+      console.log("Succesfully Updated the Address",value);
+      this.customerAddredd()
+    },
+    error:(err)=>{
+      console.log(err);
+    }
+  })
+  }
+
+
+  //Deleting the Customer Address
+
+  deleteAddress(addId:string){
+    this.custAuth.deleteAdd(addId).subscribe({next:(value)=>{
+      console.log("Succesfully Deleted Customer Addredd",value);
+      this.customerAddredd()
+    },
+    error:(err)=>{
+      console.log(err);
+    }
+  })
+  }
+
+
+
+  //Change Password of Customer
+  cpasswords={
+    old_password: '',
+    new_password: ''
+      }
+  chnageCustPassword(){
+    this.custAuth.postChangeCustPassword(this.cpasswords).subscribe({next:(value)=>{
+      console.log("Succesfully Changed Customer Password",value);
+      this.customerAddredd()
+    },
+    error:(err)=>{
+      console.log(err);
+    }
+  })
+  }
+
+
+  //Deleting Customer Account
+  DeleteCustAccount(){
+    this.custAuth.deleteCustomerAcc().subscribe({next:(value)=>{
+      console.log("Succesfully Deleted Customer Account",value);
       this.customerAddredd()
     },
     error:(err)=>{

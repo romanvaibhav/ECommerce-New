@@ -2,7 +2,7 @@
 <div><img class="cprofileimg" [src]="cuser.picture" alt=""></div>
 <p>Name:{{cuser.name}}</p>
 <p>Email:{{cuser.email}}</p>
-
+<p>{{cuser.city}}</p>
 
 <label for="name">Name:</label>
 <input type="text" [(ngModel)]="cupdateInfo.name"><br>
@@ -17,6 +17,20 @@
 
 <button (click)="DeleteCustImage()">Delete Image</button><br>
 
+<br><br><br>
+<div style="border: 1px solid black;" *ngFor="let loc of cAdd">
+    <p>{{loc.addressLine2}}</p>
+    <p>{{loc.city}}</p>
+    <p>{{loc.street}}</p>
+    <p>{{loc.state}}</p>
+    <p>{{loc.pin}}</p>
+    <button (click)="updateAddress(loc._id)">Update Address</button>
+    <button (click)="deleteAddress(loc._id)">Delete Addredd</button>
+
+
+    <br>
+    
+</div>
 
 <label for="street">street:</label>
 <input type="text" [(ngModel)]="cnewAdd.street"><br>
@@ -29,6 +43,34 @@
 <label for="pin">pin:</label>
 <input type="text" [(ngModel)]="cnewAdd.pin"><br>
 <button (click)="addNewAddress()">Add Address</button>
+
+<br>
+<p>Updating Addredd</p>
+<label for="street">street:</label>
+<input type="text" [(ngModel)]="cupdateAdd.street"><br>
+<label for="addressLine2">addressLine2:</label>
+<input type="text" [(ngModel)]="cupdateAdd.addressLine2"><br>
+<label for="city">city:</label>
+<input type="text" [(ngModel)]="cupdateAdd.city"><br>
+<label for="state">state:</label>
+<input type="text" [(ngModel)]="cupdateAdd.state"><br>
+<label for="pin">pin:</label>
+<input type="text" [(ngModel)]="cupdateAdd.pin"><br>
+
+
+<div style="border: 1px solid black;">
+
+    <label for="oldPass">Old Password:</label>
+    <input type="password" [(ngModel)]="cpasswords.old_password">
+    <br>
+    <label for="newPass">New Password:</label>
+    <input type="password" [(ngModel)]="cpasswords.new_password">
+    <button (click)="chnageCustPassword()">Change Password</button>
+
+
+</div>
+<button (click)="DeleteCustAccount()">Delete Account</button>
+
 
 
 

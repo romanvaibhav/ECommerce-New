@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CutomerService } from '../../authentication-service/customer/cutomer.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cauth',
@@ -12,7 +13,7 @@ import { CutomerService } from '../../authentication-service/customer/cutomer.se
 })
 export class CauthComponent {
 
-  constructor(private custAuth:CutomerService){}
+  constructor(private custAuth:CutomerService, private router:Router){}
 
   errorMessage: string = '';
   customerForm : FormGroup= new FormGroup({
@@ -64,4 +65,9 @@ export class CauthComponent {
       this.customerForm.reset();
     }
 
+
+    clogin(){
+      this.router.navigateByUrl("/auth/login");
+
+    }
 }

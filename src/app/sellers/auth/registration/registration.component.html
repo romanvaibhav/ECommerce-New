@@ -2,11 +2,14 @@
     <div class="main">
         <div class="container" [formGroup]="studentForm">
             <div class="heading">
+                <h4 style="margin-top: 10px; margin-left: -180px; margin-bottom: 15px;">Nex<span style="    color: #486d92;">Mart</span><img class="headingimg" src="img/shopping-cart-309592_1280.webp" alt=""></h4>
+            </div>
+            <div class="heading">
                 <h2>Registration</h2>
             </div>
             <div class="email">
                 <label for="email"  placeholer="Enter your email">Email</label><br>
-                <input name="email" autocomplete="email" formControlName="email" type="email">
+                <input style="border: 1px solid black;" name="email" autocomplete="email" formControlName="email" type="email">
             </div>
             <div class="display">
                 @if(studentForm.controls['email'].touched && studentForm.controls['email'].errors?.['required']){
@@ -15,7 +18,7 @@
             </div>
              <div class="password">
                 <label for="password">Password</label><br>
-                <input autocomplete="new-password" name="password" formControlName="password" type="password">
+                <input style="border: 1px solid black;" autocomplete="new-password" name="password" formControlName="password" type="password">
             </div>
             <div class="display">
                 @if(studentForm.controls['password'].touched && studentForm.controls['password'].errors?.['required']){
@@ -27,7 +30,7 @@
             </div>
             <div class="Name">
                 <label for="Name">Full Name</label><br>
-                <input name="fullName" autocomplete="fullName" formControlName="fullName" type="text">
+                <input style="border: 1px solid black;" name="fullName" autocomplete="fullName" formControlName="fullName" type="text">
             </div>
             <div class="display">
                 @if(studentForm.controls['fullName'].touched && studentForm.controls['fullName'].errors?.['required']){
@@ -36,7 +39,7 @@
             </div>
             <div class=" Company">
                 <label for=" Company Name">Company Name</label><br>
-                <input name="companyName" autocomplete="companyName" formControlName="companyName" type="text">
+                <input style="border: 1px solid black;" name="companyName" autocomplete="companyName" formControlName="companyName" type="text">
             </div>
             <div class="display">
                 @if(studentForm.controls['companyName'].touched && studentForm.controls['companyName'].errors?.['required']){

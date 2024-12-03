@@ -13,6 +13,7 @@ import { CustomerproductComponent } from './shopper/customerproduct/customerprod
 import { CauthComponent } from './shopper/cauth/cauth.component';
 import { CloginComponent } from './shopper/clogin/clogin.component';
 import { CprofileComponent } from './shopper/cprofile/cprofile.component';
+import { cauthGuard } from './shopper/services/cauth-guard/cauth.guard';
 export const routes: Routes = [
 
 
@@ -80,5 +81,7 @@ export const routes: Routes = [
     {
         path:'auth/profile',
         component:CprofileComponent,
+        canActivate:[cauthGuard],
+
     }
 ];
