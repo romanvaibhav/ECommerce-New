@@ -4,7 +4,8 @@
     /* height: 15vh; */
     display: flex;
     align-items: center;
-    background-color: hsl(0, 0%, 94%);
+    background-color: hsl(0, 2%, 10%);
+    color: white;
     /* position: relative; */
     /* z-index: 500; */
 }
@@ -38,7 +39,7 @@
 .Horbar a {
     align-content: center;
     padding-left: 13px;
-    color: #000000;
+    color: #fdfbfb;
     /* padding-left: 60px; */
     /* border: 1px solid black; */
     border-radius: 5px;

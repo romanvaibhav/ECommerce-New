@@ -86,11 +86,35 @@ export type customerProductList = {
   }
 }
 
-export type custAdd={
+export type custAdd = {
   street: string,
   addressLine2: string,
   city: string,
   state: string,
   pin: string,
   _id: string
+}
+
+
+//cart
+export type cartImg = {
+  public_id: string
+  url: string
+}
+
+export type cartorg = {
+  email: string
+  name: string,
+  _id: string
+}
+
+
+export type cartData = {
+  createdAt: string,
+  description: string,
+  images: cartImg[],
+  name: string,
+  price: number,
+  _id: string,
+  _org: cartorg[]
 }

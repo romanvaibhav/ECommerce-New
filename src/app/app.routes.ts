@@ -14,6 +14,7 @@ import { CauthComponent } from './shopper/cauth/cauth.component';
 import { CloginComponent } from './shopper/clogin/clogin.component';
 import { CprofileComponent } from './shopper/cprofile/cprofile.component';
 import { cauthGuard } from './shopper/services/cauth-guard/cauth.guard';
+import { CartComponent } from './shopper/cart/cart/cart.component';
 export const routes: Routes = [
 
 
@@ -84,4 +85,10 @@ export const routes: Routes = [
         canActivate:[cauthGuard],
 
     }
+    ,
+    {
+        path:'auth/cart',
+        component:CartComponent,
+    },
+
 ];

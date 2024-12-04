@@ -15,15 +15,22 @@
             <a>Extra</a>
         </div>
         <div>
-            <a routerLink="/seller/profile/changePass">Settings</a>
+            @if(isCurrentRouteCustomer){
+                <a routerLink="/seller/profile/changePass">Settings</a>
+            }
         </div>
         <div>
-            <a routerLink="/profile/auth/reset-password?">Reset Password</a>
+            @if(isCurrentRouteCustomer){
+                <a routerLink="/profile/auth/reset-password?">Reset Password</a>
+            }
         </div>
         <div>
-            <a routerLink="/verifyaccount">Verify Account</a>
+            @if(isCurrentRouteCustomer){
+                <a routerLink="/verifyaccount">Verify Account</a>
+            }
         </div>
         <div class="navBtn">
+            <a routerLink="/auth/cart" style="margin-right: 70px;"><i style="font-size: 25px;" class="fas fa-shopping-cart"></i></a>
             <button class="profile" (click)="openProfile()"><img class="openprofile" src="img/download.jpeg" alt=""></button>
             <!-- <button class=" btn btn-primary">Profile</button> -->
         </div>
@@ -41,7 +48,7 @@
                         <a routerLink="/seller/profile/myprofile">My Profile</a>
                     }
                     @else{
-                        <a routerLink="auth/profile" >My Profile</a>
+                        <a (click)="CustProfile()" >My Profile</a>
                     }
                 </div>
                 <div>

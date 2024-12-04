@@ -52,6 +52,19 @@ export class HeaderComponent {
   openProfile(){
     this.issideclose=true;
   }
+  CustProfile(){
+    const user=localStorage.getItem("custToken");
+    if(user){
+      this.router.navigateByUrl("auth/profile");
+    }
+    else{
+      this.router.navigateByUrl("auth/login");
+
+    }
+
+
+  }
+
 
   // myusers(){
   //   this.router.navigate(['users'], { relativeTo: this.router.routerState.root });

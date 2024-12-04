@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {CutomerService} from "./../../authentication-service/customer/cutomer.service"
-import { customerProductList } from '../../models/user.type';
+import { cartData, customerProductList } from '../../models/user.type';
 
 
 @Component({
@@ -64,7 +64,7 @@ export class CustomerproductComponent implements OnInit {
         this.SortByPage()
         this.Cuser = value['results'] as [];
         console.log("Here is Puser")
-        console.log(this.Cuser);
+        // console.log(this.Cuser);
       },
       error: (err) => {
         console.log("We are getting error while fetching the users", err)
@@ -72,6 +72,16 @@ export class CustomerproductComponent implements OnInit {
     })
   }
 
+  cart:cartData[]=[]
+  addToCart(prod:any){
+    this.cart.push(prod);
+    localStorage.setItem("cartData", JSON.stringify(this.cart));
+
+ 
+  
+    // Add new products to the cart array (using spread syntax)
+    console.log(prod);
+  }
 
 
 }
