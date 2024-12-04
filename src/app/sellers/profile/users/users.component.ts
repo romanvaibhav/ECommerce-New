@@ -114,7 +114,6 @@ export class UsersComponent {
       this.currentPage=value.totalPages;
       this.Duser = value["results"] as [];
       this.SortByPage();
-
       // this.currentPage=value.totalPages;
     },
     error:(err)=>{
@@ -183,9 +182,9 @@ export class UsersComponent {
 
 
   modifyUser(userId: string) {
-    console.log(userId);
-    console.log(this.updateUser.name);
-    console.log(this.updateUser.email);
+    // console.log(userId);
+    // console.log(this.updateUser.name);
+    // console.log(this.updateUser.email);
     this.authService.modifyCretedUserData(this.updateUser, userId).subscribe({
       next: (value) => {
         console.log("Succesfully updated user Info");

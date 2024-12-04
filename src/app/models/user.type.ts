@@ -36,21 +36,21 @@ export type Tuser = {
   updatedAt: string
 }
 
-export type ProdImg={
-  public_id:string
-url:string
+export type ProdImg = {
+  public_id: string
+  url: string
 }
 
 export type ProdList = {
-  createdAt:string,
-  deleted:boolean,
-  description:string,
-  images:ProdImg[],
-  name:string,
-  price:number
-  updatedAt:string
-  _id:string
-  _org:string
+  createdAt: string,
+  deleted: boolean,
+  description: string,
+  images: ProdImg[],
+  name: string,
+  price: number
+  updatedAt: string
+  _id: string
+  _org: string
 }
 
 
@@ -69,19 +69,52 @@ interface ProductImageWithId extends BaseProductImage {
 export type ProductImage = BaseProductImage | ProductImageWithId;
 
 
-// export type profileUser=
-//   {
-//     "_id": "673b36ba2fcde436eaa4ec71",
-//     "name": "Vaibhav Roman",
-//     "_org": {
-//         "_id": "673b36ba2fcde436eaa4ec6e",
-//         "name": "AngularMinds",
-//         "email": "vaibhav@angularminds.in"
-//     },
-//     "email": "vaibhavroman249@gmail.com",
-//     "role": "admin",
-//     "isEmailVerified": false,
-//     "deleted": false,
-//     "createdAt": "2024-11-18T12:44:42.947Z",
-//     "updatedAt": "2024-11-18T12:44:42.947Z"
-// }
+
+
+//Customer Side
+export type customerProductList = {
+  createdAt: string,
+  description: string,
+  images: ProdImg[],
+  name: string,
+  price: number,
+  _id: string,
+  _org: {
+    email: string,
+    name: string,
+    _id: string
+  }
+}
+
+export type custAdd = {
+  street: string,
+  addressLine2: string,
+  city: string,
+  state: string,
+  pin: string,
+  _id: string
+}
+
+
+//cart
+export type cartImg = {
+  public_id: string
+  url: string
+}
+
+export type cartorg = {
+  email: string
+  name: string,
+  _id: string
+}
+
+
+export type cartData = {
+  createdAt: string,
+  description: string,
+  images: cartImg[],
+  name: string,
+  price: number,
+  _id: string,
+  _org: cartorg[]
+}
