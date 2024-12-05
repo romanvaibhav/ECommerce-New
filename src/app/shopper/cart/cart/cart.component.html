@@ -1,0 +1,32 @@
+<div style="height: 150vh; overflow: scroll; display:flex ; background-color: rgb(227, 228, 227);">
+    <div style="width: 80%; height: 250px; margin-left: 20px;">
+        <h1 style="width: 100%; padding-top: 30px; padding-left: 20px; font-size: 30px; margin-top: 20px;  height: 100px; background-color: white;">Shopping Cart <button style="border-radius: 5px; font-size: 13px; width: 90px; height: 20px; margin-left: 80%; border: none; background-color: #ff0000e8;">Clear Cart</button></h1>
+
+        <div *ngFor="let product of products | async " style="border-radius: 5px; background-color: white; border-bottom: 1px solid rgb(107, 104, 104); height: 250px; display: flex; flex-direction: row;">
+            <div style="width: 30%;">
+                <img style="width: 200px; height: 200px; margin-left: 40px; margin-top: 15px;"
+                    [src]="product.images[0].url" alt="">
+            </div>
+            <div style="width: 70%; margin-left: 10px; ">
+                <div style="font-size: 25px; font-weight: bold; margin-top: 7px; margin-bottom: 80px;">{{ product.name }}</div>
+                <div><span style="font-weight: bold;">Price:</span> {{ product.price }}</div>
+                <div>
+                    <p>Quantity: {{ product.quantity }}</p>
+                    <button (click)="increaseQuantity(product._id)">+</button>
+                    <button (click)="decreaseQuantity(product._id)">-</button>
+                    <button style="border: none; color: rgb(7, 137, 160); background-color: white;" (click)="removeProduct(product._id)">delete</button>
+
+                </div>
+                <!-- <div>Total: {{ product.price }}</div> -->
+            </div>
+        </div>
+    </div>
+
+    <div style="width: 25%; margin-left: 20px;border-radius: 5px; background-color: white; margin-top: 20px;">
+        <p style="margin-top: 30px; margin-left: 40px; font-weight: 500; color: rgb(46, 42, 42);">Total Quantity: <span style= "font-weight: bold; font-size: 18px;">{{ totalQuantity | async }}</span> </p>
+        <p style="margin-top: 0px; margin-left: 40px; font-weight: 500; color: rgb(46, 42, 42);">Total Price: ₹<span style="font-weight: bold; font-size: 18px;">{{ totalPrice | async }}</span> </p>
+        <div>
+            <button style="cursor: pointer; border-radius: 8px; margin-left: 45px; border: none; width: 200px; background-color: #ffc300;">Proceed To Buy</button>
+        </div>
+    </div>
+</div>

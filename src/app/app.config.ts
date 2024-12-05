@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, isDevMode, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { routes } from './app.routes';
@@ -23,8 +23,9 @@ export const appConfig: ApplicationConfig = {
     provideEffects(),
     provideStoreDevtools({
       maxAge:10,
+      logOnly:!isDevMode(),
       autoPause:true,
-      trace:false,
+      trace:true,
       traceLimit:70,
       connectInZone:true
     }),
