@@ -1,32 +1,56 @@
 <div style="height: 150vh; overflow: scroll; display:flex ; background-color: rgb(227, 228, 227);">
     <div style="width: 80%; height: 250px; margin-left: 20px;">
-        <h1 style="width: 100%; padding-top: 30px; padding-left: 20px; font-size: 30px; margin-top: 20px;  height: 100px; background-color: white;">Shopping Cart <button style="border-radius: 5px; font-size: 13px; width: 90px; height: 20px; margin-left: 80%; border: none; background-color: #ff0000e8;">Clear Cart</button></h1>
+        <h1 style="width: 100%; padding-top: 25px; padding-left: 30px; font-size: 30px; margin-top: 20px;  height: 70px; background-color: white;">Shopping Cart </h1>
 
-        <div *ngFor="let product of products | async " style="border-radius: 5px; background-color: white; border-bottom: 1px solid rgb(107, 104, 104); height: 250px; display: flex; flex-direction: row;">
-            <div style="width: 30%;">
-                <img style="width: 200px; height: 200px; margin-left: 40px; margin-top: 15px;"
+        <div *ngFor="let product of products | async " style="border-radius: 5px; background-color: white; border-bottom: 1px solid rgb(107, 104, 104); height: 170px; display: flex; flex-direction: row;">
+            <div style="width: 20%;">
+                <img style="width: 130px; border: 1px solid black; height: 120px; margin-left: 40px; margin-top: 15px;"
                     [src]="product.images[0].url" alt="">
             </div>
-            <div style="width: 70%; margin-left: 10px; ">
-                <div style="font-size: 25px; font-weight: bold; margin-top: 7px; margin-bottom: 80px;">{{ product.name }}</div>
-                <div><span style="font-weight: bold;">Price:</span> {{ product.price }}</div>
+            <div  style="width: 40%; margin-left: 10px; ">
+                <div style="font-size: 25px; font-weight: bold; margin-top: 7px; margin-bottom: 0px;">{{ product.name }}</div>
                 <div>
-                    <p>Quantity: {{ product.quantity }}</p>
+                    <p><span style="font-weight: 490;">Quantity: </span>  <span style="font-weight: bold;">{{ product.quantity }}</span></p>
                     <button (click)="increaseQuantity(product._id)">+</button>
                     <button (click)="decreaseQuantity(product._id)">-</button>
-                    <button style="border: none; color: rgb(7, 137, 160); background-color: white;" (click)="removeProduct(product._id)">delete</button>
-
+                    <button style="border: none; color: rgb(7, 120, 139); background-color: white; font-size: 13px;" (click)="removeProduct(product._id)">Delete</button>
                 </div>
                 <!-- <div>Total: {{ product.price }}</div> -->
+            </div>
+            <div style="width: 20%;  display: flex; flex-direction: column; margin-left: 200px; margin-top: 0px;"  >
+                <div *ngIf="!product.deal"><span style="font-weight: 490;">Price: </span> <span style="font-weight: bold;"> {{ product.price }}</span></div> <br>
+                <div *ngIf="product.deal" style="margin-top: -15px;">
+                    <div><span style="font-weight: 490; text-decoration: line-through;">Price: </span> <span style="font-weight: bold; text-decoration: line-through;"> {{ product.price }}</span></div>
+                    <span style="font-weight: 490; color: red;"> Price: </span> <span style="font-weight: bold;">{{ product.deal.price }} </span><span style="font-size: 12px; font-weight: bold;"> ({{product.deal.discount}} off)</span></div>
+                <div style="margin-top: 60px;"><span style="font-weight: 490;">Total Price: </span> <span style="font-weight: bold;">{{product.totalPrice}}</span> </div>
+
             </div>
         </div>
     </div>
 
-    <div style="width: 25%; margin-left: 20px;border-radius: 5px; background-color: white; margin-top: 20px;">
+    <div style="width: 25%; margin-left: 20px;border-radius: 5px; background-color: white; margin-top: 20px;" >
         <p style="margin-top: 30px; margin-left: 40px; font-weight: 500; color: rgb(46, 42, 42);">Total Quantity: <span style= "font-weight: bold; font-size: 18px;">{{ totalQuantity | async }}</span> </p>
         <p style="margin-top: 0px; margin-left: 40px; font-weight: 500; color: rgb(46, 42, 42);">Total Price: ₹<span style="font-weight: bold; font-size: 18px;">{{ totalPrice | async }}</span> </p>
         <div>
-            <button style="cursor: pointer; border-radius: 8px; margin-left: 45px; border: none; width: 200px; background-color: #ffc300;">Proceed To Buy</button>
+            <button style="cursor: pointer; border-radius: 8px; margin-left: 45px; border: none; width: 200px; background-color: #ffc300;" (click)="proceedToBuy()">Proceed To Buy</button>
         </div>
+
+
+
+
+        <div style=" height: auto;">
+            <div class="address" *ngFor="let loc of cAdd; let i = index "  [ngClass]="{'selected': selectedIndex === i}"
+            (click)="onSelect(loc,i)">
+                 <div style="margin-left: 10px;"><span style="font-weight: 460;">Address:</span> <br>  <div style="margin-left: 30px; line-height: 20px;">{{loc.addressLine2}},{{loc.street}}</div></div>
+                 <p style="margin-top: 10px; margin-left: 10px;"><span style="font-weight: 460;">City:</span> {{loc.city}},{{loc.state}}</p>
+                 <p style="margin-top: -10px; margin-left: 10px;"> <span style="font-weight: 460;">Pin:</span> {{loc.pin}}</p>
+                 <br>
+             </div>
+        </div>
+        <div>
+            <button style="color: white; cursor: pointer; border-radius: 8px; margin-left: 45px; border: none; width: 200px; background-color: #d6351f;" (click)="clearAll()">Clear Cart</button>
+        </div>
+
+        
     </div>
 </div>

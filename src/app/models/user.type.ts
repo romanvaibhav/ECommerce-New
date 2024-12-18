@@ -1,3 +1,5 @@
+import { cartdeal } from "../store/reducer/cart.reducer";
+
 export type Suser = {
   email: string;
   password: string;
@@ -76,6 +78,7 @@ export type customerProductList = {
   createdAt: string,
   description: string,
   images: ProdImg[],
+  deal?:cartdeal[],
   name: string,
   price: number,
   _id: string,
@@ -108,7 +111,6 @@ export type cartorg = {
   _id: string
 }
 
-
 export type cartData = {
   createdAt: string,
   description: string,
@@ -117,4 +119,12 @@ export type cartData = {
   price: number,
   _id: string,
   _org: cartorg[]
+}
+
+export type checkoutD={
+  productId: string,
+  name: string,
+  price:number,
+  qty:number,
+  subTotal:number 
 }

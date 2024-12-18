@@ -21,3 +21,13 @@ export const removeProduct = createAction(
   '[Cart] Remove Product',
   props<{ productId: string }>()
 );
+
+export const clearAllProduct = createAction(
+  '[Cart] Remove Products',
+  props<{ productId: string }>()
+);
+
+export const loadCartFromLocalStorage=createAction(
+  '[Cart] Load Cart From LocalStorage',
+  props<{ products: CartProduct[]}>()
+)

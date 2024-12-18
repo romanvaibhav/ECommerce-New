@@ -8,6 +8,8 @@ import{provideStore} from '@ngrx/store'
 import{provideEffects} from '@ngrx/effects'
 import{provideStoreDevtools} from '@ngrx/store-devtools'
 import { cartReducer } from './store/reducer/cart.reducer';
+import { cartEffect } from './store/effect/cart.effect';
+
 
 
 export const appConfig: ApplicationConfig = {
@@ -20,7 +22,7 @@ export const appConfig: ApplicationConfig = {
     provideStore({
       cart:cartReducer
     }),
-    provideEffects(),
+    provideEffects(cartEffect),
     provideStoreDevtools({
       maxAge:10,
       logOnly:!isDevMode(),

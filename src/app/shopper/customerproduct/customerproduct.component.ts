@@ -78,7 +78,7 @@ export class CustomerproductComponent implements OnInit {
 
   // cart:cartData[]=[]
   addToCart(prod:any){
-    console.log(prod);
+    console.log("Here is the Product",prod);
 
     this.store.dispatch(AddToCart({product:prod}))
     // this.cart.push(prod);

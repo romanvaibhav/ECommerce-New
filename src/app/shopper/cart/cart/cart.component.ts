@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { CartProduct } from '../../../store/reducer/cart.reducer';
-import { selectCartProducts, selectTotalPrice, selectTotalQuantity } from '../../../store/selector/cart.selector';
-import { decreaseQuantity, increaseQuantity, removeProduct } from '../../../store/action/cart.action';
+import { CartProduct, cartStore } from '../../../store/reducer/cart.reducer';
+import { selectCartProduct, selectCartProducts, selectTotalPrice, selectTotalQuantity } from '../../../store/selector/cart.selector';
+import { clearAllProduct, decreaseQuantity, increaseQuantity, removeProduct } from '../../../store/action/cart.action';
 import { CommonModule } from '@angular/common';
+import { ClocalService } from '../../services/clocal-auth/clocal.service';
+import { CutomerService } from '../../../authentication-service/customer/cutomer.service';
+import { checkoutD, custAdd } from '../../../models/user.type';
 
 @Component({
   selector: 'app-cart',
@@ -20,17 +23,28 @@ export class CartComponent {
   totalPrice: Observable<number>;
 
 
+  cart: any;
 
-  cart$?:Observable<[]>;
-
-  constructor(private store: Store) {
+  constructor(private store: Store, private localservice: ClocalService, private cstore: Store<{ cart: cartStore }>, private custAuth: CutomerService) {
     this.products = this.store.select(selectCartProducts);
     this.totalQuantity = this.store.select(selectTotalQuantity);
     this.totalPrice = this.store.select(selectTotalPrice);
+    // this.products = store.select(state => state.cart.products);
+
+    console.log("This is My cart ", this.products);
   }
 
-  ngOnInit():void{
-    console.log(this.products);
+  items:any;
+  ngOnInit(): void {
+    this.cart= this.store.select(selectCartProduct);
+    this.products = this.store.select(selectCartProducts);
+
+    console.log("Here we got products", this.cart);
+    this.customerAddredd();
+    this.items = this.localservice.getCartFromLocalStorage();
+    console.log("Getting Data From LocalStorage",this.items);
+
+
   }
 
 
@@ -44,6 +58,58 @@ export class CartComponent {
 
   removeProduct(productId: string) {
     this.store.dispatch(removeProduct({ productId }));
+  }
+
+
+  //Getting Cust address
+  cAdd: custAdd[] = [];
+  customerAddredd() {
+    this.custAuth.getCustAddress().subscribe({
+      next: (value) => {
+        console.log("Succesfully Got Cust Addredd", value);
+        this.cAdd = value as [];
+        console.log("We got address here", this.cAdd);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
+  //Selecting Address onSelect
+  selectedIndex: number | null = null;
+  selectedadd: any;
+  onSelect(loc: any, index: number) {
+    this.selectedIndex = index;
+    this.selectedadd = loc;
+    console.log("selected Addess is here", this.selectedadd)
+  }
+
+
+// Clearning ALL the Cart
+  clearAll(){
+    console.log("Clear All Products is Calling")
+    this.store.dispatch(clearAllProduct({ productId: 'clearAll' }));
+  }
+
+
+  checkoutData: checkoutD[] = [];
+
+  proceedToBuy(){
+  this.store.select(selectCartProduct).subscribe(cartData=>{
+    console.log("Getting proceedtobuy cart data",cartData);
+    this.checkoutData=this.cart.map((prod:any)=>({
+      productId: prod.id,
+      name: prod.name,
+      price: prod.price,
+      qty: prod.quantity,
+      subTotal: prod.price * prod.quantity
+
+    }));
+    console.log("CheckoutData",this.checkoutData);
+  })
+
+
   }
 
 }
