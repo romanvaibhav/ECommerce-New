@@ -84,6 +84,7 @@ export class ProductComponent implements OnInit {
 
   // Fetching the producting By Filtering
   handleProductList() {
+
     this.authService.getProductList(this.productList).subscribe({
       next: (value: any) => {
         console.log("We got the product list");

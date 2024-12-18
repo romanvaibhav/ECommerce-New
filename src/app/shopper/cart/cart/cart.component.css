@@ -1,0 +1,10 @@
+.selected {
+    border: 1px solid rgb(19, 174, 226) !important;
+    background-color: rgb(228, 232, 233);
+  }
+  .address{
+    margin: 20px;
+    border-radius: 10px;
+    height: 150px;
+    border: 1px solid black;
+  }

@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, isDevMode, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { routes } from './app.routes';
@@ -8,6 +8,8 @@ import{provideStore} from '@ngrx/store'
 import{provideEffects} from '@ngrx/effects'
 import{provideStoreDevtools} from '@ngrx/store-devtools'
 import { cartReducer } from './store/reducer/cart.reducer';
+import { cartEffect } from './store/effect/cart.effect';
+
 
 
 export const appConfig: ApplicationConfig = {
@@ -20,11 +22,12 @@ export const appConfig: ApplicationConfig = {
     provideStore({
       cart:cartReducer
     }),
-    provideEffects(),
+    provideEffects(cartEffect),
     provideStoreDevtools({
       maxAge:10,
+      logOnly:!isDevMode(),
       autoPause:true,
-      trace:false,
+      trace:true,
       traceLimit:70,
       connectInZone:true
     }),

@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {CutomerService} from "./../../authentication-service/customer/cutomer.service"
 import { cartData, customerProductList } from '../../models/user.type';
+import { AddToCart } from '../../store/action/cart.action';
+import { Store } from '@ngrx/store';
 
 
 @Component({
@@ -14,7 +16,7 @@ import { cartData, customerProductList } from '../../models/user.type';
 })
 export class CustomerproductComponent implements OnInit {
 
-  constructor(private custAuth:CutomerService){}
+  constructor(private custAuth:CutomerService,private store: Store){}
 
 
   Cuser: customerProductList[] = [];
@@ -49,13 +51,15 @@ export class CustomerproductComponent implements OnInit {
     }
     this.handleCProductList();
   }
+
   ngOnInit(): void {
     this.handleCProductList();
   }
+
   onChange(event:any){
     this.handleCProductList()
-
   }
+
   handleCProductList() {
     this.custAuth.getCustProductList(this.CproductList).subscribe({
       next: (value: any) => {
@@ -72,15 +76,14 @@ export class CustomerproductComponent implements OnInit {
     })
   }
 
-  cart:cartData[]=[]
+  // cart:cartData[]=[]
   addToCart(prod:any){
-    this.cart.push(prod);
-    localStorage.setItem("cartData", JSON.stringify(this.cart));
+    console.log("Here is the Product",prod);
 
- 
-  
+    this.store.dispatch(AddToCart({product:prod}))
+    // this.cart.push(prod);
+    // localStorage.setItem("cartData", JSON.stringify(this.cart));
     // Add new products to the cart array (using spread syntax)
-    console.log(prod);
   }
 
 
