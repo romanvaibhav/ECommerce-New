@@ -15,6 +15,8 @@ import { CloginComponent } from './shopper/clogin/clogin.component';
 import { CprofileComponent } from './shopper/cprofile/cprofile.component';
 import { cauthGuard } from './shopper/services/cauth-guard/cauth.guard';
 import { CartComponent } from './shopper/cart/cart/cart.component';
+import { ConfirmOrderComponent } from './shopper/confirm-order/confirm-order.component';
+import { OrderdetailsComponent } from './shopper/orderdetails/orderdetails.component';
 export const routes: Routes = [
 
 
@@ -89,6 +91,14 @@ export const routes: Routes = [
     {
         path:'auth/cart',
         component:CartComponent,
+    },
+    {
+        path:'order/cart/:id',
+        component:ConfirmOrderComponent,
+    },
+    {
+        path:'order/orderdetails',
+        component:OrderdetailsComponent,
     },
 
 ];

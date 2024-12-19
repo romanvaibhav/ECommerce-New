@@ -1,0 +1,16 @@
+<div style="width: 100%; height: 90vh; overflow: scroll; position: sticky; display: grid; grid-template-columns: repeat(3,1fr); ">
+    <div *ngFor="let order of OrderHist?.results" style="width: 82%; margin-top: 10px; margin-left: 40px; height: auto; border: 1px solid black; ">
+        <div>
+            <p>Status: {{order.status}}</p>
+            <div *ngFor="let item of order.items">
+                <p>{{item.name}} (<span style="font-size: 11px;">x</span>{{item.qty}}) -{{item.price}}</p>
+            </div>
+ 
+            <p>Total Price: {{order.total}}</p>
+            @if(order.paymentStatus == "Pending"){
+                <button (click)="pendingPayment(order._id)">Make Payment</button>
+            }
+            <button class="btn btn-primary" (click)="cancleOrder(order._id)">Cancle</button>
+        </div>
+    </div>
+</div>

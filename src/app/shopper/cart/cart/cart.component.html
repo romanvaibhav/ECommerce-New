@@ -17,7 +17,7 @@
                 </div>
                 <!-- <div>Total: {{ product.price }}</div> -->
             </div>
-            <div style="width: 20%;  display: flex; flex-direction: column; margin-left: 200px; margin-top: 0px;"  >
+            <div style="width: 20%;  display: flex; flex-direction: column; margin-left: 200px; margin-top: 10px;"  >
                 <div *ngIf="!product.deal"><span style="font-weight: 490;">Price: </span> <span style="font-weight: bold;"> {{ product.price }}</span></div> <br>
                 <div *ngIf="product.deal" style="margin-top: -15px;">
                     <div><span style="font-weight: 490; text-decoration: line-through;">Price: </span> <span style="font-weight: bold; text-decoration: line-through;"> {{ product.price }}</span></div>
@@ -30,7 +30,9 @@
 
     <div style="width: 25%; margin-left: 20px;border-radius: 5px; background-color: white; margin-top: 20px;" >
         <p style="margin-top: 30px; margin-left: 40px; font-weight: 500; color: rgb(46, 42, 42);">Total Quantity: <span style= "font-weight: bold; font-size: 18px;">{{ totalQuantity | async }}</span> </p>
-        <p style="margin-top: 0px; margin-left: 40px; font-weight: 500; color: rgb(46, 42, 42);">Total Price: ₹<span style="font-weight: bold; font-size: 18px;">{{ totalPrice | async }}</span> </p>
+        <p style="margin-top: -10px; margin-left: 40px; font-weight: 500; color: rgb(46, 42, 42);">DeliveryFee: <span style= "font-weight: bold; font-size: 16px; color: rgb(4, 156, 4);">Free</span> </p>
+
+        <p style="margin-top: -10px; margin-left: 40px; font-weight: 500; color: rgb(46, 42, 42);">Total Price: ₹<span style="font-weight: bold; font-size: 18px;">{{ totalPrice | async }}</span> </p>
         <div>
             <button style="cursor: pointer; border-radius: 8px; margin-left: 45px; border: none; width: 200px; background-color: #ffc300;" (click)="proceedToBuy()">Proceed To Buy</button>
         </div>

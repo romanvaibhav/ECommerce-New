@@ -11,8 +11,8 @@
             }
             @else {
                 <a routerLink="/">Home</a>
+                <a routerLink="order/orderdetails">Extra</a>
             }
-            <a>Extra</a>
         </div>
         <div>
             @if(isCurrentRouteCustomer){
@@ -30,12 +30,14 @@
             }
         </div>
         <div class="navBtn">
-            <a routerLink="/auth/cart" style="margin-right: 70px;"><i style="font-size: 25px;" class="fas fa-shopping-cart"></i></a>
+            @if(!isCurrentRouteCustomer){
+                <a routerLink="/auth/cart" style="margin-right: 70px;"><i style="font-size: 25px;" class="fas fa-shopping-cart"></i></a>
+
+            }
             <button class="profile" (click)="openProfile()"><img class="openprofile" src="img/download.jpeg" alt=""></button>
             <!-- <button class=" btn btn-primary">Profile</button> -->
         </div>
     </div>
-
     <div *ngIf="issideclose" class="leftside" (click)="closeDiv()">
         <div class="sidebar">
             <div class="sideimg">
@@ -65,8 +67,6 @@
                         <a (click)="LogoutCbtn()">Log Out</a>
                     }
                 </div>
-
-
             </div>
             <div>
                 <div class="copyright">
@@ -74,7 +74,6 @@
            
                 </div>
             </div>
-
         </div>
 
     </div>
