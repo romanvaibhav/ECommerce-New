@@ -7,8 +7,9 @@ import { clearAllProduct, decreaseQuantity, increaseQuantity, removeProduct } fr
 import { CommonModule } from '@angular/common';
 import { ClocalService } from '../../services/clocal-auth/clocal.service';
 import { CutomerService } from '../../../authentication-service/customer/cutomer.service';
-import { checkoutD, custAdd } from '../../../models/user.type';
-
+import { checkoutD, custAdd ,checkoutList} from '../../../models/user.type';
+import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-cart',
   standalone: true,
@@ -25,7 +26,7 @@ export class CartComponent {
 
   cart: any;
 
-  constructor(private store: Store, private localservice: ClocalService, private cstore: Store<{ cart: cartStore }>, private custAuth: CutomerService) {
+  constructor(private store: Store, private localservice: ClocalService, private cstore: Store<{ cart: cartStore }>, private custAuth: CutomerService,private router: Router) {
     this.products = this.store.select(selectCartProducts);
     this.totalQuantity = this.store.select(selectTotalQuantity);
     this.totalPrice = this.store.select(selectTotalPrice);
@@ -78,7 +79,7 @@ export class CartComponent {
 
   //Selecting Address onSelect
   selectedIndex: number | null = null;
-  selectedadd: any;
+  selectedadd: custAdd | undefined;
   onSelect(loc: any, index: number) {
     this.selectedIndex = index;
     this.selectedadd = loc;
@@ -96,17 +97,45 @@ export class CartComponent {
   checkoutData: checkoutD[] = [];
 
   proceedToBuy(){
+let FinalPrice=0;
+    this.totalPrice.subscribe({next:(value)=>{
+      FinalPrice=value;
+    }})
+
+
   this.store.select(selectCartProduct).subscribe(cartData=>{
     console.log("Getting proceedtobuy cart data",cartData);
-    this.checkoutData=this.cart.map((prod:any)=>({
-      productId: prod.id,
-      name: prod.name,
-      price: prod.price,
-      qty: prod.quantity,
-      subTotal: prod.price * prod.quantity
+    this.cart.subscribe({next:(value:any)=>{
+      this.checkoutData=value.map((prod:any)=>({
+        productId: prod._id,
+        name: prod.name,
+        price: prod.price,
+        qty: prod.quantity,
+        subTotal: prod.price * prod.quantity
+      }));
 
-    }));
-    console.log("CheckoutData",this.checkoutData);
+    }})
+    
+    const checkoutList:checkoutList={
+      items:this.checkoutData,
+      deliveryFee:0,
+      total:FinalPrice,
+      address:this.selectedadd!
+    }
+
+    console.log("This is checkoutList final Data",checkoutList)
+
+    //Creating Order
+    this.custAuth.postCreateCustOrder(checkoutList).subscribe({next:(value:any)=>{
+      console.log("Succesfully Posted the Data",value);
+      const orderId = value.order._id;
+      this.router.navigateByUrl(`/order/cart/${orderId}`)
+    },
+    error:(err:any)=>{
+      console.log("We got error in the postcreateOrder");
+    }
+  })
+
   })
 
 

@@ -1,0 +1,25 @@
+<div style="width: 100%; height: 80vh;">
+    <div >
+        <div>
+            <label for="nameOnCard:">Name On Card</label>
+            <input type="text" [(ngModel)]="paymentDetails.nameOnCard">
+        </div>
+        <div>
+            <label for="cardNumber">cardNumber</label>
+            <input type="text" [(ngModel)]="paymentDetails.cardNumber">
+        </div>
+        <div>
+            <label for="cardNumber">Expiry Date</label>
+            <input type="text" [(ngModel)]="paymentDetails.expiry">
+        </div>
+        <div>
+            <label for="cardNumber">cvv</label>
+            <input type="text" [(ngModel)]="paymentDetails.cvv">
+        </div>
+        <div >
+            <!-- (click)="makePayment(order._id)" -->
+            <button (click)="makePayment(orders)">Make Payment</button>
+        </div>
+
+    </div>
+</div>

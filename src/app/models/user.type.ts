@@ -128,3 +128,9 @@ export type checkoutD={
   qty:number,
   subTotal:number 
 }
+export type checkoutList = {
+  items: checkoutD[];
+  deliveryFee: number;
+  total: any;
+  address: custAdd;
+};

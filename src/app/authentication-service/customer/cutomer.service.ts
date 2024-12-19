@@ -206,6 +206,61 @@ export class CutomerService {
       return this.httpClient.delete(`${CutomerService.baseUrl}/customers/account`,{headers});
 
   }
+
+
+
+
+
+
+  //Posting Custer Order
+  postCreateCustOrder(payload:any):Observable<object>{
+    let logintoken = localStorage.getItem("custToken");
+    if (logintoken != null) {
+      logintoken = JSON.parse(logintoken);
+    }
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${logintoken}`);
+    return this.httpClient.post(`${CutomerService.baseUrl}/shop/orders`,payload,{headers});
+
+  }
+
+
+//Making Payment of the customer cart
+  putCustConfirmOrder(payload:any,orderId:string):Observable<object>{
+    let logintoken=localStorage.getItem("custToken")
+    if(logintoken != null){
+      logintoken = JSON.parse(logintoken);
+    }
+    const headers=new HttpHeaders().set('Authorization', `Bearer ${logintoken}`);
+    return this.httpClient.put(`${CutomerService.baseUrl}/shop/orders/confirm/${orderId}`,payload,{headers});
+
+  }
+
+
+
+  //Getting Customer Order Hostory
+  getOrderHistory():Observable<object>{
+    let logintoken=localStorage.getItem("custToken")
+    if(logintoken != null){
+      logintoken = JSON.parse(logintoken);
+    }
+    const headers=new HttpHeaders().set('Authorization', `Bearer ${logintoken}`);
+    return this.httpClient.get(`${CutomerService.baseUrl}/shop/orders`,{headers});
+  }
+
+  //Gettind Customer Order Details
+  getOrderDetails(){
+
+  }
+  //cancling Order
+  patchCustCancleOrder(orderId:string):Observable<object>{
+    let logintoken=localStorage.getItem("custToken")
+    if(logintoken != null){
+      logintoken = JSON.parse(logintoken);
+    }
+    const headers=new HttpHeaders().set('Authorization', `Bearer ${logintoken}`);
+    return this.httpClient.patch(`${CutomerService.baseUrl}/shop/orders/cancel/${orderId}`, {},{headers});
+  }
 }
 
 
