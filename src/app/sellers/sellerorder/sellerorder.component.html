@@ -1,0 +1,25 @@
+<div style="width: 100%; height: 90vh; overflow: scroll; position: sticky; display: grid; grid-template-columns: repeat(3,1fr); ">
+    <div *ngFor="let order of sellerOrder?.results" style="width: 82%; margin-top: 10px; margin-left: 40px; height: 400px; border: 1px solid black; ">
+        <div>
+            <p>Order Status: {{order.status}}</p>
+            <div >
+                <p>Address:-{{order.address.street}} {{order.address.addressLine2}}</p>
+                <p>City:- {{order.address.city}},{{order.address.state}},{{order.address.pin}}   </p>
+
+            </div>
+            <div *ngFor="let item of order.items">
+                <p>{{item.name}} (<span style="font-size: 11px;">x</span>{{item.qty}}) -{{item.price}}</p>
+            </div>
+ 
+            <p>Total Price: {{order.total}}</p>
+            <p>PaymentStatus: {{order.paymentStatus}}</p>
+            <div>
+                <button (click)="cancleOrder(order._id)">cancel</button>
+                <button (click)="dispatchOrder(order._id)">dispatch</button>
+                <button (click)="deliverOrder(order._id)">deliver</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>

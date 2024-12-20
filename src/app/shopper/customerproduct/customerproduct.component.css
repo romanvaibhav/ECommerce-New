@@ -1,0 +1,7 @@
+.displayProducts{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    margin-left: 40px;
+    margin-right: 40px;
+    background-color: rgb(255, 255, 255);
+}

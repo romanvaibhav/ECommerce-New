@@ -30,34 +30,20 @@
             (click)="clearAll()">Clear All</button>
     </div>
 </div>
-<div class="displayProducts" >
-    <table>
-        <thead class="heading">
-            <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Price</th>
-                <th>modify Button</th>
-            </tr>
-        </thead>
-        <tbody>
+<div class="displayProducts"  >
             <!-- (click)="onRowClick(prod)" -->
-            <tr  *ngFor="let prod of Cuser">
-                <td><img *ngIf="prod.images.length>0" [src]="prod.images[0].url" alt="" style="height: 200px; width: 150px;"></td>
-                <td>{{prod.name}}</td>
-                <td>{{prod.description}}</td>
-                <td>{{prod.price}}</td>
-                <td>
-                    <ul style="list-style: none;">
-                        <li>
-                            <!-- (click)="addToCart(prod)" -->
-                            <button (click)="addToCart(prod)" >Add To Cart</button>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+            <div  *ngFor="let prod of Cuser" style="margin-top: 10px;margin-bottom: 10px; width: 96%; height: 400px;  border-radius: 5px; background-color: rgb(233, 229, 229);">
+                <div >
+                    <div><img *ngIf="prod.images.length>0" [src]="prod.images[0].url" alt="" style="height: 300px; width: 100%;"></div>
+                    <p style="font-weight: 550; margin-left:30%;">{{prod.name}}</p>
+    
+                    <div style="display: flex; flex-direction: column;">
+                        <div style="font-weight: bold; margin-left: 20px;"><span> ₹{{prod.price}}</span></div>
+                        <button style="height: 25px; margin-top: -10px; border-radius: 3px; color: white; border: 1px solid rgb(255, 255, 255); margin:10px 30px 0 30px; background-color: #00a6fb;" (click)="addToCart(prod)" >Add To Cart</button>
+                    </div>
 
+                </div>
+
+
+            </div>
 </div>

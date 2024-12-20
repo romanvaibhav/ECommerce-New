@@ -305,8 +305,25 @@ export class AuthenticationServiceService {
   }
 
 
+// Getting Hostory of Seller Oders
+getSellerOrderHistory():Observable<object>{
+  let logintoken=localStorage.getItem("token");
+  if(logintoken !==null){
+    logintoken=JSON.parse(logintoken);
+  }
+  const headers=new HttpHeaders().set('Authorization',`Bearer ${logintoken}`);
+  return this.httpClient.get(`${AuthenticationServiceService.baseUrl}/orders`,{headers});
+}
 
 
+pathcOrderAction(orderId:string,action:string):Observable<object>{
+  let logintoken=localStorage.getItem("token");
+  if(logintoken !==null){
+    logintoken=JSON.parse(logintoken);
+  }
+  const headers=new HttpHeaders().set('Authorization',`Bearer ${logintoken}`);
+  return this.httpClient.patch(`${AuthenticationServiceService.baseUrl}/orders/${action}/${orderId}`,{},{headers});
+}
 
 
 }
