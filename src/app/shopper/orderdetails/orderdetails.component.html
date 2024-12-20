@@ -1,16 +1,24 @@
-<div style="width: 100%; height: 90vh; overflow: scroll; position: sticky; display: grid; grid-template-columns: repeat(3,1fr); ">
-    <div *ngFor="let order of OrderHist?.results" style="width: 82%; margin-top: 10px; margin-left: 40px; height: auto; border: 1px solid black; ">
-        <div>
-            <p>Status: {{order.status}}</p>
+<div style="width: 100%; background-color: rgb(227, 228, 227); height: 90vh; overflow: scroll; display: grid; grid-template-columns: repeat(3, 1fr); ">
+    <div *ngFor="let order of OrderHist?.results" style=" background-color: white; width: 82%; margin-top: 30px; margin-left: 40px; height: auto; border: 1px solid black; display: flex; flex-direction: column; justify-content: space-between; border-radius: 10px;">
+        
+        <!-- Order Details Section -->
+        <div style="margin: 30px; margin-top: 8px;">
+            <p> <span class="namingfont">Status:</span> <span style="font-weight: 500;">{{order.status}}</span></p>
+
+        <p class="namingfont">Items:-</p>
             <div *ngFor="let item of order.items">
-                <p>{{item.name}} (<span style="font-size: 11px;">x</span>{{item.qty}}) -{{item.price}}</p>
+                <p style="margin-top: -15px;"> <span style="font-weight: 500;" >{{item.name}}</span> (<span style="font-size: 11px; font-weight: 500;">x</span><span style="font-weight: 500;">{{item.qty}}</span>):-  {{item.price}}</p>
             </div>
- 
-            <p>Total Price: {{order.total}}</p>
-            @if(order.paymentStatus == "Pending"){
-                <button (click)="pendingPayment(order._id)">Make Payment</button>
-            }
-            <button class="btn btn-primary" (click)="cancleOrder(order._id)">Cancle</button>
+            <p style="margin-top: 10px;"><span class="namingfont" style="color: red;">Total Price: </span> <span style="font-weight: 500;" >{{order.total}}</span></p>
+        </div>
+
+        <div style="display: flex; flex-direction: row; justify-content: space-between; margin-top: auto; width: 100%; margin-bottom: 10px;">
+            <div style="width: 50%;" *ngIf="order.paymentStatus === 'Pending'" >
+                <button class="paybtn" (click)="pendingPayment(order._id)">Make Payment</button>
+            </div>
+            <div style="width: 50%; text-align: center;">
+                <button class="canclebtn" (click)="cancleOrder(order._id)">Cancel</button>
+            </div>
         </div>
     </div>
 </div>

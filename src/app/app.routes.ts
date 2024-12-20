@@ -17,6 +17,7 @@ import { cauthGuard } from './shopper/services/cauth-guard/cauth.guard';
 import { CartComponent } from './shopper/cart/cart/cart.component';
 import { ConfirmOrderComponent } from './shopper/confirm-order/confirm-order.component';
 import { OrderdetailsComponent } from './shopper/orderdetails/orderdetails.component';
+import { SellerorderComponent } from './sellers/sellerorder/sellerorder.component';
 export const routes: Routes = [
 
 
@@ -64,6 +65,10 @@ export const routes: Routes = [
     {
         path:"auth/reset-password",
         component:ResetPasswordComponent,
+    },
+    {
+        path:"seller/orderdetails",
+        component:SellerorderComponent,
     },
 
 
