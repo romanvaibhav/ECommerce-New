@@ -78,7 +78,7 @@ export type customerProductList = {
   createdAt: string,
   description: string,
   images: ProdImg[],
-  deal?:cartdeal[],
+  deal?:cartdeal,
   name: string,
   price: number,
   _id: string,
