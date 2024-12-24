@@ -18,6 +18,7 @@ import { CartComponent } from './shopper/cart/cart/cart.component';
 import { ConfirmOrderComponent } from './shopper/confirm-order/confirm-order.component';
 import { OrderdetailsComponent } from './shopper/orderdetails/orderdetails.component';
 import { SellerorderComponent } from './sellers/sellerorder/sellerorder.component';
+import { SettingsComponent } from './shopper/settings/settings.component';
 export const routes: Routes = [
 
 
@@ -104,6 +105,10 @@ export const routes: Routes = [
     {
         path:'order/orderdetails',
         component:OrderdetailsComponent,
+    },
+    {
+        path:'cust/settings',
+        component:SettingsComponent,
     },
 
 ];
