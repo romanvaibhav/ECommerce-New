@@ -2,52 +2,55 @@
 <form class="formTag" validate [formGroup]="custLoginPage"  autocomplete="on">
 
     <div class="main">
+        <div style="margin-left: 70px; margin-top: 50px; margin-right: 30px; ">
 
-        <div class="container">
-            <div class="heading">
-                <h4 style="margin-top: -40px; margin-left: -100px; margin-bottom: 20px;">Nex<span style="    color: #486d92;">Mart</span><img class="headingimg" src="img/shopping-cart-309592_1280.webp" alt=""></h4>
-
+            <div class="container">
+                <div class="heading">
+                    <h4 style="margin-top: -40px; margin-left: -100px; margin-bottom: 20px;">Nex<span style=" color: #486d92;">Mart</span><img class="headingimg" src="img/shopping-cart-309592_1280.webp" alt=""></h4>
+                </div>
+            <div class="heading2">
+                <h2 style="margin-left: 60px; margin-top: -20px;">Login</h2>
             </div>
+            <div class="email">
+                <label for="email" placeholer="Enter your email">Email</label><br>
+                <input autocomplete="email" name="email" formControlName="email" type="email" required>
+            </div>
+            <div class="Dcolor">
+                @if(custLoginPage.controls['email'].touched && custLoginPage.controls['email'].errors?.['required']){
+                    <span>This is required</span>
+                }
+            </div>
+            <div class="password">
+                <label for="password">Password</label>
+                <!-- <a class="forget" (click)="OpenForgetPass()">Forget Password?</a> -->
+                <br>
+                <input autocomplete="current-password" name="password" formControlName="password" type="password" required minlength="3">
+            </div>
+            <div class="Dcolor">
+                @if(custLoginPage.controls['password'].touched && custLoginPage.controls['password'].errors?.['required']){
+                    <span>This is required</span>
+                }
+                @else if(custLoginPage.controls['password'].errors?.['minlength']){
+                    <span>Min 6 chared required</span>
+                }
+            </div>
+            <div>
+            </div>
+            <div class="btn">
+                <button class="login" (click)="clogin()">Login</button>
+            </div>
+            <div>
+                <div class="googleLogin" id="google-signin-button"></div>
+            </div>
+            <div class="registration">
+                <a class="regi"  (click)="cregi()">Create Your Account</a>
+            </div>
+            </div>
+        </div>
+        <div>        
+            <img style="width: 900px; margin-left: 0px; height: 107%; margin-top: -40px;"  src="img/ai-generated-shopping-trolley-or-cart-resting-on-the-surface-supermarket-pushcart-for-groceries-concept-banner-for-purchases-photo.jpg" alt="">
+        </div>
 
-        <div class="heading">
-            <h2>Login</h2>
-        </div>
-        <div class="email">
-            <label for="email" placeholer="Enter your email">Email</label><br>
-            <input autocomplete="email" name="email" formControlName="email" type="email" required>
-        </div>
-        <div class="Dcolor">
-            @if(custLoginPage.controls['email'].touched && custLoginPage.controls['email'].errors?.['required']){
-                <span>This is required</span>
-            }
-        </div>
-        <div class="password">
-            <label for="password">Password</label>
-            <!-- <a class="forget" (click)="OpenForgetPass()">Forget Password?</a> -->
-            <br>
-            <input autocomplete="current-password" name="password" formControlName="password" type="password" required minlength="3">
-        </div>
-        <div class="Dcolor">
-            @if(custLoginPage.controls['password'].touched && custLoginPage.controls['password'].errors?.['required']){
-                <span>This is required</span>
-            }
-            @else if(custLoginPage.controls['password'].errors?.['minlength']){
-                <span>Min 6 chared required</span>
-            }
-        </div>
-        <div>
-        </div>
-
-        <div class="btn">
-            <button class="login-btn" (click)="clogin()">Login</button>
-        </div>
-        <div>
-            <div class="googleLogin" id="google-signin-button"></div>
-        </div>
-        <div class="registration">
-            <a class="regi"  (click)="cregi()">Create Your Account</a>
-        </div>
-        </div>
     </div>
 </form>
 

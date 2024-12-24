@@ -1,0 +1,97 @@
+.hoverbutton:hover{
+    background-color: hsl(120, 2%, 69%);
+}
+.content{
+    width: 87%;
+    height: 100%;
+    background-color: hsl(0, 0%, 100%);
+}
+.address{
+    border: 1px solid black; 
+    background-color: white;
+    border-radius: 5px;
+
+}
+.deleteAdd{
+    margin-bottom: 
+    10px; margin-left: 40px; 
+    border: 1px solid black; 
+    border-radius: 5px;
+    background-color: #d6351f;
+    color: white;
+}
+.deleteAdd:hover{
+    background-color: hsl(7, 75%, 38%);
+}
+.updateAdd{
+    background-color: hsl(135, 63%, 48%);
+    margin-bottom: 10px; 
+    margin-left: 800px; 
+    border: 1px solid black; 
+    border-radius: 5px;
+    color: white;
+}
+.updateAdd:hover{
+    background-color: hsl(135, 63%, 38%);
+
+}
+.addingAdd{
+    width: 100%;
+    border-radius: 5px; 
+    height: auto; 
+    background-color: hsl(0, 0%, 100%); 
+    border: 1px solid black;
+    margin-top: 10px;
+}
+.addingAdd label{
+    font-weight: 460;
+    margin-left: 10px;
+}
+.changingPass{
+    width: 100%; 
+    height: auto; 
+    background-color: hsl(0, 0%, 100%); 
+    border: 1px solid black;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+.changingPass label{
+    font-weight: 460;
+    margin-left: 10px;
+
+}
+.addButton{
+    margin-top: 20px; 
+    margin-left: 185px; 
+    margin-bottom: 10px; 
+    background-color: hsl(135, 63%, 48%); 
+    border-radius: 5px; 
+    color: white; 
+    border: 1px solid black;
+}
+.addButton:hover{
+    background-color: hsl(135, 63%, 38%);
+}
+.addingAddr{
+    margin-top: 10px; 
+    margin-left: 160px; 
+    margin-bottom: 10px;
+    border: 1px solid black; 
+    border-radius: 5px;
+    background-color: hsl(135, 63%, 48%); 
+    color: white;
+
+
+}
+.addingAddr:hover{
+    background-color: hsl(135, 63%, 38%);
+
+}
+.deletingAccount{
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #d6351f;
+    margin-top: 10px;
+    margin-left: 30px;
+    color: white;
+}

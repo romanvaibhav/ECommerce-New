@@ -1,0 +1,65 @@
+<div style="width: 100%; height: 87vh; display: flex; ">
+    <div style="width: 13%; height: 100%;  background-color: hsl(120, 2%, 89%); border-right: 1px solid black;">
+        <ul style="list-style: none; padding-top: 1px; " >
+            <li><button class="hoverbutton" style=" border: none; width: 160px; margin-left: -30px; height: 50px;" (click)="UpdateAddress()">Update Address</button></li>
+            <li style="margin-top: 1px;"><button class="hoverbutton" style="border: none; width: 160px; margin-left: -30px; height: 50px;" (click)="AddAddress()">Add Address</button></li>
+            <li style="margin-top: 1px;"> <button class="hoverbutton" style="border: none; width: 160px; margin-left: -30px; height: 50px;" (click)="ChangePass()">Change Password</button></li>
+            <li style="margin-top: 1px;"><button class="hoverbutton" style="border: none; width: 160px; margin-left: -30px; height: 50px;" (click)="DeleteingAccount()">Delete Account</button></li>
+        </ul>
+    </div>
+    <div style="width: 87%; height: 100%; background-color: hsl(120, 2%, 89%);">
+        <div *ngIf="isDisplayAdd" style=" height: auto; margin-top: 10px;">
+            <div class="address" *ngFor="let loc of cAdd; let i = index " >
+                 <div style="margin-left: 10px; margin-top: 10px;"><span style="font-weight: 460;">Address:</span><span style="margin-left: 5px; line-height: 20px;">{{loc.addressLine2}},{{loc.street}}</span></div>
+                 <p style="margin-top: 10px; margin-left: 10px;"><span style="font-weight: 460;">City:</span> {{loc.city}},{{loc.state}}</p>
+                 <p style="margin-top: -10px; margin-left: 10px;"> <span style="font-weight: 460;">Pin:</span> {{loc.pin}}</p>
+                 <br>
+                 <button class="updateAdd" (click)="updateAddress(loc._id)">Update Address</button>
+                 <button class="deleteAdd" (click)="deleteAddress(loc._id)">Delete Address</button>
+             </div>
+        </div>
+
+        <!--We have to create Model fowr this its just a UI testing is it working-->
+        <div *ngIf="isUpdateAdd">                
+            <p>Updating Addredd</p>
+            <label for="street">street:</label>
+            <input type="text" [(ngModel)]="cupdateAdd.street"><br>
+            <label for="addressLine2">addressLine2:</label>
+            <input type="text" [(ngModel)]="cupdateAdd.addressLine2"><br>
+            <label for="city">city:</label>
+            <input type="text" [(ngModel)]="cupdateAdd.city"><br>
+            <label for="state">state:</label>
+            <input type="text" [(ngModel)]="cupdateAdd.state"><br>
+            <label for="pin">pin:</label>
+            <input type="text" [(ngModel)]="cupdateAdd.pin"><br>
+        </div>
+
+
+        <div *ngIf="isAddAddress" class="addingAdd">
+            <label for="street">Street:</label>
+            <input style="margin-left: 7px; margin-top: 5px;" type="text" [(ngModel)]="cnewAdd.street"><br>
+            <label for="addressLine2">Add2:</label>
+            <input style="margin-left: 14px; margin-top: 5px;" type="text" [(ngModel)]="cnewAdd.addressLine2"><br>
+            <label for="city">City:</label>
+            <input style="margin-left: 24px; margin-top: 5px;" type="text" [(ngModel)]="cnewAdd.city"><br>
+            <label for="state">State:</label>
+            <input style="margin-left: 12px; margin-top: 5px;" type="text" [(ngModel)]="cnewAdd.state"><br>
+            <label for="pin">Pin:</label>
+            <input style="margin-left: 26px; margin-top: 5px;" type="text" [(ngModel)]="cnewAdd.pin"><br>
+            <button class="addingAddr" (click)="addNewAddress()">Add Address</button>
+        </div>
+
+        <div *ngIf="isChangePass" class="changingPass">
+            <label for="oldPass" style="margin-top: 20px;">Old Password:</label>
+            <input style="margin-left: 10px;" type="password" [(ngModel)]="cpasswords.old_password">
+            <br>
+            <label for="newPass" style="margin-top: 20px;">New Password:</label>
+            <input style="margin-left: 4px;" type="password" [(ngModel)]="cpasswords.new_password"> <br>
+            <button class="addButton" (click)="chnageCustPassword()">Change Password</button>
+        </div>
+
+        <div *ngIf="isDeleteAccount">
+            <button class="deletingAccount" (click)="DeleteCustAccount()">Delete Account</button>
+        </div>
+    </div>
+</div>

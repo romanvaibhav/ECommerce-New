@@ -14,6 +14,7 @@ import { custAdd } from '../../models/user.type';
 export class CprofileComponent {
   constructor(private custAuth: CutomerService) { }
 
+
   cupdateInfo:any={
     name: '',
     email: ''
@@ -124,8 +125,8 @@ export class CprofileComponent {
         console.log(err);
       }
     })
-
   }
+
 
 
   //Add New Address
@@ -148,6 +149,7 @@ export class CprofileComponent {
   }
 
 
+
   //Updating the address which is diplayed
   cupdateAdd={
     street: '',
@@ -168,8 +170,8 @@ export class CprofileComponent {
   }
 
 
-  //Deleting the Customer Address
 
+  //Deleting the Customer Address
   deleteAddress(addId:string){
     this.custAuth.deleteAdd(addId).subscribe({next:(value)=>{
       console.log("Succesfully Deleted Customer Addredd",value);
@@ -200,6 +202,7 @@ export class CprofileComponent {
   }
 
 
+
   //Deleting Customer Account
   DeleteCustAccount(){
     this.custAuth.deleteCustomerAcc().subscribe({next:(value)=>{
@@ -210,7 +213,6 @@ export class CprofileComponent {
       console.log(err);
     }
   })
-
   }
 
 }

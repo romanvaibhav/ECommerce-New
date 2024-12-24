@@ -34,12 +34,21 @@
             <!-- (click)="onRowClick(prod)" -->
             <div  *ngFor="let prod of Cuser" style="margin-top: 10px;margin-bottom: 10px; width: 96%; height: 400px;  border-radius: 5px; background-color: rgb(233, 229, 229);">
                 <div >
-                    <div><img *ngIf="prod.images.length>0" [src]="prod.images[0].url" alt="" style="height: 300px; width: 100%;"></div>
+                    <div><img *ngIf="prod.images.length>0" [src]="prod.images[0].url" alt="" style="height: 250px; width: 100%;"></div>
                     <p style="font-weight: 550; margin-left:30%;">{{prod.name}}</p>
-    
+                    <div>
+                        <div *ngIf="prod.deal">
+                            <span style="font-weight: 490; color: rgb(17, 17, 17);"> Price: </span> <span style="font-weight: bold;">{{ prod.deal?.price }} </span>(<span style="font-size: 12px; font-weight: bold; color: rgb(7, 156, 7);"> {{prod.deal.discount}} off</span>)
+                            <div><span style="font-weight: 490; text-decoration: line-through; color: #706d6d;">Price: </span> <span style="font-weight: bold; text-decoration: line-through;color: #797575;"> {{ prod.price }}</span></div>
+
+                        </div>
+                        <div *ngIf="!prod.deal" style="margin-bottom: 24px;"><span style="font-weight: 490;">Price: </span> <span style="font-weight: bold;"> {{ prod.price }}</span></div> <br>
+
+
+                    </div>
+
                     <div style="display: flex; flex-direction: column;">
-                        <div style="font-weight: bold; margin-left: 20px;"><span> ₹{{prod.price}}</span></div>
-                        <button style="height: 25px; margin-top: -10px; border-radius: 3px; color: white; border: 1px solid rgb(255, 255, 255); margin:10px 30px 0 30px; background-color: #00a6fb;" (click)="addToCart(prod)" >Add To Cart</button>
+                        <button style="height: 25px; margin-top: auto; border-radius: 3px; color: white; border: 1px solid rgb(255, 255, 255);  background-color: #00a6fb;" (click)="addToCart(prod)" >Add To Cart</button>
                     </div>
 
                 </div>
