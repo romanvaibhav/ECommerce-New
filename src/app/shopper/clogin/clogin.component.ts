@@ -3,11 +3,13 @@ import { CutomerService } from '../../authentication-service/customer/cutomer.se
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
+import { Slider } from 'primeng/slider';
 
 @Component({
   selector: 'app-clogin',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule],
+  imports: [CommonModule,ReactiveFormsModule,ButtonModule],
   templateUrl: './clogin.component.html',
   styleUrl: './clogin.component.css'
 })

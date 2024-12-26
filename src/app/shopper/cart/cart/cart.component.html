@@ -9,10 +9,12 @@
             </div>
             <div  style="width: 40%; margin-left: 10px; ">
                 <div style="font-size: 25px; font-weight: bold; margin-top: 7px; margin-bottom: 0px;">{{ product.name }}</div>
-                <div>
-                    <p><span style="font-weight: 490;">Quantity: </span>  <span style="font-weight: bold;">{{ product.quantity }}</span></p>
-                    <button (click)="increaseQuantity(product._id)">+</button>
-                    <button (click)="decreaseQuantity(product._id)">-</button>
+                <p><span style="font-weight: 490;">Quantity: </span>  <span style="font-weight: bold;">{{ product.quantity }}</span></p>
+
+                <div style="display: flex; margin-top: 40px;" >
+                    <button style="height: 23px; width: 23px; border: 1px solid black;" (click)="increaseQuantity(product._id)"><span>+</span></button>
+                    <p  style="margin: 0; height: 23px; border: 1px solid black; width: 40px; text-align: center;">{{ product.quantity}}</p>
+                    <button style="height: 23px; width: 23px; border: 1px solid black;"  (click)="decreaseQuantity(product._id)">-</button>
                     <button style="border: none; color: rgb(7, 120, 139); background-color: white; font-size: 13px;" (click)="removeProduct(product._id)">Delete</button>
                 </div>
                 <!-- <div>Total: {{ product.price }}</div> -->
