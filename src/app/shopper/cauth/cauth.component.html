@@ -1,88 +1,94 @@
 <form class="formTag" novalidate [formGroup]="customerForm" (ngSubmit)="onPressRegisterHandler()"  autocomplete="on">
     <div class="main">
         <!-- <div class="container" [formGroup]="customerForm"> -->
-            <div class="heading">
-                <h2>Registration</h2>
+            <div class="container">
+                <div class="heading">
+                    <h2>Registration</h2>
+                </div>
+                <div class="email">
+                    <label for="email"  placeholer="Enter your email">Email</label><br>
+                    <input name="email" autocomplete="email" formControlName="email" type="email">
+                </div>
+                <div class="display">
+                    @if(customerForm.controls['email'].touched && customerForm.controls['email'].errors?.['required']){
+                        <span>This is required</span>
+                    }
+                </div>
+    
+                <div class="Name">
+                    <label for="Name">Full Name</label><br>
+                    <input name="name" autocomplete="name" formControlName="name" type="text">
+                </div>
+                <div class="display">
+                    @if(customerForm.controls['name'].touched && customerForm.controls['name'].errors?.['required']){
+                        <span>This is required</span>
+                    }
+                </div>
+                <p style="margin: 10px; margin-bottom: -12px; font-weight: bold;">Address</p>
+                <div class=" street">
+                    <label for=" street">street:</label><br>
+                    <input name="street" autocomplete="street" formControlName="street" type="text">
+                </div>
+                <div class="display">
+                    @if(customerForm.controls['street'].touched && customerForm.controls['street'].errors?.['required']){
+                        <span>This is required</span>
+                    }
+                </div>
+                <div class=" addressLine2">
+                    <label for=" addressLine2">addressLine2:</label><br>
+                    <input name="addressLine2" autocomplete="addressLine2" formControlName="addressLine2" type="text">
+                </div>
+    
+                <div class=" city">
+                    <label for=" city">city:</label><br>
+                    <input name="city" autocomplete="city" formControlName="city" type="text">
+                </div>
+                <div class="display">
+                    @if(customerForm.controls['city'].touched && customerForm.controls['city'].errors?.['required']){
+                        <span>This is required</span>
+    
+                    }
+                </div>
+                <div class=" state">
+                    <label for=" state">state:</label><br>
+                    <input name="state" autocomplete="state" formControlName="state" type="state">
+                </div>
+                <div class="display">
+                    @if(customerForm.controls['state'].touched && customerForm.controls['state'].errors?.['required']){
+                        <span>This is required</span>
+                    }
+                </div>
+                <div class=" pin">
+                    <label for=" pin">pin:</label><br>
+                    <input name="pin" autocomplete="pin" formControlName="pin" type="text">
+                </div>
+                <div class="display">
+                    @if(customerForm.controls['pin'].touched && customerForm.controls['pin'].errors?.['required']){
+                        <span>This is required</span>
+                    }
+                </div>
+        
+                <div class="password">
+                    <label for="password">Password</label><br>
+                    <input autocomplete="new-password" name="password" formControlName="password" type="password">
+                </div>
+                <div class="display">
+                    @if(customerForm.controls['password'].touched && customerForm.controls['password'].errors?.['required']){
+                        <span>This is required</span>
+                    }
+                    @else if(customerForm.controls['password'].errors?.['minlength']){
+                        <span>Min 3 chared</span>
+                    }
+                </div>
+                <div class="btn">
+                    <button class="login-bt">Submit Data</button>
+                </div>
+                <div class="btn">
+                    <!-- routerLink="/auth/login" -->
+                    <button class="login"  (click)="clogin()">Login Account</button>
+                </div>
             </div>
-            <div class="email">
-                <label for="email"  placeholer="Enter your email">Email</label><br>
-                <input name="email" autocomplete="email" formControlName="email" type="email">
-            </div>
-            <div class="display">
-                @if(customerForm.controls['email'].touched && customerForm.controls['email'].errors?.['required']){
-                    <span>This is required</span>
-                }
-            </div>
-
-            <div class="Name">
-                <label for="Name">Full Name</label><br>
-                <input name="name" autocomplete="name" formControlName="name" type="text">
-            </div>
-            <div class="display">
-                @if(customerForm.controls['name'].touched && customerForm.controls['name'].errors?.['required']){
-                    <span>This is required</span>
-                }
-            </div>
-            <p>Address</p>
-            <div class=" street:">
-                <label for=" street">street:</label><br>
-                <input name="street" autocomplete="street" formControlName="street" type="text">
-            </div>
-            <div class="display">
-                @if(customerForm.controls['street'].touched && customerForm.controls['street'].errors?.['required']){
-                    <span>This is required</span>
-                }
-            </div>
-            <div class=" addressLine2">
-                <label for=" addressLine2">addressLine2:</label><br>
-                <input name="addressLine2" autocomplete="addressLine2" formControlName="addressLine2" type="text">
-            </div>
-
-            <div class=" city">
-                <label for=" city">city:</label><br>
-                <input name="city" autocomplete="city" formControlName="city" type="text">
-            </div>
-            <div class="display">
-                @if(customerForm.controls['city'].touched && customerForm.controls['city'].errors?.['required']){
-                    <span>This is required</span>
-
-                }
-            </div>
-            <div class=" state">
-                <label for=" state">state:</label><br>
-                <input name="state" autocomplete="state" formControlName="state" type="state">
-            </div>
-            <div class="display">
-                @if(customerForm.controls['state'].touched && customerForm.controls['state'].errors?.['required']){
-                    <span>This is required</span>
-                }
-            </div>
-            <div class=" pin">
-                <label for=" pin">pin:</label><br>
-                <input name="pin" autocomplete="pin" formControlName="pin" type="text">
-            </div>
-            @if(customerForm.controls['pin'].touched && customerForm.controls['pin'].errors?.['required']){
-                <span>This is required</span>
-            }
-            <div class="password">
-                <label for="password">Password</label><br>
-                <input autocomplete="new-password" name="password" formControlName="password" type="password">
-            </div>
-            <div class="display">
-                @if(customerForm.controls['password'].touched && customerForm.controls['password'].errors?.['required']){
-                    <span>This is required</span>
-                }
-                @else if(customerForm.controls['password'].errors?.['minlength']){
-                    <span>Min 3 chared</span>
-                }
-            </div>
-            <div class="btn">
-                <button class="login-bt">Submit Data</button>
-            </div>
-            <div class="btn">
-                <!-- routerLink="/auth/login" -->
-                <button class="login"  (click)="clogin()">Login Account</button>
-            </div>
+           
         </div>
     <!-- </div> -->
     <!-- (click)="Log()" -->

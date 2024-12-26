@@ -22,8 +22,11 @@
     "@ngrx/effects": "^18.1.1",
     "@ngrx/store": "^18.1.1",
     "@ngrx/store-devtools": "^18.1.1",
+    "@primeng/themes": "^18.0.2",
     "bootstrap": "^5.3.3",
     "ngx-captcha": "^13.0.0",
+    "primeicons": "^7.0.0",
+    "primeng": "^18.0.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.10"

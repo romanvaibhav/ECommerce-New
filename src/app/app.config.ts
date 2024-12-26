@@ -9,6 +9,10 @@ import{provideEffects} from '@ngrx/effects'
 import{provideStoreDevtools} from '@ngrx/store-devtools'
 import { cartReducer } from './store/reducer/cart.reducer';
 import { cartEffect } from './store/effect/cart.effect';
+//PrimeNG
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';
 
 
 
@@ -31,6 +35,12 @@ export const appConfig: ApplicationConfig = {
       traceLimit:70,
       connectInZone:true
     }),
+    provideAnimationsAsync(),
+    providePrimeNG({
+        theme: {
+            preset: Aura
+        }
+    })
   
   ]
 };
