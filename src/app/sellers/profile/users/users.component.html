@@ -14,31 +14,35 @@
                 </form>
             </div>
             <div>
-                <label for="SortBy">SortBy:</label>
-                <select style="margin-left: 29px;" name="SortBy" (change)="onChange($event)" [(ngModel)]="userList.SortBy">
-                    <option *ngFor="let ele of SortByList" [value]="ele.value">{{ele.label}}</option>
-                </select>
+                <div>
+                    <label for="SortBy">SortBy:</label>
+                    <select style="margin-left: 29px;" name="SortBy" (change)="onChange($event)" [(ngModel)]="userList.SortBy">
+                        <option *ngFor="let ele of SortByList" [value]="ele.value">{{ele.label}}</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="SortByRole">Role:</label>
+                    <select style="margin-left: 45px;" name="Role" (change)="onChange($event)" [(ngModel)]="userList.role">
+                        <option *ngFor="let rol of SortByRole" [value]="rol.value">{{rol.label}}</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="SortByLimit">Page Limit:</label>
+                    <select style="margin-left: 3px; width: 45px;" name="pagelimit" (change)="onChange($event)" [(ngModel)]="userList.limit">
+                        <option *ngFor="let ind of SortBylimit" [value]="ind">{{ind}}</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="TotalPage">TotalPage:</label>
+                    <select style="margin-left: 5px; width: 45px;" name="TotalPage" (change)="onChange($event)" [(ngModel)]="userList.page">
+                        <option *ngFor="let num of TotalPage" [value]="num">{{num}}</option>
+                    </select>
+                </div>
+                <button style="font-size: 13px; width: 80px; height: 25px; padding: 2px;" class="btn btn-primary"
+                    (click)="clearAll()">Clear All</button>
+
             </div>
-            <div>
-                <label for="SortByRole">Role:</label>
-                <select style="margin-left: 45px;" name="Role" (change)="onChange($event)" [(ngModel)]="userList.role">
-                    <option *ngFor="let rol of SortByRole" [value]="rol.value">{{rol.label}}</option>
-                </select>
-            </div>
-            <div>
-                <label for="SortByLimit">Page Limit:</label>
-                <select style="margin-left: 3px; width: 45px;" name="pagelimit" (change)="onChange($event)" [(ngModel)]="userList.limit">
-                    <option *ngFor="let ind of SortBylimit" [value]="ind">{{ind}}</option>
-                </select>
-            </div>
-            <div>
-                <label for="TotalPage">TotalPage:</label>
-                <select style="margin-left: 5px; width: 45px;" name="TotalPage" (change)="onChange($event)" [(ngModel)]="userList.page">
-                    <option *ngFor="let num of TotalPage" [value]="num">{{num}}</option>
-                </select>
-            </div>
-            <button style="font-size: 13px; width: 80px; height: 25px; padding: 2px;" class="btn btn-primary"
-                (click)="clearAll()">Clear All</button>
+
         </div>
         <div style="margin-left: 2%; display: flex; align-items: center;">
 
