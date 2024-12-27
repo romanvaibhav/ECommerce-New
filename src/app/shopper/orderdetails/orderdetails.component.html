@@ -1,4 +1,20 @@
+<div style="width: 100%; height: 35px; display: flex;">
+    <div style="margin-left: 5px; font-weight: 490;">
+        <label for="SortByLimit">Page Limit:</label>
+        <select name="pagelimit" (change)="onChange($event)" [(ngModel)]="CproductList.limit" style="margin-left: 4px;margin-top: 5px;">
+            <option *ngFor="let ind of SortBylimit" [value]="ind">{{ind}}</option>
+        </select>
+    </div>
+    <div style="margin-left: 5px; font-weight: 490;">
+        <label for="TotalPage">TotalPage:</label>
+        <select name="TotalPage" (change)="onChange($event)" [(ngModel)]="CproductList.page" style="margin-left: 7px; margin-top: 5px; margin-bottom: 5px;">
+            <option *ngFor="let num of TotalPage" [value]="num">{{num}}</option>
+        </select>
+    </div>
+
+</div>
 <div style="width: 100%; background-color: rgb(227, 228, 227); height: 90vh; overflow: scroll; display: grid; grid-template-columns: repeat(3, 1fr); ">
+
     <div *ngFor="let order of OrderHist?.results" style=" background-color: white; width: 82%; margin-top: 30px; margin-left: 40px; height: auto; border: 1px solid black; display: flex; flex-direction: column; justify-content: space-between; border-radius: 10px;">
         
         <!-- Order Details Section -->
@@ -21,4 +37,3 @@
             </div>
         </div>
     </div>
-</div>

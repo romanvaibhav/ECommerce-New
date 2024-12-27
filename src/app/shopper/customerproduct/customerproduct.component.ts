@@ -25,7 +25,7 @@ export class CustomerproductComponent implements OnInit {
     name: '',
     sortBy: '',
     page: 1,
-    limit: 0,
+    limit: 20,
   }
   SortByList = [
     { value: '', label: '' },
@@ -33,7 +33,7 @@ export class CustomerproductComponent implements OnInit {
     { value: 'sortBy', label: 'sortBy' },
     { value: 'price', label: 'price' }];
 
-  SortBylimit: number[] = [1, 2, 3, 4, 5, 10, 15, 10, 25, 30];
+  SortBylimit: number[] = [1, 2, 3, 4, 5, 10, 15, 20, 25, 30,40,50];
   TotalPage: number[] = [];
   currentPage: number = 1;
 
@@ -85,6 +85,10 @@ export class CustomerproductComponent implements OnInit {
     // localStorage.setItem("cartData", JSON.stringify(this.cart));
     // Add new products to the cart array (using spread syntax)
   }
+isOpenTheDrop:boolean=false;
+  openTheDropDown(){
+    this.isOpenTheDrop=!this.isOpenTheDrop
 
+  }
 
 }

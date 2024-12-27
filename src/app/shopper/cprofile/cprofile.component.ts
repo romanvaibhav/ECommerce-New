@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { CutomerService } from '../../authentication-service/customer/cutomer.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -12,6 +12,11 @@ import { custAdd } from '../../models/user.type';
   styleUrl: './cprofile.component.css'
 })
 export class CprofileComponent {
+
+
+
+
+
   constructor(private custAuth: CutomerService) { }
 
 
@@ -215,4 +220,20 @@ export class CprofileComponent {
   })
   }
 
+
+  //Setting Icon Boolean code for the opening and closing dropdown
+  isDropdownOpen:boolean=false;
+  toggleDropdown(event: MouseEvent){
+    event.stopPropagation();
+    this.isDropdownOpen=!this.isDropdownOpen
+  }
+  
+  @ViewChild('dropdown') dropdownElement: ElementRef | undefined;
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    // If the dropdown is open and the click is outside the dropdown, close it
+    if (this.isDropdownOpen && this.dropdownElement && !this.dropdownElement.nativeElement.contains(event.target)) {
+      this.isDropdownOpen = false;
+    }
+  }
 }

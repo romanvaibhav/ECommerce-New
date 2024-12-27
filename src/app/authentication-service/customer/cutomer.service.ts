@@ -261,6 +261,25 @@ export class CutomerService {
     const headers=new HttpHeaders().set('Authorization', `Bearer ${logintoken}`);
     return this.httpClient.patch(`${CutomerService.baseUrl}/shop/orders/cancel/${orderId}`, {},{headers});
   }
+
+
+  //Getting The filtered order History
+  getFilterOrders(Obj:any):Observable<object>{
+    let params=new HttpParams();
+    if (Obj.limit) {
+      params = params.set('limit', Obj.limit.toString());
+    }
+    if (Obj.page) {
+      params = params.set('page', Obj.page.toString());
+    }
+    let logintoken=localStorage.getItem("custToken")
+    if(logintoken != null){
+      logintoken = JSON.parse(logintoken);
+    }
+    const headers=new HttpHeaders().set('Authorization', `Bearer ${logintoken}`);
+
+    return this.httpClient.get(`${CutomerService.baseUrl}/shop/orders`,{params,headers});
+  }
 }
 
 
