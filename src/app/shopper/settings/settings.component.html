@@ -37,24 +37,58 @@
 
         <div *ngIf="isAddAddress" class="addingAdd">
             <label for="street">Street:</label>
-            <input style="margin-left: 7px; margin-top: 5px;" type="text" [(ngModel)]="cnewAdd.street"><br>
+            <input style="margin-left: 7px; margin-top: 5px;" type="text" [(ngModel)]="cnewAdd.street"  #street="ngModel" required><br>
+            <div style="width: 200px; height: 13px; font-size: 12px; color: red; margin-left: 65px;">
+                <div *ngIf="street.touched && street.errors?.['required']">
+                    This is required
+                </div>
+            </div>
             <label for="addressLine2">Add2:</label>
-            <input style="margin-left: 14px; margin-top: 5px;" type="text" [(ngModel)]="cnewAdd.addressLine2"><br>
+            <input style="margin-left: 14px; margin-top: 5px;" type="text" [(ngModel)]="cnewAdd.addressLine2" #add="ngModel" required><br>
+            <div style="width: 200px; height: 13px; font-size: 12px; color: red; margin-left: 65px;">
+                <div *ngIf="add.touched && add.errors?.['required']">
+                    This is required
+                </div>
+            </div>
             <label for="city">City:</label>
-            <input style="margin-left: 24px; margin-top: 5px;" type="text" [(ngModel)]="cnewAdd.city"><br>
+            <input style="margin-left: 24px; margin-top: 5px;" type="text" [(ngModel)]="cnewAdd.city" #city="ngModel" required>
+            <div style="width: 200px; height: 13px; font-size: 12px; color: red; margin-left: 65px;">
+                <div *ngIf="city.touched && city.errors?.['required']">
+                    City is required
+                </div>
+            </div>
             <label for="state">State:</label>
-            <input style="margin-left: 12px; margin-top: 5px;" type="text" [(ngModel)]="cnewAdd.state"><br>
+            <input style="margin-left: 12px; margin-top: 5px;" type="text" [(ngModel)]="cnewAdd.state" #state="ngModel" required="">
+            <div style="width: 200px; height: 13px; font-size: 12px; color: red; margin-left: 65px;">
+                <div *ngIf="state.touched && state.errors?.['required']">
+                    State is required
+                </div>
+            </div>
             <label for="pin">Pin:</label>
-            <input style="margin-left: 26px; margin-top: 5px;" type="text" [(ngModel)]="cnewAdd.pin"><br>
+            <input style="margin-left: 26px; margin-top: 5px;" type="text" [(ngModel)]="cnewAdd.pin" #pin="ngModel" required><br>
+            <div style="width: 200px; height: 13px; font-size: 12px; color: red; margin-left: 65px;">
+                <div *ngIf="pin.touched && pin.errors?.['required']">
+                    Pin is required
+                </div>
+            </div>
             <button class="addingAddr" (click)="addNewAddress()">Add Address</button>
         </div>
 
         <div *ngIf="isChangePass" class="changingPass">
             <label for="oldPass" style="margin-top: 20px;">Old Password:</label>
-            <input style="margin-left: 10px;" type="password" [(ngModel)]="cpasswords.old_password">
-            <br>
+            <input style="margin-left: 10px;" type="password" [(ngModel)]="cpasswords.old_password" #oldpass="ngModel" required>
+            <div style=" width: 200px; height: 13px; font-size: 12px; color: red; margin-left: 125px;">
+                <div *ngIf="oldpass.touched && oldpass.errors?.['required']">
+                    Old Password is required
+                </div>
+            </div>
             <label for="newPass" style="margin-top: 20px;">New Password:</label>
-            <input style="margin-left: 4px;" type="password" [(ngModel)]="cpasswords.new_password"> <br>
+            <input style="margin-left: 4px;" type="password" [(ngModel)]="cpasswords.new_password" #newpass="ngModel" required>
+            <div style="width: 200px; height: 13px; font-size: 12px; color: red; margin-left: 125px;">
+                <div *ngIf="newpass.touched && newpass.errors?.['required']">
+                    New Password is required
+                </div>
+            </div>
             <button class="addButton" (click)="chnageCustPassword()">Change Password</button>
         </div>
 

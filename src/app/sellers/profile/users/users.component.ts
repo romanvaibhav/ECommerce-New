@@ -24,8 +24,6 @@ export class UsersComponent {
   constructor(private route: ActivatedRoute, private router: Router, private authService: AuthenticationServiceService, httpClient: HttpClient) {
 
   }
-  // @ViewChild('exampleModal') exampleModal!: ElementRef;
-
   selectedUserId: string='';
   @ViewChild('exampleModal') exampleModal!: ElementRef;
   // ngAfterViewInit(){

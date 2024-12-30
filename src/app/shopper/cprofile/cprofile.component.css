@@ -19,9 +19,11 @@
     margin: 0;
   }
   
-  .dropd li {
-    padding: 8px 12px;
+  .dropd button {
+    border: none;
     cursor: pointer;
+    backdrop-filter: blur(10px);
+    width: 100%;
 
     &:hover{
         font-weight: 490;
