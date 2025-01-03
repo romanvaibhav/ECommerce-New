@@ -1,0 +1,56 @@
+<div style="height: 87vh; width: 100%;">
+    <div class="displayOneProduct">
+        <div>
+            <!-- (click)="onImageClick(img.public_id)"  -->
+            <div style="display: flex; width: 400px; height: 300px; overflow: scroll;">
+                <div *ngFor="let img of onePuser.images">
+                    <!-- (click)="onImageClick(img.public_id)" -->
+                     <div *ngIf="onePuser.images.length>0  ">
+                        <img class="displayOneProductImage" 
+                        (click)="onImageClick(img.public_id)" [src]="img.url" alt="">
+                     </div>
+                   
+                </div>
+                <div *ngFor="let img of updateimageUrls">
+                    <!-- (click)="onImageClick(img.public_id)" -->
+                    <img class="displayOneProductImage" (click)="onImageClick(img)" 
+                        [src]="img" alt="">
+                </div>
+            </div>
+            <input type="file" (change)="onFileUpdate($event)" multiple>
+    
+            <button style="margin-left: -40px;" (click)="updateOneProductImage(onePuser._id)">Update Image</button>
+    
+        </div>
+    
+        <div class="displayOneProductInfo" style="margin-left: 20px; margin-top: 30px;">
+            <p>Product: <span style="font-weight: 500;">{{onePuser.name}}</span></p>
+            <p style="margin-top: -10px;">Description:-</p>
+            <p style="line-height: 20%; margin-top: -5px;" [innerHTML]="onePuser.description">Description: {{onePuser.description}}</p>
+            <p style="margin-top: 10px;">Price: {{onePuser.price}}</p>
+    
+            <div class="card flex justify-center">
+                <p-dialog header="Update Product" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }">
+                    <label for="name">Name</label>
+                    <input type="text" [(ngModel)]="updateOneProductList.name"><br>
+                    <label for="description">Description</label>
+                    <input type="text" [(ngModel)]="updateOneProductList.description"><br>
+                    <label for="price">Price</label>
+                    <input type="number" [(ngModel)]="updateOneProductList.price"><br>
+    
+                    <div class="flex justify-end gap-2">
+                        <p-button label="Cancel" severity="secondary" (click)="visible = false" />
+                        <p-button label="Save"(click)="updateOneProduct(onePuser._id)" (click)="visible = false" />
+                    </div>
+                </p-dialog>
+            </div>
+    
+    
+            <p-button [style]="{ width: '70px', heigth:'25px', padding:'3px'  }"  (click)="showDialog()" label="Update" />
+    
+            <button style="margin-left: 10px; border: 1px solid black; background-color: #cf0909cc; color: white; font-weight: 500; border-radius: 5px; height: 30px;" (click)="deleteOneProduct(onePuser._id)">Delete</button>
+        </div> 
+    </div>
+
+</div>
+

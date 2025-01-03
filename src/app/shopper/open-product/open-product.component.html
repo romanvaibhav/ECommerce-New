@@ -1,0 +1,19 @@
+<div  style=" width: 100%; min-height: 87vh; max-height: auto;  border-radius: 5px; background-color: rgb(233, 229, 229);">
+    <div style="margin-left: 40px; margin-right: 40px;" >
+        <div *ngIf="product.images.length>0" style="display: flex; flex-direction: row;"><img  *ngFor="let img of product.images" [src]="img.url" alt="" style="height: 250px; width: 300px; margin-top: 10px;"></div>
+        <p style="font-weight: 550; font-size: 30px; margin: 0px 40% 0px 35%; width: 100%; display: flex; align-items: center;">{{product.name}}</p>
+        <p [innerHTML]="product.description">{{product.description}}</p>
+        <div>
+            <div *ngIf="product.deal">
+                <span style="font-weight: 490; color: rgb(17, 17, 17);"> Price: </span> <span style="font-weight: bold;">{{ product.deal.price }} </span>(<span style="font-size: 12px; font-weight: bold; color: rgb(7, 156, 7);"> {{product.deal.discount}} off</span>)
+                <div><span style="font-weight: 490; text-decoration: line-through; color: #706d6d;">Price: </span> <span style="font-weight: bold; text-decoration: line-through;color: #797575;"> {{ product.price }}</span></div>
+            </div>
+            <div *ngIf="!product.deal" style="margin-bottom: 24px;"><span style="font-weight: 490;">Price: </span> <span style="font-weight: bold;"> {{ product.price }}</span></div> <br>
+        </div>
+        <div style="display: flex; flex-direction: column;">
+            <!-- <button style="height: 25px; margin-top: auto; border-radius: 3px; color: white; border: 1px solid rgb(255, 255, 255);  background-color: #00a6fb;" (click)="addToCart(prod)" >Add To Cart</button> -->
+        </div>
+    </div>
+
+
+</div>

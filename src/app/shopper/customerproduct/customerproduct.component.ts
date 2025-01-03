@@ -5,6 +5,7 @@ import {CutomerService} from "./../../authentication-service/customer/cutomer.se
 import { cartData, customerProductList } from '../../models/user.type';
 import { AddToCart } from '../../store/action/cart.action';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { Store } from '@ngrx/store';
 })
 export class CustomerproductComponent implements OnInit {
 
-  constructor(private custAuth:CutomerService,private store: Store){}
+  constructor(private custAuth:CutomerService,private store: Store,private router: Router){}
 
 
   Cuser: customerProductList[] = [];
@@ -67,7 +68,7 @@ export class CustomerproductComponent implements OnInit {
         this.currentPage = value.totalPages;
         this.SortByPage()
         this.Cuser = value['results'] as [];
-        console.log("Here is Puser")
+        console.log("Here is Cuser",this.Cuser)
         // console.log(this.Cuser);
       },
       error: (err) => {
@@ -88,6 +89,13 @@ export class CustomerproductComponent implements OnInit {
 isOpenTheDrop:boolean=false;
   openTheDropDown(){
     this.isOpenTheDrop=!this.isOpenTheDrop
+
+  }
+  onImageClick(Prod:any){
+    console.log("Clicked on the image",Prod);
+    this.router.navigate(['/cust/prodetail'], {
+      state: { product:Prod } // Passing product data in state
+    });
 
   }
 

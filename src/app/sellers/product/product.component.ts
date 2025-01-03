@@ -4,17 +4,22 @@ import { FormsModule } from '@angular/forms';
 import { AuthenticationServiceService } from '../../authentication-service/authentication-service.service';
 import { ProdImg, ProdList, Tuser } from '../../models/user.type';
 import { ChangeDetectorRef } from '@angular/core';
-
+import { Dialog } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { EditorModule } from 'primeng/editor';
+import { Editor } from 'primeng/editor';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,Dialog, ButtonModule, InputTextModule, Editor],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
 export class ProductComponent implements OnInit {
-  constructor(private cdRef: ChangeDetectorRef, private authService: AuthenticationServiceService) { }
+  constructor(private cdRef: ChangeDetectorRef, private authService: AuthenticationServiceService,private router:Router) { }
 
   Puser: ProdList[] = [];
   onePuser: {
@@ -103,19 +108,23 @@ export class ProductComponent implements OnInit {
 
   //Getting Data Of One User
   isOpenupdating:boolean=false;
-  onRowClick(item: any) {
+  getInfo(item: any) {
     console.log('Row clicked:', item);
-    this.authService.getOneProduct(item._id).subscribe({
-      next: (value: any) => {
-        console.log("Here i got One Product yeaaa");
-        this.onePuser = value;
-        this.isOpenupdating=true;
-        console.log(this.onePuser);
 
-      }
-    })
+    this.router.navigate(['/seller/editProd'], {
+      state: { user: item }
+    });
+    
+    // this.authService.getOneProduct(item._id).subscribe({
+    //   next: (value: any) => {
+    //     console.log("Here i got One Product yeaaa");
+    //     this.onePuser = value;
+    //     this.isOpenupdating=true;
+
+    //     console.log(this.onePuser);
+    //   }
+    // })
   }
-
 
 
   //Creating the Product
@@ -127,7 +136,6 @@ export class ProductComponent implements OnInit {
   openCreateProd: boolean = false;
   openCreateProduct() {
     this.openCreateProd = !this.openCreateProd
-
   }
 
   onFileUpload(event: Event): void {
@@ -140,9 +148,11 @@ export class ProductComponent implements OnInit {
 
   private createImageUrl(file: any): void {
     this.imageUrls = this.prodImages.map(file => URL.createObjectURL(file));
+    this.ClickedImage=this.imageUrls[0];
   }
 
   handleCreateProduct() {
+    console.log(this.prodDescription);
     this.authService.postCreateProduct(this.prodName, this.prodImages, this.prodPrice, this.prodDescription).subscribe({
       next: (value) => {
         console.log("Post Create user run succesfully", value);
@@ -151,6 +161,7 @@ export class ProductComponent implements OnInit {
         this.prodImages = [];
         this.prodPrice = 0;
         this.imageUrls = [];
+        this.handleProductList();
       },
       error: (err) => {
         console.log("Got error in the handleCreateProduct", err);
@@ -158,6 +169,11 @@ export class ProductComponent implements OnInit {
     })
   }
 
+
+
+
+
+  isvisible: boolean = false;
 
 
   //Updating One Product
@@ -185,7 +201,6 @@ export class ProductComponent implements OnInit {
 
 
   //Updating Product Image
-
   updateprodImages: File[] = [];
   updateimageUrls: string[] = [];
   deletedImageId:string []=[];
@@ -243,5 +258,21 @@ export class ProductComponent implements OnInit {
     }
   })
 
+  }
+
+
+
+
+  //For the create Product Modal when Cliked On Image
+  ClickedImage:any;
+  onClickImage(Img:any){
+    this.ClickedImage=Img;
+  }
+
+  //PrimeNg modal for product creation
+  visible: boolean = false;
+
+  showDialog() {
+      this.visible = true;
   }
 }

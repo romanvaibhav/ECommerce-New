@@ -3,34 +3,39 @@
     width: 300px;
 }
 .left{
-    width: 40%;
+    width: 55%;
     height: 70%;
     border: 1px solid black;
-    background-color: lightgreen;
+    background-color: rgb(234, 240, 234);
+    display: flex;
+
 }
 .right{
-    /* margin-left: 20px; */
-    width: 60%;
-    height: 70%;
+    margin-left: 20px;
+    width: 50%;
+    height: 100%;
     border: 1px solid black;
 }
 .mainCreateProd{
     border: 2px solid black;
     height: 100%;
     width: 100%;
+    margin-left: 50px;
+    margin-right: 60px;
     display: flex;
 }
 .displayImg{
-    height: 40px;
-    width: 50px;
+    height: 50px;
+    width: 60px;
 }
 .ImageArray{
-    width: 100%;
+    width: 10%;
     background-color: blueviolet;
     height: 40px;
     border: 1px solid black;
-    display: flex ;
-    flex-direction: row;
+    display: flex;
+    flex-direction: column;
+
 }
 table{
     width: 100%;
@@ -62,3 +67,34 @@ th,td{
     height: 30vh;
 
 }
+.p-editor {
+    background-color: #333; /* Set the toolbar background color */
+    color: white; /* Optional: Change the toolbar text color */
+  }
+  .displayProducts {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columns */
+    gap: 20px; /* Space between the grid items */
+    margin-left: 40px;
+    margin-right: 40px;
+    background-color: rgb(255, 255, 255);
+    padding-top: 20px;
+
+  }
+  .product-item {
+    width: 250px;
+    height: autopx;
+    background-color: rgb(233, 229, 229);
+    border-radius: 5px;
+    padding: 10px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  
+  .product-description, .product-price {
+    margin-left: 5px;
+    line-height: 10%;
+    width: 150px;
+  } 

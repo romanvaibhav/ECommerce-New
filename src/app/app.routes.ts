@@ -19,6 +19,8 @@ import { ConfirmOrderComponent } from './shopper/confirm-order/confirm-order.com
 import { OrderdetailsComponent } from './shopper/orderdetails/orderdetails.component';
 import { SellerorderComponent } from './sellers/sellerorder/sellerorder.component';
 import { SettingsComponent } from './shopper/settings/settings.component';
+import { OpenProductComponent } from './shopper/open-product/open-product.component';
+import { EditProdComponent } from './sellers/edit-prod/edit-prod.component';
 export const routes: Routes = [
 
 
@@ -71,6 +73,11 @@ export const routes: Routes = [
         path:"seller/orderdetails",
         component:SellerorderComponent,
     },
+    {
+        path:"seller/editProd",
+        component:EditProdComponent,
+    },
+
 
 
 
@@ -109,6 +116,10 @@ export const routes: Routes = [
     {
         path:'cust/settings',
         component:SettingsComponent,
+    },
+    {
+        path:'cust/prodetail',
+        component:OpenProductComponent,
     },
 
 ];

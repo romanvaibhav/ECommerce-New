@@ -5,27 +5,35 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { custAdd } from '../../models/user.type';
 import { ImageCropperComponent, ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Dialog } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { ToastModule } from 'primeng/toast';
 
 declare var bootstrap: any;
 
 @Component({
   selector: 'app-cprofile',
   standalone: true,
-  imports: [CommonModule, FormsModule,ReactiveFormsModule,ImageCropperComponent],
+  imports: [CommonModule, ToastModule, FormsModule,ReactiveFormsModule,ImageCropperComponent,Dialog, ButtonModule, InputTextModule],
   templateUrl: './cprofile.component.html',
   styleUrl: './cprofile.component.css'
 })
 export class CprofileComponent {
 
-
+  // Prime Ng Dialog Modal Code
+  visible: boolean = false;
+  showDialog() {
+      this.visible = true;
+  }
 
 
 
   constructor(private custAuth: CutomerService,private sanitizer: DomSanitizer) { }
 
+
   imageChangedEvent: Event | null = null;
   croppedImage: SafeUrl  = '';
-
 
   cupdateInfo:any={
     name: '',
@@ -37,8 +45,8 @@ export class CprofileComponent {
   ngOnInit(): void {
     this.customerProfile();
     this.customerAddredd()
-
   }
+
   customerProfile() {
     const profileObservable$ = this.custAuth.getCustProfile();
     profileObservable$.subscribe({
@@ -53,8 +61,8 @@ export class CprofileComponent {
         console.log(err);
       }
     });
-
   }
+
 
   updateCustProfile() {
     this.custAuth.patchCustProfile(this.cupdateInfo).subscribe({
@@ -75,10 +83,12 @@ export class CprofileComponent {
 //Image Uploading & Crpopping Image
 
 
-  CImages: File | null = null;
-
+  CImages:  Blob| null |undefined = null;
+  ImageName:string='';
   imageCropped(event: ImageCroppedEvent) {
     this.croppedImage = this.sanitizer.bypassSecurityTrustUrl(event.objectUrl!);
+    console.log(event);
+     this.CImages=event.blob;
     // event.blob can be used to upload the cropped image
   }
   imageLoaded(image: LoadedImage) {
@@ -91,20 +101,18 @@ loadImageFailed() {
     // show message
 }
 
-  onFileSelected(event: Event): void {
+  onFileSelected(event: any): void {
     this.imageChangedEvent = event;
+    console.log(event.target.files[0].name);
+    this.ImageName=event.target.files[0].name;
     const input = event.target as HTMLInputElement;
-    if (input.files) {
-      this.CImages = input.files[0];
-      // this.convertToBase64(this.CImages);
-      this.handleUpdateCustImage();
-    }
+
   }
 
   handleUpdateCustImage() {
     // console.log(picture);
     if (this.CImages != null) {
-      this.custAuth.patchCustImage(this.CImages).subscribe({
+      this.custAuth.patchCustImage(this.CImages,this.ImageName).subscribe({
         next: (value) => {
           console.log("Succesfully Updated the Image");
           this.customerProfile();

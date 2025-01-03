@@ -30,7 +30,7 @@ export class CartComponent {
     this.products = this.store.select(selectCartProducts);
     this.totalQuantity = this.store.select(selectTotalQuantity);
     this.totalPrice = this.store.select(selectTotalPrice);
-    // this.products = store.select(state => state.cart.products);
+    // this.products = store.select(state => .cart.products);
 
     console.log("This is My cart ", this.products);
   }

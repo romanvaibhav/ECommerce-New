@@ -1,0 +1,11 @@
+.displayOneProductImage{
+    width: 350px;
+    height: 280px;
+}
+.displayOneProduct{
+    margin-left: 50px;
+    margin: 50px;
+    display: flex;
+    flex-direction: row;
+
+}

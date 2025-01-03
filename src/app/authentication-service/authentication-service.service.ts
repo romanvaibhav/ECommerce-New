@@ -276,9 +276,13 @@ export class AuthenticationServiceService {
     new_images: File[],
     delete: string[]
   }, public_id: string): Observable<object> {
+    debugger
+    console.log("New Images Array",payload.new_images);
+    console.log("Deleted Ides",payload.delete);
+    debugger
     const formData = new FormData();
     payload.new_images.forEach(image => {
-      formData.append('image', image.name);
+      formData.append('image', image);
     });
     payload.delete.forEach(del => {
       formData.append('delete', del);

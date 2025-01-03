@@ -30,180 +30,79 @@
             (click)="clearAll()">Clear All</button>
     </div>
 </div>
+
+
+<!-- Product Creation -->
 <div style="width: 100%; height: 70vh; overflow: scroll;">
     <div class="d-flex justify-content-end">
-        <button (click)="openCreateProduct()">Create Product</button>
+        <button (click)="showDialog()">Create Product</button>
     </div>
-    <div *ngIf="openCreateProd" class="mainCreateProd">
 
-        <div class="left">
-            <div *ngFor="let img of imageUrls" class="ImageArray">
-                <img class="displayImg" [src]="img" alt="Not diplaying">
+    <div class="card flex justify-center">
+        <p-dialog header="Create Product" [modal]="true" [(visible)]="visible" [style]="{ width: '55rem' }">
+            <div style="display: flex;">
+                <div class="left">
+                    <div>
+                        <div *ngFor="let img of imageUrls" class="ImageArray">
+                            <img (click)="onClickImage(img)" class="displayImg" [src]="img" alt="Not diplaying">
+                        </div>
+                    </div>
+
+                    <div style="margin-left: 10px; width: 80%; height: 100%; margin-top: 0px;">
+                        <img *ngIf="ClickedImage" style="height: 280px; width: 355px;" [src]="ClickedImage" alt="">
+                    </div>
+                </div>
+
+                <div style="margin-left: 10px; width: 50%; height: 100%; border: 1px solid rgb(241, 241, 241); ">
+                    <label for="productname">Name:</label>
+                    <input type="text" [(ngModel)]="prodName"><br>
+                    <label style="margin-top: 5px;" for="productFile">Image:</label>
+                    <input style="margin-top: 5px;" type="file" (change)="onFileUpload($event)" multiple><br>
+                    <label style="margin-top: 5px;" for="price">Price:</label>
+                    <input style="margin-top: 5px;" type="number" [(ngModel)]="prodPrice"><br>
+                    <label style="margin-top: 5px;" for="productdescription">Description:</label><br>
+                    <p [innerHTML]="prodDescription"></p>
+                    <!-- <input type="text" [(ngModel)]="prodDescription"><br> -->
+                    <div class="card">
+                        <p-editor [(ngModel)]="prodDescription" [style]="{ height: '100px',backgroundColor:'red',}" />
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="right">
-            <label for="productname">Name:</label>
-            <input type="text" [(ngModel)]="prodName"><br>
-            <label for="productdescription">Description</label>
-            <input type="text" [(ngModel)]="prodDescription"><br>
-            <label for="productFile">Upload Image</label>
-            <input type="file" (change)="onFileUpload($event)" multiple><br>
-            <label for="price">Price</label>
-            <input type="number" [(ngModel)]="prodPrice"><br>
-            <button (click)="handleCreateProduct()">Submit</button>
-        </div>
-
+            <div class="flex justify-end gap-2">
+                <p-button label="Cancel" severity="secondary" (click)="visible = false" />
+                <p-button label="Save" (click)="handleCreateProduct()" (click)="visible = false" />
+            </div>
+        </p-dialog>
     </div>
-    <div class="displayProducts" >
-        <table>
-            <thead class="heading">
-                <tr>
-                    <th>Image</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>modify Button</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- (click)="onRowClick(prod)" -->
-                <tr  *ngFor="let prod of Puser" (click)="onRowClick(prod)">
-                    <td><img *ngIf="prod.images.length>0" [src]="prod.images[0].url" alt="" style="height: 200px; width: 150px;"></td>
-                    <td>{{prod.name}}</td>
-                    <td>{{prod.description}}</td>
-                    <td>{{prod.price}}</td>
-                    <td>
-                        <ul style="list-style: none;">
-                            <li>
-                                <button>Modify Product</button>
-                                <!-- <button >Modify Data {{user._id}}</button> -->
 
-                                <!--Bootstrap Model is here -->
-                                <!-- <button type="button" class="btn btn-primary" 
-                                    data-toggle="modal" data-target="#exampleModal">
-                                    Modify Data
-                                </button> -->
-                                <!-- Modal
-                                <div class="modal fade" #exampleModal tabindex="-1" role="dialog"
-                                    [attr.data-bs-target]="'#exampleModal-' + user._id" aria-hidden="true">
-                                    <div class="modal-dialog" role="document"
-                                        style="width: 36%; background: linear-gradient(45deg, hsl(289, 66%, 74%), rgb(221, 131, 95));">
-                                        <div class="modal-content"
-                                            style="background: linear-gradient(45deg, hsl(289, 66%, 74%), rgb(221, 131, 95));">
-                                            <div class="modal-header"
-                                                style="background: linear-gradient(45deg, hsl(289, 66%, 74%), rgb(221, 131, 95));">
-                                                <h5 class="modal-title" id="exampleModalLabel">Update User Information
 
-                                                </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal">
-                                                </button>
-                                            </div>
-                                            <div class="modal-body d-flex"
-                                                style="background: linear-gradient(45deg,hsl(289, 66%, 74%), rgb(221, 131, 95));">
-                                                <div class="sidemodel">
-                                                    <button (click)="modifyUserInfo(selectedUserId)">Update Info
-                                                    </button>
-                                                    <button (click)="Ismodifyupdate(selectedUserId)">Update
-                                                        Role</button>
-                                                    <button (click)="deleteUser(selectedUserId)">Delete User </button>
-                                                </div>
-                                                <div class="content ">
-                                                    <div style="margin-left: 10px;" class="d-flex flex-column"
-                                                        *ngIf="isUpdateInfo">
-                                                        <div style="margin-bottom: 2%; margin-top: 2%;">
-                                                            <label for="name">Name:</label>
-                                                            <input
-                                                                style="height: 4%; margin-left: 12%; width: 60%; border-radius: 5px; border: none;"
-                                                                type="text" [(ngModel)]="updateUser.name">
-                                                        </div>
-                                                        <div style="margin-bottom: 2%;">
-                                                            <label for="email">Email:</label>
-                                                            <input
-                                                                style="height: 4%;  margin-left: 13%; width: 60%; border-radius: 5px; border: none;"
-                                                                type="text" [(ngModel)]="updateUser.email">
-                                                        </div>
-                                                        <div style="margin-bottom: 2%;">
-                                                            <label for="Password">Password:</label>
-                                                            <input
-                                                                style="height: 4%;  margin-left: 3%; width: 60%; border-radius: 5px; border: none;"
-                                                                type="password" [(ngModel)]="updateUser.password">
-                                                        </div>
-                                                        <button
-                                                            style="width: 70px; height:25px; margin-left: auto; border: none; border-radius: 5px; "
-                                                            (click)="modifyUser(selectedUserId)">Submit</button>
-                                                    </div>
-                                                    <div style="margin-left: 10px; display: flex; flex-direction: column; margin-top: 10px; "
-                                                        *ngIf="isUpdateRole">
-                                                        <div>
-                                                            <label for="selectRole">Select Role:</label>
-                                                            <select name="role" [(ngModel)]="selectedValue.role"
-                                                                style="border: none; border-radius: 5px; margin-left: 10px;">
-                                                                <option *ngFor="let option of options"
-                                                                    [value]="option.value">{{option.label}}</option>
-                                                            </select>
-                                                        </div>
-                                                        <button
-                                                            style="width:70px; height:25px; margin-left: auto; margin-top: 20%; border: none; border-radius: 5px; "
-                                                            (click)="modifyUserRole(selectedUserId)">submit</button>
 
-                                                    </div>
-                                                </div>
 
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
-                                                    aria-label="Close">Close</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
-                                <!--Old code is here  -->
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
+    <div class="displayProducts">        
+            <div *ngFor="let prod of Puser" (click)="getInfo(prod)" class="product-item">
+              <!-- Product Image -->
+              <div>
+                <img style="width: 200px; height: 200px; margin-left: 15px;" *ngIf="prod.images.length > 0" [src]="prod.images[0].url" alt="" (click)="onImageClick(prod)">
+              </div>
+              
+              <!-- Product Name -->
+              <p class="product-name" style="margin: 0 auto 0 auto; font-weight: bold;">{{ prod.name }}</p>
+              
+              <!-- Product Description -->
+              <p class="product-description" style="margin-top: 30px; width: 100%;"  [innerHTML]="prod.description"></p>
+              
+              <!-- Product Price -->
+              <div class="product-price">
+                <span style="font-weight: 490;">Price: </span>
+                <span style="font-weight: bold;">{{ prod.price }}</span>
+              </div>
+            </div>
+          
     </div>
 </div>
-<div class="displayOneProduct" *ngIf="isOpenupdating">
-    <div >
-        <!-- (click)="onImageClick(img.public_id)"  -->
-         <div>
-            <div *ngFor="let img of onePuser.images">
-                <!-- (click)="onImageClick(img.public_id)" -->
-                <img class="displayOneProductImage" *ngIf="onePuser.images.length>0  " (click)="onImageClick(img.public_id)"   [src]="img.url" alt="">
-            </div>
-            <div *ngFor="let img of updateimageUrls">
-                <!-- (click)="onImageClick(img.public_id)" -->
-                <img class="displayOneProductImage" (click)="onImageClick(img)" *ngIf="onePuser.images.length>0" [src]="img" alt="">
-            </div>
-            <input type="file" (change)="onFileUpdate($event)" multiple>
-         </div>
-         <button (click)="updateOneProductImage(onePuser._id)">Update Image</button>
-         <!-- <div>
-            <button (click)="openUpdateImage()"></button>
-            *ngIf="isopenUpdateImage"
-            <div >
-                <input type="file" (change)="onFileUpdate($event)" multiple>
-                <button (change)="updateOneProductImage(onePuser.images[0].public_id)">Update Image</button>
-            </div>
-         </div> -->
-    </div> 
 
-    <div class="displayOneProductInfo">
-        <p>Product Name:{{onePuser.name}}</p>
-        <p>Product Description:{{onePuser.description}}</p>
-        <p>Product Price:{{onePuser.price}}</p>
-        <label for="name">Name</label>
-        <input type="text" [(ngModel)]="updateOneProductList.name"><br>
-        <label for="description">Description</label>
-        <input type="text"  [(ngModel)]="updateOneProductList.description"><br>
-        <label for="price">Price</label>
-        <input type="number"  [(ngModel)]="updateOneProductList.price"><br>
-        <button (click)="updateOneProduct(onePuser._id)" multiple>Update Product</button>
-        <button (click)="deleteOneProduct(onePuser._id)">Delete Product</button>
-    </div>
-</div>
+
+
+<!-- Updating One Product -->
+
+

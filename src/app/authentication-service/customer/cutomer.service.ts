@@ -87,10 +87,12 @@ export class CutomerService {
 
   ////Updating Customer Image
   patchCustImage(
-    cpicture: File
+    cpicture: Blob,
+    ImageName:string
+    
   ): Observable<object> {
     const formData = new FormData();
-    formData.append('picture', cpicture, cpicture.name);
+    formData.append('picture', cpicture, ImageName);
     let logintoken = localStorage.getItem("custToken");
     if (logintoken != null) {
       logintoken = JSON.parse(logintoken);
