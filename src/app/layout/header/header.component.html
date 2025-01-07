@@ -56,7 +56,12 @@
                     }
                 </div>
                 <div>
-                    <a routerLink="/cust/settings">Settings</a>
+                    @if(isCurrentRouteCustomer){
+
+                    }
+                    @else{
+                        <a routerLink="/cust/settings">Settings</a>
+                    }
                 </div>
                 <div>
                     <a >Contact</a>

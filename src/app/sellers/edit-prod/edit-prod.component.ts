@@ -7,7 +7,7 @@ import { AuthenticationServiceService } from '../../authentication-service/authe
 import { Dialog } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-edit-prod',
   standalone: true,
@@ -146,13 +146,47 @@ export class EditProdComponent {
   //Deleting Product Images
 
   deleteOneProduct(prodId:string){
-    this.authService.deleteProduct(prodId).subscribe({next: (value)=>{
-      console.log("Images Deleted Succesfully");
-    },
-    error:(err)=>{
-      console.log("Getting Error While Deleting the Product");
-    }
-  })
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger"
+      },
+      buttonsStyling: false
+    });
+    swalWithBootstrapButtons.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.authService.deleteProduct(prodId).subscribe({next: (value)=>{
+          console.log("Images Deleted Succesfully");
+          this.router.navigateByUrl("/seller/profile/products")
+        },
+        error:(err)=>{
+          console.log("Getting Error While Deleting the Product");
+        }
+      })
+        swalWithBootstrapButtons.fire({
+          title: "Deleted!",
+          text: "Your Product has been deleted.",
+          icon: "success"
+        });
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire({
+          title: "Cancelled",
+          text: "Your Product Is Safe.",
+          icon: "error"
+        });
+      }
+    });
 
   }
 }

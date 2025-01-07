@@ -30,7 +30,7 @@
             </div>
             <div class="Name">
                 <label for="Name">Full Name</label><br>
-                <input style="border: 1px solid black;" name="fullName" autocomplete="fullName" formControlName="fullName" type="text">
+                <input style="border: 1px solid black; background-color: rgb(255, 255, 255);" name="fullName" autocomplete="fullName" formControlName="fullName" type="text">
             </div>
             <div class="display">
                 @if(studentForm.controls['fullName'].touched && studentForm.controls['fullName'].errors?.['required']){

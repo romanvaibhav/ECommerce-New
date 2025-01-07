@@ -9,7 +9,7 @@ import { Dialog } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
-
+import Swal from 'sweetalert2'
 declare var bootstrap: any;
 
 @Component({
@@ -131,16 +131,59 @@ loadImageFailed() {
 
   //Deleting Customer Image
   DeleteCustImage() {
-    this.custAuth.deleteCustImage().subscribe({
-      next: (value) => {
-        console.log("Succesfully Deleted the Image", value);
-        this.customerProfile();
 
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger"
       },
-      error: (err) => {
-        console.log(err);
+      buttonsStyling: false
+    });
+    swalWithBootstrapButtons.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.custAuth.deleteCustImage().subscribe({
+          next: (value) => {
+            console.log("Successfully Deleted the Image", value);
+            this.customerProfile();
+    
+          },
+          error: (err) => {
+            console.log(err);
+          }
+      })
+        swalWithBootstrapButtons.fire({
+          title: "Deleted!",
+          text: "Your Product has been deleted.",
+          icon: "success"
+        });
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire({
+          title: "Cancelled",
+          text: "Your Product Is Safe.",
+          icon: "error"
+        });
       }
-    })
+    });
+
+
+
+
+
+
+
+
+
 
   }
 

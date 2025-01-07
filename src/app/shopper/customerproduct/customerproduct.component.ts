@@ -6,19 +6,24 @@ import { cartData, customerProductList } from '../../models/user.type';
 import { AddToCart } from '../../store/action/cart.action';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
-
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { Toast } from 'primeng/toast';
+import { ButtonModule } from 'primeng/button';
+import { Ripple } from 'primeng/ripple';
+import {ToasterService} from './../services/toaster/toaster.service'
 
 @Component({
   selector: 'app-customerproduct',
   standalone: true,
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,Toast, ButtonModule, Ripple],
   templateUrl: './customerproduct.component.html',
   styleUrl: './customerproduct.component.css'
 })
 export class CustomerproductComponent implements OnInit {
 
-  constructor(private custAuth:CutomerService,private store: Store,private router: Router){}
-
+  constructor(private toastService:ToasterService ,private custAuth:CutomerService,private store: Store,private router: Router,private messageService: MessageService){}
+  private hasShown = false;
 
   Cuser: customerProductList[] = [];
 
@@ -54,13 +59,14 @@ export class CustomerproductComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const hasShownFromStorage = localStorage.getItem('hasShown');
+    this.hasShown = hasShownFromStorage === 'true';
     this.handleCProductList();
   }
 
   onChange(event:any){
     this.handleCProductList()
   }
-
   handleCProductList() {
     this.custAuth.getCustProductList(this.CproductList).subscribe({
       next: (value: any) => {
@@ -69,6 +75,14 @@ export class CustomerproductComponent implements OnInit {
         this.SortByPage()
         this.Cuser = value['results'] as [];
         console.log("Here is Cuser",this.Cuser)
+        let Verify=localStorage.getItem("custToken");
+        if(!this.hasShown && Verify){
+          this.showToast();
+          this.hasShown=true;
+        localStorage.setItem('hasShown', 'true');
+
+        }
+
         // console.log(this.Cuser);
       },
       error: (err) => {
@@ -80,6 +94,7 @@ export class CustomerproductComponent implements OnInit {
   // cart:cartData[]=[]
   addToCart(prod:any){
     console.log("Here is the Product",prod);
+    this.toastService.showInfo('','Product Added To The Cart.');
 
     this.store.dispatch(AddToCart({product:prod}))
     // this.cart.push(prod);
@@ -97,6 +112,10 @@ isOpenTheDrop:boolean=false;
       state: { product:Prod } // Passing product data in state
     });
 
+  }
+
+  showToast(): void {
+    this.toastService.showSuccess('', 'LoggedIn Succesfully');
   }
 
 }

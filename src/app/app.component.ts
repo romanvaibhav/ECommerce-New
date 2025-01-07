@@ -4,12 +4,16 @@ import { LoginComponent } from './sellers/auth/login/login.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { Store } from '@ngrx/store';
-
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { ToasterService } from './shopper/services/toaster/toaster.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,FooterComponent,HeaderComponent],
+  imports: [RouterOutlet,FooterComponent,HeaderComponent,ToastModule],
+  providers:[MessageService,ToasterService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

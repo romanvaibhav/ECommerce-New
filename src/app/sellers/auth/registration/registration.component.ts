@@ -8,6 +8,7 @@ import { CommonModule, JsonPipe } from '@angular/common';
 import { LocalAuthService } from '../../services/local-auth/local-auth.service';
 // import { Suser } from '../../../models/user.type';
 import {AuthenticationServiceService} from '../../../authentication-service/authentication-service.service'
+import { ToasterService } from '../../../shopper/services/toaster/toaster.service';
 
 
 @Component({
@@ -19,7 +20,7 @@ import {AuthenticationServiceService} from '../../../authentication-service/auth
 })
 
 export class RegistrationComponent {
-  constructor(private localAuth: LocalAuthService, private authService:AuthenticationServiceService, private router:Router) {}
+  constructor(private toastService:ToasterService,private localAuth: LocalAuthService, private authService:AuthenticationServiceService, private router:Router) {}
   errorMessage: string = '';
   studentForm : FormGroup= new FormGroup({
     email: new FormControl("",[Validators.required]),
@@ -48,7 +49,8 @@ export class RegistrationComponent {
       }).subscribe({next: (value)=>{
         console.log(value);
         console.log("Inside Next");
-        alert("Created succesfully");
+        this.toastService.showSuccess('','Auther Registered Succesfully');
+
       },
       error: (err) => {
         console.log('Error in Loging Button \n' + err);

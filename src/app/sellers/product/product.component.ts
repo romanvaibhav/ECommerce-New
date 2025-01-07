@@ -10,7 +10,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { EditorModule } from 'primeng/editor';
 import { Editor } from 'primeng/editor';
 import { Router } from '@angular/router';
-
+import { ToasterService } from '../../shopper/services/toaster/toaster.service';
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-product',
   standalone: true,
@@ -19,7 +20,8 @@ import { Router } from '@angular/router';
   styleUrl: './product.component.css'
 })
 export class ProductComponent implements OnInit {
-  constructor(private cdRef: ChangeDetectorRef, private authService: AuthenticationServiceService,private router:Router) { }
+  constructor(private toastService:ToasterService,private cdRef: ChangeDetectorRef, private authService: AuthenticationServiceService,private router:Router) { }
+  private IsSellerLogin:boolean=false;
 
   Puser: ProdList[] = [];
   onePuser: {
@@ -85,11 +87,14 @@ export class ProductComponent implements OnInit {
     // Initialization logic here
     this.handleProductList();
     // this.onRowClick()
+
+    //Getting From LocalStorage
+    const hasShownFromStorage = localStorage.getItem('haShown');
+    this.IsSellerLogin = hasShownFromStorage === 'true';
   }
 
   // Fetching the producting By Filtering
   handleProductList() {
-
     this.authService.getProductList(this.productList).subscribe({
       next: (value: any) => {
         console.log("We got the product list");
@@ -98,6 +103,13 @@ export class ProductComponent implements OnInit {
         this.Puser = value['results'] as [];
         console.log("Here is Puser")
         console.log(this.Puser);
+        let SellerToken=localStorage.getItem("token");
+        if(!this.IsSellerLogin && SellerToken){
+          this.toastService.showSuccess('',"Auther Login Successful");
+          this.IsSellerLogin=true;
+          localStorage.setItem('haShown', 'true');
+
+        }
       },
       error: (err) => {
         console.log("We are getting error while fetching the users", err)
@@ -162,6 +174,7 @@ export class ProductComponent implements OnInit {
         this.prodPrice = 0;
         this.imageUrls = [];
         this.handleProductList();
+        this.toastService.showInfo('','Product Creation Successful');
       },
       error: (err) => {
         console.log("Got error in the handleCreateProduct", err);

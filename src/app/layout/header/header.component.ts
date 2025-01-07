@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { NavigationEnd, RouterLink, RouterOutlet } from '@angular/router';
 import { Router } from '@angular/router';
+import { ToasterService } from '../../shopper/services/toaster/toaster.service';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 
-  constructor(private router:Router,){}
+  constructor(private router:Router,private toastService:ToasterService ){}
   isCurrentRouteCustomer?: boolean;
   ngOnInit(): void {
     this.router.events.subscribe(
@@ -32,12 +33,15 @@ export class HeaderComponent {
       });
   }
   Logoutbtn(){
+    localStorage.removeItem("haShown");
     localStorage.removeItem("token");
     this.router.navigateByUrl("/seller/login");
   }
   LogoutCbtn(){
     localStorage.removeItem("custToken");
+    localStorage.removeItem("hasShown");
     this.router.navigateByUrl("/auth/login");
+    this.toastService.showError('','Logged Out')
   }
 
   // myprofile(){

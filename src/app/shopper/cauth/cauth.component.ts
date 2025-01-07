@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CutomerService } from '../../authentication-service/customer/cutomer.service';
 import { Router } from '@angular/router';
+import { ToasterService } from '../services/toaster/toaster.service';
 
 @Component({
   selector: 'app-cauth',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 })
 export class CauthComponent {
 
-  constructor(private custAuth:CutomerService, private router:Router){}
+  constructor(private toastService:ToasterService,private custAuth:CutomerService, private router:Router){}
 
   errorMessage: string = '';
   customerForm : FormGroup= new FormGroup({
@@ -52,6 +53,7 @@ export class CauthComponent {
         }
       }).subscribe({next: (value:any)=>{
         console.log(value);
+        this.toastService.showSuccess('','Registered Succesfully');
         alert("Created CustomerRegistration succesfully");
       },
       error: (err:any) => {

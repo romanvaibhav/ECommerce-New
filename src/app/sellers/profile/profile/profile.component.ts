@@ -4,6 +4,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthenticationServiceService } from '../../../authentication-service/authentication-service.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToasterService } from '../../../shopper/services/toaster/toaster.service';
 declare var bootstrap: any;
 
 
@@ -16,7 +17,7 @@ declare var bootstrap: any;
 })
 export class ProfileComponent {
 
-  constructor(private route: ActivatedRoute,private router:Router, private authService:AuthenticationServiceService, httpClient:HttpClient){}
+  constructor(private toastService:ToasterService,private route: ActivatedRoute,private router:Router, private authService:AuthenticationServiceService, httpClient:HttpClient){}
 
   selectedUserId: string='';
   @ViewChild('exampleModal') exampleModal!: ElementRef;
@@ -100,6 +101,7 @@ export class ProfileComponent {
       const profileObservable$=this.authService.postVerifyEmail();
       profileObservable$.subscribe({next :(value:any)=>{
         console.log("Email Sent Succesfully");
+        this.toastService.showSuccess('','Email Sent To The registered Email Address.');
         console.log(value);
       },
     error:(err)=>{

@@ -10,6 +10,7 @@ import { CutomerService } from '../../../authentication-service/customer/cutomer
 import { checkoutD, custAdd ,checkoutList} from '../../../models/user.type';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { ToasterService } from '../../services/toaster/toaster.service';
 @Component({
   selector: 'app-cart',
   standalone: true,
@@ -26,7 +27,7 @@ export class CartComponent {
 
   cart: any;
 
-  constructor(private store: Store, private localservice: ClocalService, private cstore: Store<{ cart: cartStore }>, private custAuth: CutomerService,private router: Router) {
+  constructor(private toastService:ToasterService ,private store: Store, private localservice: ClocalService, private cstore: Store<{ cart: cartStore }>, private custAuth: CutomerService,private router: Router) {
     this.products = this.store.select(selectCartProducts);
     this.totalQuantity = this.store.select(selectTotalQuantity);
     this.totalPrice = this.store.select(selectTotalPrice);
@@ -91,6 +92,7 @@ export class CartComponent {
   clearAll(){
     console.log("Clear All Products is Calling")
     this.store.dispatch(clearAllProduct({ productId: 'clearAll' }));
+    this.toastService.showError('','Cart Cleared')
   }
 
 

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CutomerService } from '../../authentication-service/customer/cutomer.service';
+import { ToasterService } from '../services/toaster/toaster.service';
 
 @Component({
   selector: 'app-confirm-order',
@@ -12,7 +13,7 @@ import { CutomerService } from '../../authentication-service/customer/cutomer.se
   styleUrl: './confirm-order.component.css'
 })
 export class ConfirmOrderComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private custAust:CutomerService) { }
+  constructor(private toastService:ToasterService ,private route: ActivatedRoute, private custAust:CutomerService) { }
   orders: any;
 
   ngOnInit(): void {
@@ -32,6 +33,8 @@ export class ConfirmOrderComponent implements OnInit {
     console.log("Printing OrderID",orderId);
     this.custAust.putCustConfirmOrder(this.paymentDetails,orderId).subscribe({next:(value:any)=>{
       console.log("Payment Succesfull",value)
+      this.toastService.showSuccess('','Payment Succesfull');
+
     },
     error:(err:any)=>{
       console.log("Error while making Payment",err.message);

@@ -3,7 +3,7 @@ import { CutomerService } from '../../authentication-service/customer/cutomer.se
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-orderdetails',
   standalone: true,
@@ -36,14 +36,54 @@ export class OrderdetailsComponent {
 
 
   cancleOrder(orderId:string){
-    console.log(orderId);
-    this.custAuth.patchCustCancleOrder(orderId).subscribe({next:(value:any)=>{
-      console.log("succesfully Canceled the Order",value);
-      this.orderHistory();
-    },
-  error:(err:any)=>{
-    console.log("We are getting while cancling the order",err);
-  }})
+
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger"
+      },
+      buttonsStyling: false
+    });
+    swalWithBootstrapButtons.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, do it!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(orderId);
+        this.custAuth.patchCustCancleOrder(orderId).subscribe({next:(value:any)=>{
+          console.log("succesfully Canceled the Order",value);
+          this.orderHistory();
+        },
+      error:(err:any)=>{
+        console.log("We are getting while cancling the order",err);
+      }
+      })
+        swalWithBootstrapButtons.fire({
+          title: "Deleted!",
+          text: "Your Product has been deleted.",
+          icon: "success"
+        });
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire({
+          title: "Cancelled",
+          text: "Your Product Is Safe.",
+          icon: "error"
+        });
+      }
+    });
+
+
+
+
+
 
   }
 
